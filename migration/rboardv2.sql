@@ -30,8 +30,9 @@ CREATE TABLE `messages` (
   `message` text,
   `date_created` int(11) DEFAULT NULL,
   `date_updated` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  FULLTEXT KEY `place_tag` (`place_tag`,`sender`,`message`,`sender_number`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,6 @@ CREATE TABLE `messages` (
 
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-INSERT INTO `messages` VALUES ('09bc9de97b4047d51f42672eea6f7885','tacloban','kevin','0912312311231','helhelp',1384266712,1384266712),('2323232223',NULL,NULL,'09153203958','help help help us..!',1234512,1232153),('23232323','tacloban','ninz eclarin','09153203958','help help help us..!',1234512,1232153),('2aa660153a2862d3aa60804b719fb5c7','tacloban','kevin','0912312311231','helhelp',1384266713,1384266713),('9e892dea77f093de20b9079731cdbf45','tacloban','kevin','0912312311231','helhelp',1384266716,1384266716);
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-11-12 23:17:00
+-- Dump completed on 2013-11-13  2:20:53
