@@ -3,8 +3,13 @@ class Feed_model extends Kiel_Model{
 
 	public function get_messages()
 	{
-
 		return $this->data_handler->get('messages',null,null,null,null,'date_created');
+	}
+
+	public function search($q)
+	{
+		$query  = "SELECT * FROM messages WHERE MATCH (place_tag,sender,message,sender_number) AGAINST ('{$q}')";
+		return $this->data_handler->query($query);
 	}
 
 	public function add_messages($user_no,$addr,$name,$message)
