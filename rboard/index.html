@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta property="og:description" content="hehehehe">
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -15,14 +16,16 @@
 
   <body>
 
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=142003695980461";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=214855112027480";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -40,7 +43,6 @@
             <div class="form-group">
               <input type="text" id="search" placeholder="Search" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Search</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -56,6 +58,8 @@
     </div>
 
     <div class="container">
+      <div class="row"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
+      <div class="search-container row"><h2>Search Results (<span id="search-count">0</span>):</h2><hr /></div>
       <div id="msg" class="row"></div>
     </div>
 

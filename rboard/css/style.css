@@ -1,3 +1,11 @@
+body {
+	background-color: #eee;
+}
+
+.jumbotron {
+	background-color: white;
+}
+
 /* ------------------------------------------------------------------------ */
 /* SEARCH */
 
@@ -9,8 +17,35 @@
 /* THE POST */
 
 .post {
+	background-color: white;
 	border: 1px solid #ddd;
 	margin: 0 0 20px 0;
-	padding: 10px;
+	padding: 10px 20px;
 	word-wrap:break-word;
+}
+
+/* ------------------------------------------------------------------------ */
+/* NOTIF */
+
+.notif {
+	background-color: white;
+	border: 1px solid #ddd;
+	color: black;
+	display: none;
+	margin-bottom: 20px;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.notif:hover {
+	color: black;
+	text-decoration: none !important; 
+}
+
+/* ------------------------------------------------------------------------ */
+/* SEARCH CONTAINER */
+.search-container {
+	display: none;
 }
