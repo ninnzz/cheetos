@@ -58,7 +58,7 @@
 			}
 
 			$query_message .= ';';
-			
+
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$link->close();
@@ -69,12 +69,12 @@
 			while($row = $result->fetch_assoc()){
   		 		array_push($res, $row);
 			}
-			$res['result_count'] = $result->num_rows;
+			$cnt = $result->num_rows;
 
 			$result->free();
 			$link->commit();
 			$link->close() or die('no links to close');
-			return($res);
+			return(array('result' => $res, 'result_count'=>$cnt));
 		}
 
 		public function get_where($table,$data,$where,$offset,$limit,$sort,$order)
