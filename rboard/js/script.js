@@ -2,21 +2,21 @@ $( function () {
 
 	$.ajax( {
 		type: "GET",
-		url: "/messages/feed?offset=&limit=&sort_by=&sort_order=dsc"
-
+		url: "http://www.reliefboard.com/messages/feed"
 	} ).done( function ( result ) {
 		
 		var html = "";
 
-		_.each( result.data, function(d) {
+		_.each( result.data.result, function(d) {
+
 
 			html += '<div class="post msg col-lg-12" data-id=' + d.id + '>';
 			
-				html += '<p>' + d.message;
-					html += '<span class="label label-default timestamp" data-time=' + d.date_created + '>' + d.date_created + '</span>';
-				html += '</p>';
+				html += '<p>' + decodeURIComponent(d.message) + '</p> ';
 
-				html += '<p>' + d.place_tag + ", " + d.sender + '</p>';
+				html += '<p><span class="label label-default timestamp" data-time=' + d.date_created + '>' + d.date_created + '</span></p>';
+
+				html += ' <p>' + decodeURIComponent(d.place_tag) + ", " + decodeURIComponent(d.sender) + ", " + d.sender_number +'</p>';
 
 				html += '<div class="fb-share-button" data-href="http://www.reliefboard.com/m/' + d.id + '" data-type="button_count"></div>';
 
