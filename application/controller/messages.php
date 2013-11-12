@@ -38,6 +38,9 @@ class Messages extends Kiel_Controller{
 		} else{
 		   die("Invalid message type");
 		}
+
+		error_log("Yehey");
+
 		/*********MESSAGE PART******************/
 		
 		$msg_arr = explode('/',$smsMsg);
