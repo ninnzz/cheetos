@@ -11,7 +11,7 @@ $( function () {
 			html += '<p>' + unescape(decodeURIComponent(d.message)) + '</p> ';
 			html += ' <p>' + unescape(decodeURIComponent(d.place_tag)) + ", " + unescape(decodeURIComponent(d.sender)) + ", " + d.sender_number +'</p>';
 			html += '<p><span class="label label-default timestamp" data-time=' + d.date_created + '>' + d.date_created + '</span></p>';
-			html += '<div class="fb-share-button" data-href="http://www.reliefboard.com/" data-type="button_count"></div>';
+			html += '<div class="fb-like" data-href="http://www.reliefboard.com/#' + d.id + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
         html += '</div>';
         return html;
 	}
@@ -37,6 +37,8 @@ $( function () {
 			$( "#msg" ).html("");
 	        $( "#msg" ).append( html );
 	        $( ".timestamp" ).prettyDate();
+
+	        FB.XFBML.parse();
 
 		});
 
@@ -96,7 +98,8 @@ $( function () {
 	    fresh_count = 0;
 	    var title = $("title").text();
 	    title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
-        $("title").text(title)
+        $("title").text(title);
+        FB.XFBML.parse();
 	});
 
 	$(document).on("keyup", "#search", function(e) {
@@ -133,6 +136,8 @@ $( function () {
 	        $( "#msg" ).append( html );
 	        $( ".timestamp" ).prettyDate();
 	        $( "#search-count" ).text(search_count);
+
+	        FB.XFBML.parse();
 
 		});
 
