@@ -54,14 +54,11 @@
 			$query_message = "SELECT {$data} FROM {$table} ";
 
 			if($order != NULL){
-				$query_message = "ORDER BY {$order} desc";
+				$query_message .= "ORDER BY {$order} desc";
 			}
 
 			$query_message .= ';';
-
-			print_r($query_message);
-			die();
-
+			
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$link->close();
