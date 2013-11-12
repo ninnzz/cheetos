@@ -18,7 +18,7 @@ class Messages extends Kiel_Controller{
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
-	public function feed_callback_get()
+	public function feed_callback_post()
 	{
 		$this->load_model('feed_model');
 
@@ -39,7 +39,6 @@ class Messages extends Kiel_Controller{
 		   die("Invalid message type");
 		}
 
-		error_log("Yehey");
 
 		/*********MESSAGE PART******************/
 		
