@@ -57,7 +57,7 @@
 				$query_message = "ORDER BY {$order} desc";
 			}
 
-			$query_message .] ';';
+			$query_message .= ';';
 
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
