@@ -14,3 +14,23 @@
 	padding: 10px;
 	word-wrap:break-word;
 }
+
+/* ------------------------------------------------------------------------ */
+/* NOTIF */
+
+.notif {
+	background-color: #ddd;
+	border: 1px solid #ddd;
+	color: black;
+	display: none;
+	margin-bottom: 20px;
+	padding: 20px;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.notif:hover {
+	color: black;
+	text-decoration: none !important; 
+}
