@@ -7,11 +7,11 @@ $( function () {
 
 	function post_template (d) {
 		var html = "";
-		html += '<div class="post msg col-lg-12" data-id=' + d.id + '>';
+		html += '<div class="post msg col-lg-7 col-md-offset-3" data-id=' + d.id + '>';
 			html += '<p>' + unescape(decodeURIComponent(d.message)) + '</p> ';
 			html += ' <p>' + unescape(decodeURIComponent(d.place_tag)) + ", " + unescape(decodeURIComponent(d.sender)) + ", " + d.sender_number +'</p>';
 			html += '<p><span class="label label-default timestamp" data-time=' + d.date_created + '>' + d.date_created + '</span></p>';
-			html += '<div class="fb-share-button" data-href="http://www.reliefboard.com/m/' + d.id + '" data-type="button_count"></div>';
+			html += '<div class="fb-share-button" data-href="http://www.reliefboard.com/" data-type="button_count"></div>';
         html += '</div>';
         return html;
 	}
