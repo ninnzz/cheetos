@@ -28,12 +28,7 @@
 			$row_count = 0;
 			$res = array();
 
-			if(!$table){
-				header("HTTP/1.0 500 Internal Server Error");
-    			throw new Exception("Database Error :: Unknown table", 1);
-			}
 			$data = $data?$this->extract_column($data):' * ';
-
 
 			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
 
