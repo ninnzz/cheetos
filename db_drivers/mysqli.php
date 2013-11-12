@@ -25,7 +25,37 @@
 
 		public function query($query)
 		{
-			return $query;
+			$row_count = 0;
+			$res = array();
+
+			$data = $data?$this->extract_column($data):' * ';
+
+			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
+
+			if($link->connect_errno > 0){
+				$err = $link->connect_error;
+				$link->close() or die('no links to close');
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Connection Error [" . $err . "]", 1);
+			}
+			$link->autocommit(FALSE);
+	
+			if(!$result = $link->query($query)){
+				$err = $link->error;
+				$link->close();
+ 				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Connection Error [" . $err . "]", 1);
+			}
+
+			while($row = $result->fetch_assoc()){
+  		 		array_push($res, $row);
+			}
+			$cnt = $result->num_rows;
+
+			$result->free();
+			$link->commit();
+			$link->close() or die('no links to close');
+			return(array('result' => $res, 'result_count'=>$cnt));
 
 		}
 

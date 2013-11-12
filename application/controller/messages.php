@@ -28,6 +28,18 @@ class Messages extends Kiel_Controller{
 		$this->feed_model->add_messages($user_no,$addr,$name,$message);	
 	}
 
+
+	public function search_get()
+	{
+		if($this->get_args['q'] && isset($this->get_args['q']) && $this->get_args['q'] != ""){
+			$this->load_model('feed_model');
+			$res = $this->feed_model->search($this->get_args['q']);
+			$this->response(array('status'=>'Success','data'=>$res),200);
+
+		} else {
+
+		}
+	}
 	public function feed_callback_post()
 	{
 		$this->load_model('feed_model');
