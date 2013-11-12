@@ -18,6 +18,11 @@ class Messages extends Kiel_Controller{
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
+	public function feed_post()
+	{
+		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message);	
+	}
+
 	public function feed_callback_post()
 	{
 		$this->load_model('feed_model');

@@ -51,7 +51,13 @@
 			}
 			$link->autocommit(FALSE);
 	
-			$query_message = "SELECT {$data} FROM {$table};";
+			$query_message = "SELECT {$data} FROM {$table} ";
+
+			if($order != NULL){
+				$query_message = "ORDER BY {$order} desc";
+			}
+
+			$query_message .] ';';
 
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;

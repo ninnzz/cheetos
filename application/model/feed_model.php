@@ -3,7 +3,7 @@ class Feed_model extends Kiel_Model{
 
 	public function get_messages()
 	{
-		return $this->data_handler->get('messages');
+		return $this->data_handler->get('messages',null,null,null,null,'date_created');
 	}
 
 	public function add_messages($user_no,$addr,$name,$message)
