@@ -72,7 +72,7 @@
 	 */
 	$config['allowed_method_types'] = array('POST','GET','PUT','DELETE');
 
-	$config['index_path_redirect'] = "timesheet";
+	$config['index_path_redirect'] = "rboard";
 
 	/*
 	 * Sets the application folder path if web application is in the same folder as API
