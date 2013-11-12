@@ -7,11 +7,8 @@ $( function () {
 	} ).done( function ( result ) {
 		
 		var html = "";
-		var d = "";
 
-		for ( var i = 0; i < result.data.result_count; i++ ) {
-
-			d = result.data[ i ];
+		_.each( result.data, function(d) {
 
 			html += '<div class="post msg col-lg-12" data-id=' + d.id + '>';
 			
@@ -25,7 +22,7 @@ $( function () {
 
         	html += '</div>';
 
-		};
+		});
 
         $( "#msg" ).append( html );
         $( ".timestamp" ).prettyDate();
