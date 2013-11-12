@@ -9,7 +9,7 @@ $( function () {
 		var html = "";
 		var d = "";
 
-		for ( var i = 0; i < result_count; i++ ) {
+		for ( var i = 0; i < result.data.result_count; i++ ) {
 
 			d = result.data[ i ];
 
