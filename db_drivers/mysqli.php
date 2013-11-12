@@ -59,6 +59,9 @@
 
 			$query_message .= ';';
 
+			print_r($query_message);
+			die();
+
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$link->close();
