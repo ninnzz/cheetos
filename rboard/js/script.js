@@ -2,8 +2,7 @@ $( function () {
 
 	$.ajax( {
 		type: "GET",
-		url: "/messages/feed?offset=&limit=&sort_by=&sort_order=dsc"
-
+		url: "http://www.reliefboard.com/messages/feed?offset=&limit=&sort_by=&sort_order=dsc"
 	} ).done( function ( result ) {
 		
 		var html = "";
