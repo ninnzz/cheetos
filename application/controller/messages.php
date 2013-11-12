@@ -24,8 +24,8 @@ class Messages extends Kiel_Controller{
 		$user_no = $this->post_args['user_number'];
 		$addr = $this->post_args['address'];
 		$name = $this->post_args['name'];
-		$user_no = $this->post_args['message'];
-		$message = $this->feed_model->add_messages($user_no,$addr,$name,$message);	
+		$message = $this->post_args['message'];
+		$this->feed_model->add_messages($user_no,$addr,$name,$message);	
 	}
 
 	public function feed_callback_post()
