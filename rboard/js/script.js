@@ -102,7 +102,16 @@ $( function () {
         FB.XFBML.parse();
 	});
 
+	$("form").bind("keypress", function(e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
+
+
 	$(document).on("keyup", "#search", function(e) {
+
+		e.preventDefault();
 
 		var val = $(this).val();
 		var search_count = 0;
