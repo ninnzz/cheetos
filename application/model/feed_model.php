@@ -8,7 +8,7 @@ class Feed_model extends Kiel_Model{
 
 	public function search($q)
 	{
-		$query  = "SELECT * FROM messages WHERE MATCH (sender,message,place_tag,sender_number) AGAINST ('{$q}')";
+		$query  = "SELECT * FROM messages WHERE MATCH (sender,message,place_tag,sender_number) AGAINST ('{$q}' WITH QUERY EXPANSION)";
 		return $this->data_handler->query($query);
 	}
 
