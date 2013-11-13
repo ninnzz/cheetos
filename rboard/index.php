@@ -13,6 +13,13 @@
     <meta name="description" content="Search for your loved ones and find out how you can help in relief efforts">
     <meta name="author" content="Stratpoint Technologies Inc.">
 
+    <meta property="og:title" content="ReliefBoard" />
+    <meta property="og:site_name" content="ReliefBoard" />
+    <meta property="og:description" content="Search for your loved ones and find out how you can help in relief efforts" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.reliefboard.com" />
+    <meta property="og:image" content="img/profile-pic.png" />
+
     <!-- GOOGLE ANALYTICS -->
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -37,6 +44,8 @@
   </head>
 
   <body>
+
+    <h1 style="display: none;">ReliefBoard</h1>
 
     <!-- START - SOCIAL NETWORK SCRIPTS -->
 
