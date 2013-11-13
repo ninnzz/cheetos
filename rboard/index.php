@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
+<html lang="en">
 
-  <head prefix="og: http://ogp.me/ns# object: http://ogp.me/ns/object#">
+  <head prefix="og: http://ogp.me/ns#">
 
     <title>ReliefBoard</title>
 
     <!-- META -->
     
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- META COPY FOR SEO -->
