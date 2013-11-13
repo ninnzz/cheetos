@@ -55,7 +55,11 @@
       </div>
     </div>
 
-
+    <div class="container">
+      <div class="row">
+        <div class="fb-comments" data-href="<?php echo $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div>
+      </div>
+    </div>
 
   </body>
 </html>
