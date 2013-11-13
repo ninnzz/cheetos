@@ -109,7 +109,7 @@
 
         <div class="comments-container">
           <div class="fb-comments" data-href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div>
-           <div id="disqus_thread"></div>
+          <!-- <div id="disqus_thread"></div>-->
         </div>
 
       </div>

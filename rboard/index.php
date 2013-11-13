@@ -165,7 +165,7 @@
               <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(decodeURIComponent(d.place_tag)) %> | </b>
             <% } %>
 
-            <span class="glyphicon glyphicon-link"></span> <a href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Permalink</a> 
+            <span class="glyphicon glyphicon-link"></span> <a href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Details</a> 
 
           </p>
           
