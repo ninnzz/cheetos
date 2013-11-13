@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="Testing">
     <meta name="author" content="">
+    <meta property="og:title" content="ReliefBoard">
     <meta property="og:description" content="Testing">
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -50,7 +51,6 @@
     <div class="jumbotron">
       <div class="container">
         <br />
-        <h2></h2>
         <p>THE POST GOES HERE</p>
       </div>
     </div>
