@@ -95,15 +95,14 @@ class Messages extends Kiel_Controller{
 			$this->sns_crosspost($message);
 		}
 	}
-
+	
 	private function sns_crosspost($message)
 	{
-		$params['facebook_access_token'] = 'CAADDaNqhbVgBANghp5PyBJBZAu2XSthA0mfGIARjZBKxbgjVNNlU8qL39U43ZA9VMIVlJK4atc8XJhxUyE2HAoAZBYxf50kjUhBvu2dXISz3jH8hSRMbg0bGadNsttlaqJPplzJhZCeUSTdr5I43DHirStipfDryPbic46tPx0ZAjhZAiE3pebZCShxdXEF6CZC5pZAsogjiXDQAZDZD';
-		$params['twitter_access_token'] = '2190619520-3Wt5cYUvSPmDR6jRlPsdDnFfNUeK2t0EoWbg3Bu';
-		$params['twitter_access_secret'] = 'ztbwT7ja0NKMbTCplGVU2S25QlNlZ9ZZbVlbUk0hamMhL';
+		$params['facebook_access_token'] = 'CAADDaNqhbVgBAKfxPjjLkCcmmCWaOVRZAkY5JSpLIZBziZCRxix9QgNCR1IZCu0JgWyZCPqbwdwHjlZC1U6ovSg6oGIcB0BK8KUlrT9GdtA3IDAocZCZC7ko3sK6rfN1ZAXSe6sZBIxqS27Fkch2WO788yvxIY0VsFw2V8gEwiCZCBCrKD5JmXV90bpaxE1ZB8IuHQgZD';
+		$params['twitter_access_token'] = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
+		$params['twitter_access_secret'] = '2SO03jgYn31wJEZyXkaQI48MfX56Ktbo8fM7G2URiFfUB';
 		$params['place'] = '454373604683875';
 		$params['message'] = $message;
-
 		//open connection
 		$ch = curl_init();
 
@@ -114,7 +113,6 @@ class Messages extends Kiel_Controller{
 
 		//execute post
 		$result = curl_exec($ch);
-
 		//close connection
 		curl_close($ch);
 		$this->response(array('status'=>'Success'),200);
