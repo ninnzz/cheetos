@@ -23,6 +23,19 @@
    			return rtrim($str,',');
    		}
 
+   		private function get_wher_clause($data)
+   		{
+			// $str = ''; 
+   // 			while ($val = current($data)) {
+			    
+   // 				$str .= key($array)
+			//     if ($fval == 'apple') {
+			//         echo key($array).'<br />';
+			//     }
+			//     next($array);
+			// }
+
+   		}
 		public function query($query)
 		{
 			$row_count = 0;
@@ -107,10 +120,54 @@
 			return(array('result' => $res, 'result_count'=>$cnt));
 		}
 
-		public function get_where($table,$data,$where,$offset,$limit,$sort,$order)
+		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=NULL,$limit=NULL,$sort=NULL,$order=NULL)
 		{
 
+			$row_count = 0;
+			$res = array();
 
+			if(!$table){
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Error :: Unknown table", 1);
+			}
+			$data = $data?$this->extract_column($data):' * ';
+			// $where = ($where)?get_wher_clause($data):'';
+
+			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
+
+			if($link->connect_errno > 0){
+				$err = $link->connect_error;
+				$link->close() or die('no links to close');
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Connection Error [" . $err . "]", 1);
+			}
+			$link->autocommit(FALSE);
+	
+			$query_message = "SELECT {$data} FROM {$table} {$where}";
+
+
+			if($order != NULL){
+				$query_message .= "ORDER BY {$order} desc";
+			}
+
+			$query_message .= ';';
+
+			if(!$result = $link->query($query_message)){
+				$err = $link->error;
+				$link->close();
+ 				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Connection Error [" . $err . "]", 1);
+			}
+
+			while($row = $result->fetch_assoc()){
+  		 		array_push($res, $row);
+			}
+			$cnt = $result->num_rows;
+
+			$result->free();
+			$link->commit();
+			$link->close() or die('no links to close');
+			return(array('result' => $res, 'result_count'=>$cnt));
 		}
 
 		public function insert($table=NULL,$data=NULL)
