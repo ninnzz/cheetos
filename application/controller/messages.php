@@ -84,6 +84,30 @@ class Messages extends Kiel_Controller{
 		}
 
 	}
+
+	public function facebook_post()
+	{
+
+		$params['facebook_access_token'] = '214855112027480|j_cZkkue-bLQmNruymv1lsmAiiE';
+		$params['place'] = '454373604683875';
+		$params['message'] = 'sample';
+
+		//open connection
+		$ch = curl_init();
+
+		//set the url, number of POST vars, POST data
+		curl_setopt($ch,CURLOPT_URL, 'http://api.buzzboarddev.stratpoint.com/posts/v1/fb_post');
+		curl_setopt($ch,CURLOPT_POST, 3);
+		curl_setopt($ch,CURLOPT_POSTFIELDS, $params);
+
+		//execute post
+		$result = curl_exec($ch);
+
+		//close connection
+		curl_close($ch);
+		die(json_encode($result));
+		$this->response(array('status'=>'Success'),200);
+	}
 }
 
 ?>
