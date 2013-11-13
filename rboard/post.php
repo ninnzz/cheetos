@@ -51,7 +51,7 @@
 
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-  <script type="text/javascript">
+  <!--<script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'reliefboard'; // required: replace example with your forum shortname
 
@@ -61,7 +61,7 @@
         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-  </script>
+  </script>-->
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -92,7 +92,7 @@
         
         <p><?php echo urldecode($data['message']); ?></p>
         <p><span class="label label-default time" data-time="<?php echo $data['date_created']; ?>"><?php echo $data['date_created']; ?></span></p>
-        <p><?php echo urldecode($data['place_tag']); ?>, <?php echo urldecode($data['sender']); ?> , <?php echo urldecode($data['sender_number']); ?> </p>
+        <p><?php echo urldecode($data['place_tag']); ?>, <?php echo urldecode($data['sender']); ?> <?php // echo urldecode($data['sender_number']); ?> </p>
         
         <div class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         <div><a href="https://twitter.com/share"  data-text="<INSERT MESSAGE HERE> #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a></div>
