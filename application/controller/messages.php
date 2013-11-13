@@ -98,7 +98,7 @@ class Messages extends Kiel_Controller{
 	
 	private function sns_crosspost($message)
 	{
-		$params['facebook_access_token'] = 'CAADDaNqhbVgBAKfxPjjLkCcmmCWaOVRZAkY5JSpLIZBziZCRxix9QgNCR1IZCu0JgWyZCPqbwdwHjlZC1U6ovSg6oGIcB0BK8KUlrT9GdtA3IDAocZCZC7ko3sK6rfN1ZAXSe6sZBIxqS27Fkch2WO788yvxIY0VsFw2V8gEwiCZCBCrKD5JmXV90bpaxE1ZB8IuHQgZD';
+		$params['facebook_access_token'] = 'CAADDaNqhbVgBAGrF4lMAGmZAfzWbZAinLIgqg7pmDxx6G1GprRMW4D8vpwO64CoQhwjuW96oZCAeMDoyC0tP1HtPXZAklJ3WrJCZAvlLp46DbpBPegsligpGAZCi3ndEZAzcOqLnZCDhQIhc1KzF4WmZBw0FkOZAmsykKz6lPyuIEpzwjSUzTjXrH4CZBG9NxfrlWWR4urLqJZCajAZDZD';
 		$params['twitter_access_token'] = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
 		$params['twitter_access_secret'] = '2SO03jgYn31wJEZyXkaQI48MfX56Ktbo8fM7G2URiFfUB';
 		$params['place'] = '454373604683875';
