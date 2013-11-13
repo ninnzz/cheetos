@@ -41,6 +41,8 @@ class Feed_model extends Kiel_Model{
 		
 		$data .= " {$tm}, {$tm} ";
 
+		print_r($data);
+		print_r('-------------------');
 
 		return $this->data_handler->insert('messages',$data);
 	}
