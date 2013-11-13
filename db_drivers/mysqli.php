@@ -196,6 +196,7 @@
 			$link->autocommit(FALSE);
 
 			$query_message = "INSERT into {$table} values({$data});";
+			
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$errNo = $link->errno;

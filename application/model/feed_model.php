@@ -39,8 +39,7 @@ class Feed_model extends Kiel_Model{
 		$message = strip_tags(filter_var(trim($message),FILTER_SANITIZE_ENCODED));
 		$data .= " '{$message}',";
 		
-		$data .= " {$tm}, {$tm} ";
-
+		$data .= " {$tm}, {$tm}, NULL, 'pending' ";
 
 		return $this->data_handler->insert('messages',$data);
 	}

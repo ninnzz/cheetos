@@ -4,10 +4,10 @@ $( function () {
 	
 	setInterval( function() {
 
-		$( ".timestamp" ).prettyDate();    
+		$( ".time" ).prettyDate();    
     
     }, 10000);
 
-    $( ".timestamp" ).prettyDate();
+    $( ".time" ).prettyDate();
 
 });
