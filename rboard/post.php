@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta property="og:description" content="Testing">
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -49,22 +50,12 @@
     <div class="jumbotron">
       <div class="container">
         <br />
-        <h2>How to post to ReliefBoard:</h2>
-        <p>Send SMS to 23737102 (Globe): location/name/message <br /> Example: "tacloban/Juan dela Cruz/Please send food to our area asap!"</p>
+        <h2></h2>
+        <p>THE POST GOES HERE</p>
       </div>
     </div>
 
-    <div class="container">
-      <div class="row"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
-      <div class="search-container row"><h2>Search Results (<span id="search-count">0</span>):</h2><hr /></div>
-      <div id="msg" class="row"></div>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/underscore.min.js"></script>
-    <script src="js/time.js"></script>
-    <script src="js/script.js"></script>
 
   </body>
 </html>
