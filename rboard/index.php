@@ -13,7 +13,6 @@
     
     <!-- META COPY FOR SEO -->
     <meta name="description" content="Search for your loved ones and find out how you can help in relief efforts" />
-    <meta name="author" content="Stratpoint Technologies Inc." />
 
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
@@ -109,9 +108,23 @@
         </div>
       </div>
 
+      <!--       
       <div class="row">
         <div id="copy3" class="col-lg-7">
           <div class="triangle"></div>
+        </div>
+      </div> 
+      -->
+
+      <div class="row">
+        <div id="copy4" class="col-lg-7">
+          <input id="form-location" class="form-control" type="text" placeholder="Location" />
+          <br />
+          <input id="form-name" class="form-control" type="email" placeholder="Name" />
+          <br />
+          <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
+          <br />
+         <button id="viaweb" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
         </div>
       </div>
 
@@ -133,7 +146,7 @@
             <div id="tw-container"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> &times; Close </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
           </div>
         </div>
       </div>

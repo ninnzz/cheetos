@@ -110,6 +110,14 @@ $( function () {
 
    });
 
+   $(document).on("click","#viaweb", function(e) {
+
+   		e.preventDefault();
+
+   		$("#viawebModal").modal("show");
+
+   });
+
 	//Start Application
 	init();
 

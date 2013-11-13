@@ -73,6 +73,12 @@ body {
 	margin: 20px auto;
 }
 
+#copy4 {
+	float: none;
+	text-align: center;
+	margin: 0px auto;
+}
+
 .triangle {
 	width: 0px;
 	height: 0px;
