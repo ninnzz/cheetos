@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:fb="http://ogp.me/ns/fb#">
 
-  <head prefix="og: http://ogp.me/ns#">
+  <head prefix="og: http://ogp.me/ns# object: http://ogp.me/ns/object#">
 
     <title>ReliefBoard</title>
 
