@@ -6,7 +6,7 @@ class Feed_model extends Kiel_Model{
 		return $this->data_handler->get('messages',null,null,null,null,'date_created');
 	}
 	
-	public function feed_itme($id)
+	public function single_item($id)
 	{
 		return $this->data_handler->get('messages',null," WHERE id = '{$id}' ",null,null,null,'date_created');
 	}
