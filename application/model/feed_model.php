@@ -5,10 +5,15 @@ class Feed_model extends Kiel_Model{
 	{
 		return $this->data_handler->get('messages',null,null,null,null,'date_created');
 	}
+	
+	public function single_item($id)
+	{
+		return $this->data_handler->get_where('messages',null," WHERE id = '{$id}' ",null,null,null,'date_created');
+	}
 
 	public function search($q)
 	{
-		$query  = "SELECT * FROM messages WHERE MATCH (sender,message,place_tag,sender_number) AGAINST ('{$q}' WITH QUERY EXPANSION) ORDER BY date_created desc";
+		$query  = "SELECT * FROM messages WHERE MATCH (sender,message,place_tag,sender_number) AGAINST ('{$q}' WITH QUERY EXPANSION)";
 		return $this->data_handler->query($query);
 	}
 
