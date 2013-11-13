@@ -11,7 +11,7 @@ $( function () {
 			html += '<p>' + unescape(decodeURIComponent(d.message)) + '</p> ';
 			html += ' <p>' + unescape(decodeURIComponent(d.place_tag)) + ", " + unescape(decodeURIComponent(d.sender)) + ", " + d.sender_number +'</p>';
 			html += '<p><span class="label label-default timestamp" data-time=' + d.date_created + '>' + d.date_created + '</span></p>';
-			html += '<div class="fb-like" data-href="http://www.reliefboard.com/#' + d.id + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
+			html += '<div class="fb-like" data-href="http://www.reliefboard.com/post.php?id=' + d.id + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
         html += '</div>';
         return html;
 	}
@@ -102,7 +102,16 @@ $( function () {
         FB.XFBML.parse();
 	});
 
+	$("form").bind("keypress", function(e) {
+        if (e.keyCode == 13) {
+            return false;
+        }
+    });
+
+
 	$(document).on("keyup", "#search", function(e) {
+
+		e.preventDefault();
 
 		var val = $(this).val();
 		var search_count = 0;
