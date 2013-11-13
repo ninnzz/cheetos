@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
 
   </head>
 

@@ -11,7 +11,7 @@
     <meta property="og:description" content="Testing">
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/post.css" rel="stylesheet">
 
   </head>
 
@@ -51,14 +51,22 @@
     <div class="jumbotron">
       <div class="container">
         <br />
-        <p>THE POST GOES HERE</p>
+        <p>THE POST GOES HERE. WAITING FOR THE API</p>
       </div>
     </div>
 
     <div class="container">
+      
       <div class="row">
-        <div class="fb-comments" data-href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div>
+
+        <h3>Comments</h3>
+
+        <div class="comments-container">
+          <div class="fb-comments" data-href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div>
+        </div>
+      
       </div>
+
     </div>
 
   </body>
