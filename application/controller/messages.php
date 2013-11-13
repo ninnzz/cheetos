@@ -96,7 +96,7 @@ class Messages extends Kiel_Controller{
 		}
 	}
 
-	private function facebook_crosspost_post($message)
+	private function facebook_crosspost($message)
 	{
 
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBANghp5PyBJBZAu2XSthA0mfGIARjZBKxbgjVNNlU8qL39U43ZA9VMIVlJK4atc8XJhxUyE2HAoAZBYxf50kjUhBvu2dXISz3jH8hSRMbg0bGadNsttlaqJPplzJhZCeUSTdr5I43DHirStipfDryPbic46tPx0ZAjhZAiE3pebZCShxdXEF6CZC5pZAsogjiXDQAZDZD';
