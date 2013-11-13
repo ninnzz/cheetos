@@ -1,3 +1,10 @@
+<?php
+  $id = $_GET['id'];
+  $data = file_get_contents( "http://ec2-204-236-162-197.us-west-1.compute.amazonaws.com/messages/feed_item?message_id=" . "59cb72539265283339471d1e2b2b4d98");
+  $data = json_decode($data, true);
+  $data = $data['data']['result']['0'];
+  var_dump($data);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,10 +12,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Testing">
+    <meta name="description" content="<?php echo urldecode($data['message']); ?>">
     <meta name="author" content="">
     <meta property="og:title" content="ReliefBoard">
-    <meta property="og:description" content="Testing">
+    <meta property="og:description" content="<?php echo urldecode($data['message']); ?>">
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/post.css" rel="stylesheet">
@@ -56,7 +63,9 @@
       <div class="container">
         <br />
         
-        <p>THE POST GOES HERE. WAITING FOR THE API</p>
+        <p><?php echo urldecode($data['message']); ?></p>
+        <p><span class="label label-default timestamp" data-time="<?php echo urldecode($data['date_created']); ?>"><?php echo urldecode($data['date_created']); ?></span></p>
+        <p><?php echo urldecode($data['place_tag']); ?>, <?php echo urldecode($data['sender']); ?> , <?php echo urldecode($data['sender_number']); ?> </p>
         
         <div class="fb-like" data-href="http://reliefboard.com<?php echo $_SERVER["REQUEST_URI"]; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         <div><a href="https://twitter.com/share"  data-text="<INSERT MESSAGE HERE> #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a></div>
@@ -78,6 +87,12 @@
       </div>
 
     </div>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/script.js"></script>
 
   </body>
 </html>
