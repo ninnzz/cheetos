@@ -11,6 +11,7 @@ $( function () {
 			html += '<p>' + unescape(decodeURIComponent(d.message)) + '</p> ';
 			html += ' <p>' + unescape(decodeURIComponent(d.place_tag)) + ", " + unescape(decodeURIComponent(d.sender)) + ", " + d.sender_number +'</p>';
 			html += '<p><span class="label label-default timestamp" data-time=' + d.date_created + '>' + d.date_created + '</span></p>';
+			html += '<p><a href="http://reliefboard.com/rboard/post.php?id=' + d.id + '" title="Permalink" target="_blank">Permalink</a></p>';
 			html += '<div class="fb-like" data-href="http://reliefboard.com/rboard/post.php?id=' + d.id + '" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>';
         html += '</div>';
         return html;
