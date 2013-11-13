@@ -1,0 +1,40 @@
+/* ------------------------------------------------------------------------ */
+/* BACKGROUND */
+
+body {
+	background-image: url("../img/bg.png");
+}
+
+/* ------------------------------------------------------------------------ */
+/* NAV */
+
+#nav-container {
+	background-color: #294360;
+	border: none;
+	height: 80px;
+}
+
+#logo {
+	background-image: url("../img/logo.png");
+	display: inline-block;
+	height: 42px;
+	margin: 20px 0 0 20px;
+	width: 239px;
+}
+
+#search-container {
+	height: 40px;
+	margin: 25px 0 0;
+	width: 400px;
+}
+
+#search {
+	background-image: url("../img/search-icon.png");
+	background-repeat: no-repeat;
+	box-shadow:none !important;
+	border: none !important;
+	font-size: 16px;
+	font-weight: 700;
+	padding-left: 20px;
+	outline: none !important;
+}

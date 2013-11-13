@@ -2,7 +2,9 @@
   $id = $_GET['id'];
   $data = file_get_contents( "http://ec2-204-236-162-197.us-west-1.compute.amazonaws.com/messages/feed_item?message_id=" . $id );
   $data = json_decode($data, true);
+
   $data = $data['data']['result']['0'];
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
