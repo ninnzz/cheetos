@@ -8,7 +8,7 @@ class Feed_model extends Kiel_Model{
 	
 	public function single_item($id)
 	{
-		return $this->data_handler->get('messages',null," WHERE id = '{$id}' ",null,null,null,'date_created');
+		return $this->data_handler->get_where('messages',null," WHERE id = '{$id}' ",null,null,null,'date_created');
 	}
 
 	public function search($q)
