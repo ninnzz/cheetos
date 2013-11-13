@@ -91,15 +91,17 @@ class Messages extends Kiel_Controller{
 				$res = $this->feed_model->add_messages($user_no,null,null,$message);
 			}
 		}
-
+		if($res){
+			$this->facebook_crosspost($message);
+		}
 	}
 
-	public function facebook_post()
+	private function facebook_crosspost_post($message)
 	{
 
-		$params['facebook_access_token'] = '214855112027480|j_cZkkue-bLQmNruymv1lsmAiiE';
+		$params['facebook_access_token'] = 'CAADDaNqhbVgBANghp5PyBJBZAu2XSthA0mfGIARjZBKxbgjVNNlU8qL39U43ZA9VMIVlJK4atc8XJhxUyE2HAoAZBYxf50kjUhBvu2dXISz3jH8hSRMbg0bGadNsttlaqJPplzJhZCeUSTdr5I43DHirStipfDryPbic46tPx0ZAjhZAiE3pebZCShxdXEF6CZC5pZAsogjiXDQAZDZD';
 		$params['place'] = '454373604683875';
-		$params['message'] = 'sample';
+		$params['message'] = $message;
 
 		//open connection
 		$ch = curl_init();
@@ -114,7 +116,6 @@ class Messages extends Kiel_Controller{
 
 		//close connection
 		curl_close($ch);
-		die(json_encode($result));
 		$this->response(array('status'=>'Success'),200);
 	}
 }
