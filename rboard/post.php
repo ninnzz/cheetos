@@ -36,6 +36,18 @@
 
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'reliefboard'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -64,7 +76,7 @@
         <br />
         
         <p><?php echo urldecode($data['message']); ?></p>
-        <p><span class="label label-default timestamp" data-time="<?php echo urldecode($data['date_created']); ?>"><?php echo urldecode($data['date_created']); ?></span></p>
+        <p><span class="label label-default timestamp" data-time="<?php echo $data['date_created']; ?>"><?php echo $data['date_created']; ?></span></p>
         <p><?php echo urldecode($data['place_tag']); ?>, <?php echo urldecode($data['sender']); ?> , <?php echo urldecode($data['sender_number']); ?> </p>
         
         <div class="fb-like" data-href="http://reliefboard.com<?php echo $_SERVER["REQUEST_URI"]; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
@@ -82,8 +94,9 @@
 
         <div class="comments-container">
           <div class="fb-comments" data-href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div>
+           <div id="disqus_thread"></div>
         </div>
-      
+
       </div>
 
     </div>
@@ -92,7 +105,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
     <script src="js/time.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/post.js"></script>
 
   </body>
 </html>
