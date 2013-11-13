@@ -7,8 +7,8 @@
   
 ?>
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+  <head prefix="og: http://ogp.me/ns/website#">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,9 @@
     <meta name="author" content="">
     <meta property="og:title" content="ReliefBoard">
     <meta property="og:description" content="<?php echo urldecode($data['message']); ?>">
+    <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
+    <meta property="og:url" content="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" />
+    <meta property="og:type" content="website" />
     <title>ReliefBoard</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/post.css" rel="stylesheet">
