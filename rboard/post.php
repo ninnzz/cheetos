@@ -75,7 +75,7 @@
         <br />
         
         <p><?php echo urldecode($data['message']); ?></p>
-        <p><span class="label label-default timestamp" data-time="<?php echo $data['date_created']; ?>"><?php echo $data['date_created']; ?></span></p>
+        <p><span class="label label-default time" data-time="<?php echo $data['date_created']; ?>"><?php echo $data['date_created']; ?></span></p>
         <p><?php echo urldecode($data['place_tag']); ?>, <?php echo urldecode($data['sender']); ?> , <?php echo urldecode($data['sender_number']); ?> </p>
         
         <div class="fb-like" data-href="http://reliefboard.com<?php echo $_SERVER["REQUEST_URI"]; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
