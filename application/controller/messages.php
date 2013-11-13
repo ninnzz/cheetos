@@ -92,14 +92,15 @@ class Messages extends Kiel_Controller{
 			}
 		}
 		if($res){
-			$this->facebook_crosspost($message);
+			$this->sns_crosspost($message);
 		}
 	}
 
-	private function facebook_crosspost($message)
+	private function sns_crosspost($message)
 	{
-
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBANghp5PyBJBZAu2XSthA0mfGIARjZBKxbgjVNNlU8qL39U43ZA9VMIVlJK4atc8XJhxUyE2HAoAZBYxf50kjUhBvu2dXISz3jH8hSRMbg0bGadNsttlaqJPplzJhZCeUSTdr5I43DHirStipfDryPbic46tPx0ZAjhZAiE3pebZCShxdXEF6CZC5pZAsogjiXDQAZDZD';
+		$params['twitter_access_token'] = '2190619520-sdgybYVZCLkvwTWBqnotTmxFi45rGfxgUXboIA7';
+		$params['twitter_access_secret'] = 'FJDLI63ifsYkL5R5ERj54RaAycYlsiH53sDiCDqeZmuOn';
 		$params['place'] = '454373604683875';
 		$params['message'] = $message;
 
