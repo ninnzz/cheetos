@@ -18,7 +18,7 @@ class Messages extends Kiel_Controller{
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
-	public function feed_item()
+	public function feed_item_get()
 	{
 		if($this->get_args['message_id'] && isset($this->get_args['message_id']) && $this->get_args['message_id'] !== NULL){
 			$this->load_model('feed_model');
