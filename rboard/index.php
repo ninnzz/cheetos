@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
 
     <!-- META -->
@@ -9,14 +10,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- META COPY FOR SEO -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Search for your loved ones and find out how you can help in relief efforts">
+    <meta name="author" content="Stratpoint Technologies Inc.">
 
     <!-- GOOGLE ANALYTICS -->
 
-    
+    <!-- FONTS -->
+    <script type="text/javascript" src="//use.typekit.net/qcx1ndo.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <!-- CSS CODE -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+    <link href="css/build.css" rel="stylesheet">
 
     <title>ReliefBoard</title>
 
@@ -24,17 +29,27 @@
 
   <body>
 
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=214855112027480";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- START - SOCIAL NETWORK SCRIPTS -->
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div id="fb-root"></div>
+    <script> 
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=214855112027480";
+        fjs.parentNode.insertBefore(js, fjs);
+      } (document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- END - SOCIAL NETWORK SCRIPTS -->
+
+    <!-- START - FIXED NAV -->
+
+    <div id="nav-container" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      
       <div class="container">
+        
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -42,38 +57,118 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">ReliefBoard</a>
+          <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
+
         <div class="navbar-collapse collapse navbar-right">
-          <form class="navbar-form">
-            <div class="form-group">
-              <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
+          
+          <div id="search-container">
+            <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
+          </div>
+
+        </div>
+      
+      </div>
+
+    </div>
+
+    <!-- END - FIXED NAV -->
+
+    <!-- START BODY -->
+
+    <div id="main-container" class="container">
+
+      <div class="row">
+        <div id="copy" class="col-lg-5">
+          <h2 style="font-weight: 800; font-size: 25px;">Search for your loved ones and find out how you can help in relief efforts</h2>
+        </div>
+        <div id="copy2" class="col-lg-7">
+            <p style="color: #3c444d; font-weight: 800;">Reliefboard.com is an SMS-to-web service that allows you to inquire <br /> about missing persons or to post updates on search and rescue efforts.</p>
+            <b style="color: #242b33; font-weight: 800;">To post on ReliefBoard.com, send SMS to 23737102 (Globe): location/full name/message</b>
+            <br /><br />
+            <p style="color: #575e66; font-weight: 800;">(example: “Tacloban/Juan dela Cruz/My family and I are safe”, <br /> “Tacloban/Maria Santos/I’m looking for Lisa Santos from Tacloban City”)</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="copy3" class="col-lg-7">
+          <div class="triangle"></div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div id="notif-container" class="col-lg-7"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
+        <div id="msg" class="col-lg-7"></div>
+
+      </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div id="fb"class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div id="tw-container"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"> &times; Close </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/templ" id="twTemplate">
+      <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
+    </script>
+
+    <script type="text/template" id="post">
+      <% if( d.message != null && d.message != "" ) { %>
+      <div class="post" data-id="<%= d.id %>">
+          
+          <div class="time-container">
+            <div class="time-asset"></div>
+            <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
+          </div>
+
+          <p class="msg-data">
+            
+            <%= unescape(decodeURIComponent(d.message)) %>
+            <br /><br />
+
+            <% if( d.sender != null ) { %>
+              <b>By: <span class="glyphicon glyphicon-user"></span> <%= unescape(decodeURIComponent(d.sender)) %> | 
+            <% } %>
+
+            <% if( d.place_tag != null ) { %>
+              <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(decodeURIComponent(d.place_tag)) %> | </b>
+            <% } %>
+
+            <span class="glyphicon glyphicon-link"></span> <a href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Permalink</a> 
+
+          </p>
+          
+          <div class="share-container">
+            <div class="pull-right">
+              <button class="share" data-id="<%= d.id %>" data-msg="<%= d.message %>" data-sender="<%= d.sender %>" data-place-tag="<%= d.place_tag %>">Share</button>
             </div>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </div>
+          </div>          
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <br />
-        <h2>How to post to ReliefBoard:</h2>
-        <p>Send SMS to 23737102 (Globe): location/name/message <br /> Example: "tacloban/Juan dela Cruz/Please send food to our area asap!"</p>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
-      <div class="search-container row"><h2>Search Results (<span id="search-count">0</span>):</h2><hr /></div>
-      <div id="msg" class="row"></div>
-    </div>
+        </div>
+        <% } %>
+    </script>
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
     <script src="js/time.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/build.js"></script>
+
+
+    <!-- END BODY -->
 
   </body>
+
 </html>
