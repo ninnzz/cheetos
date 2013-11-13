@@ -3,43 +3,43 @@
 
   <head>
 
+    <title>ReliefBoard</title>
+
     <!-- META -->
     
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- META COPY FOR SEO -->
-    <meta name="description" content="Search for your loved ones and find out how you can help in relief efforts">
-    <meta name="author" content="Stratpoint Technologies Inc.">
+    <meta name="description" content="Search for your loved ones and find out how you can help in relief efforts" />
+    <meta name="author" content="Stratpoint Technologies Inc." />
 
     <meta property="og:title" content="ReliefBoard" />
-    <meta property="og:site_name" content="ReliefBoard" />
-    <meta property="og:description" content="Search for your loved ones and find out how you can help in relief efforts" />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
-    <meta property="og:image" content="img/profile-pic.png" />
+    <meta property="og:description" content="Search for your loved ones and find out how you can help in relief efforts" />
 
     <!-- GOOGLE ANALYTICS -->
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-45702678-1', 'reliefboard.com');
-    ga('send', 'pageview');
-  </script>
+      ga('create', 'UA-45702678-1', 'reliefboard.com');
+      ga('send', 'pageview');
+    </script>
 
     <!-- FONTS -->
     <script type="text/javascript" src="//use.typekit.net/qcx1ndo.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
     <!-- CSS CODE -->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/build.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/build.css" rel="stylesheet" />
 
-    <title>ReliefBoard</title>
 
   </head>
 
