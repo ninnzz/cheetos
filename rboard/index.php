@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 
-  <head>
+  <head prefix="og: http://ogp.me/ns#">>
 
     <title>ReliefBoard</title>
 
