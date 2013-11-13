@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head prefix="og: http://ogp.me/ns#">>
+  <head prefix="og: http://ogp.me/ns#">
 
     <title>ReliefBoard</title>
 
@@ -16,6 +16,7 @@
     <meta name="author" content="Stratpoint Technologies Inc." />
 
     <meta property="og:title" content="ReliefBoard" />
+    <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
