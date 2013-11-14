@@ -136,7 +136,7 @@ $( function () {
    			message: message
    		};
 
-   		$.post('http://www.reliefboard.com/messages/feed', data).done( function( result ) {
+   		$.post('http://reliefboard.com/messages/feed', data).done( function( result ) {
 
    			var html = "";
 
@@ -145,7 +145,9 @@ $( function () {
 				html = html + post_template(d);
 			});
 
-			$("#form-location").val("");
+   		});
+
+   					$("#form-location").val("");
 			$("#form-name").val("");
 			$("#form-message").val("");
 
@@ -153,8 +155,6 @@ $( function () {
 	        $( ".time" ).prettyDate();
 
 	        $("#viawebModal").modal("hide");
-
-   		});
    });
 
    $(document).on("keypress","#search", function(e) {
