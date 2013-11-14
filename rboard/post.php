@@ -27,7 +27,7 @@
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
+    <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic-205.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
     <meta property="og:description" content="<?php echo urldecode(urldecode($data['message'])); ?>">
 
@@ -131,7 +131,7 @@
 
               <p class="msg-data">
                 
-                <p><?php echo urldecode(urldecode($data['message'])); ?></p>
+                <p id="msg-message"><?php echo urldecode(urldecode($data['message'])); ?></p>
                 <br /><br />
 
                 <?php if( $data['sender'] != null || $data['sender'] != "" ) { ?>
@@ -146,7 +146,9 @@
               
               <div class="share-container">
                   <br />
-                  <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                  <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-type="button_count"></div>
+                  <br /> <br />
+                  <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
                   <br />
                   <a id="tw" href="https://twitter.com/share"  data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                     Tweet
@@ -185,8 +187,26 @@
     <script type="text/javascript">
       $( function () {
 
-        $(".time").prettyDate();
-        
+        $(".times").prettyDate();
+
+        function convertToLinks(text) {
+          var replaceText, replacePattern1;
+           
+          //URLs starting with http://, https://
+          replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+          replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
+           
+          //URLs starting with "www."
+          replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+          replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
+           
+          //returns the text result
+           
+          return replacedText;
+        }
+          
+        $("#msg-message").html(convertToLinks($("#msg-message").text()));
+
       });
     </script>
 
