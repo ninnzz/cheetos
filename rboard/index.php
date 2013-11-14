@@ -70,12 +70,6 @@
     }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <script>
-      FB.api('/me', function(response) {
-        console.log(response);
-      });
-    </script>
-
     <!-- END - SOCIAL NETWORK SCRIPTS -->
 
     <!-- START - FIXED NAV -->
@@ -144,7 +138,14 @@
             </p>
           </div>
           <div class="fb-login-button" data-width="200" show-faces=true></div>
-          
+          <div>
+          <br/>
+          <p style="color: #294360; font-weight: 800; font-size: 22px;">We would like to thank:</p>
+            <div align="center">
+              <img src="img/globelabs_logo_new_blue.png" height="40px">
+              <img src="img/youphoric_labs_logo.png" height="70px">
+            </div>
+          </div>
         </div>
 
         <div class="col-lg-7 col-md-7" style="float: left; margin-top: -75px;">
@@ -239,8 +240,8 @@
           
           <div class="share-container">
             <div class="pull-right">
-              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Comments</a> 
-              <a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>
+              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Share and Comment</a> 
+              //<a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>
             </div>
           </div>          
 
