@@ -20,7 +20,7 @@ class Feed_model extends Kiel_Model{
 	public function search_item($q)
 	{
 		$query = "SELECT * FROM messages $q ;";
-		return $query;
+		return $this->data_handler->query($query);
 	}
 
 	public function update_status($data)
