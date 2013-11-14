@@ -146,7 +146,9 @@
               
               <div class="share-container">
                   <br />
-                  <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                  <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-type="button_count"></div>
+                  <br /> <br />
+                  <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
                   <br />
                   <a id="tw" href="https://twitter.com/share"  data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                     Tweet

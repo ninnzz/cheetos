@@ -78,7 +78,7 @@
           <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
 
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <nav style="display: none;" class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
             <li>
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
