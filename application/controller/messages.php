@@ -53,7 +53,16 @@ class Messages extends Kiel_Controller{
 	public function feed_callback_smart_get()
 	{
 		$this->load_model('feed_model');
-		$res = $this->get_args;
+		$this->userNumber = $data['from'];
+		$message	= $data['text'];
+		$this->rrn	= $data['rrn'];
+		$this->svc_id	= $data['svc_id'];
+		
+		$file = fopen("/home/ubuntu/cheetos/sample.txt","w");
+		echo fwrite($file,$message);
+		fclose($file);
+
+		//$res = $this->get_args;
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
