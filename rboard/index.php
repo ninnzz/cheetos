@@ -175,7 +175,7 @@
             <% } %>
 
             <% if( d.place_tag != null ) { %>
-              <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(decodeURIComponent(d.place_tag)) %> | </b>
+              <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(decodeURIComponent(d.place_tag)) %></b>
             <% } %>
 
           </p>
