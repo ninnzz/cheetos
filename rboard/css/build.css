@@ -24,14 +24,14 @@ body {
 	background-image: url("../img/logo.png");
 	display: inline-block;
 	height: 42px;
-	margin: 20px 0 0 20px;
+	margin: 20px 30px 0 20px;
 	width: 239px;
 }
 
 #search-container {
 	height: 40px;
 	margin: 25px 0 0;
-	width: 400px;
+	width: 36%;
 }
 
 #search {
@@ -44,14 +44,16 @@ body {
 	font-weight: 700;
 	padding-left: 38px;
 	outline: none !important;
+	margin: 10px;
+	width: 405px;
 }
 
-.navbar-nav{
+.navbar-nav {
 	background-color: #294360;
 	color: white;
 	margin-top: 18px;
-	margin-left: 15px;
 }
+
 .navbar-nav li a {
 
 	font-size: 18px;
@@ -59,6 +61,28 @@ body {
 	color: white !important;
 	text-transform: uppercase;
 
+}
+
+@media (max-width: 768px) {
+  .navbar-toggle {
+  	margin-top: 23px;
+  }
+  .navbar-collapse {
+  	margin-top: 15px;
+  }
+  .navbar-nav {
+  	margin-top: 0;
+  	margin-bottom: 0;
+  }
+  #search {
+  	width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  #search {
+  	width: 90%;
+  }
 }
 
 /* ------------------------------------------------------------------------ */
@@ -83,6 +107,13 @@ body {
 #sidebar {
 	padding-left: 60px;
 	padding-right: 30px;
+	margin-bottom: 100px;
+}
+
+@media (max-width: 991px) {
+  #sidebar {
+  	padding-left: 20px;
+  }
 }
 
 #copy3 {

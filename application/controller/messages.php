@@ -130,20 +130,14 @@ class Messages extends Kiel_Controller{
 		}
 	}
 
-	public function message_flagged_put()
+	public function message_flag_post()
 	{
 		$this->load_model('feed_model');
 
-		$id = $this->put_args['id'];
-		$res = $this->feed_model->update_status($id);
+		$data = $this->post_args;
+		$res = $this->feed_model->update_status($data);
 		
-		if($res = 1){
-			$this->response(array('status'=>'Success'),200);	
-		}
-		else{
-			throw new Exception('Error updating status');
-		}
-
+		$this->response(array('status'=>'Success'),200);	
 	}
 	
 	private function sns_crosspost($message)
