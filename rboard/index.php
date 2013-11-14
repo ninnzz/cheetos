@@ -107,12 +107,12 @@
         <div class="col-lg-7">
 
           <div id="copy">
-            <b style="font-weight: 800; font-size: 23px;">Need help? Looking for someone? Want to share information?</b>
-            <h2 style="font-weight: 800; font-size: 46px; margin-top: -10px">We help you get the word out</h2>
+            <b style="font-weight: 800; font-size: 23px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">We help you get the word out</h2>
           </div>
           
           <div id="copy2">
-              <p style="color: #3c444d; font-weight: 800;">
+              <p style="color: #294360; font-weight: 800;">
                 ReliefBoard is a bulletin board that helps you reach the world in times of calamities.  Post your message via SMS and we’ll store it, post it to our Facebook and Twitter account, and give you a permanent web page so others can share or respond to your message
               </p>
           </div>
