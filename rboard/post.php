@@ -120,7 +120,7 @@
 
       <div class="container">
 
-        <div id="msg" class="col-lg-7">
+        <div id="msg-single" class="col-lg-7">
 
           <div class="post" data-id="<?php echo $data['id']; ?>">
               
@@ -135,7 +135,7 @@
                 <br /><br />
 
                 <?php if( $data['sender'] != null || $data['sender'] != "" ) { ?>
-                  <b>By: <span class="glyphicon glyphicon-user"></span> <?php echo urldecode(urldecode($data['sender'])); ?> | 
+                  <b><span class="glyphicon glyphicon-user"></span> <?php echo urldecode(urldecode($data['sender'])); ?> | 
                 <?php } ?>
 
                 <?php if( $data['place_tag'] != null || $data['place_tag'] != "" ) { ?>

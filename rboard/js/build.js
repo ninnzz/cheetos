@@ -33,6 +33,12 @@ $( function () {
 
 	}
 
+	function trim(s) { 
+	    s = s.replace(/(^\s*)|(\s*$)/gi,"");
+	    s = s.replace(/[ ]{2,}/gi," "); 
+	    s = s.replace(/\n /,"\n"); return s;
+	}
+
 	setInterval( function() {
 		$( ".time" ).prettyDate();    
     }, 10000);
@@ -142,6 +148,16 @@ $( function () {
 	        $( ".time" ).prettyDate();
 
    		});
+
+   });
+
+   $(document).on("keypress","#search", function(e) {
+
+   		if( e.which == 13 && $(this).val() != "" ) {
+
+        	alert('You pressed enter!');
+
+    	}
 
    });
 
