@@ -120,7 +120,7 @@
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
           <div id="copy">
-            <b style="color: #294360; font-weight: 800; font-size: 16px;">
+            <b style="color: #294360; font-weight: 800; font-size: 22px;">
               A service for Filipinos affected by  Typhoon Yolanda
             </b>
           </div>
