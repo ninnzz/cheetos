@@ -20,7 +20,7 @@ class Feed_model extends Kiel_Model{
 	public function update_status($data)
 	{
 		$query  = "UPDATE messages SET status='".$data['status']."' WHERE id = '".$data['id']."'";
-		return $this->data_handler->query($query);	
+		//return $this->data_handler->query($query);	
 	}
 
 	public function add_messages($user_no,$addr,$name,$message)
