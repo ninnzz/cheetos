@@ -69,6 +69,15 @@
 		require_once("core/KielRSLCore.php");
 	} catch(Exception $e){
 
+		header('Content-Type: application/json');
+			
+
+		header('HTTP/1.1: ' . $http_code);
+		header('Status: ' . $http_code);
+		header('Access-Control-Allow-Origin: *');
+		header('Access-Control-Allow-Methods: OPTIONS, DELETE, PUT');
+		header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+
 		$end = round((microtime(true) - $start),5);
 		print_r(json_encode(array("error"=>$e->getMessage(),"ellapsed time"=>$end,"object"=>$object_name,"method"=>$method_name)));
 		exit();
