@@ -134,8 +134,8 @@ class Messages extends Kiel_Controller{
 	{
 		$this->load_model('feed_model');
 
-		$id = $this->put_args['id'];
-		$res = $this->feed_model->update_status($id);
+		$data = $this->put_args;
+		$res = $this->feed_model->update_status($data);
 		
 		if($res = 1){
 			$this->response(array('status'=>'Success'),200);	
