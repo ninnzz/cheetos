@@ -78,6 +78,12 @@
           <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
 
+        <ul class="nav navbar-nav">
+          <li><a id="viaweb" href="#">POST</a></li>
+          <li><a href="#">HELP</a></li>
+          <li><a href="#">ABOUT</a></li>
+        </ul>
+
         <div class="navbar-collapse collapse navbar-right">
           
           <div id="search-container">
@@ -122,9 +128,9 @@
         
         </div>
 
-        <div class="col-lg-5">
+        <div id="sidebar" class="col-lg-5">
           <div id="copy3">
-            <p style="color: #294360; font-weight: 800; font-size: 25px;">
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">
               To post on ReliefBoard.com text: <br /> <span style="color: #112c4a">LOCATION/YOUR NAME/MESSAGE</span> <br /> and send to <span style="color: #112c4a">23737102</span> (Globe)
             </p>
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
@@ -168,6 +174,25 @@
       </div>
     </div>
 
+    <div class="modal fade" id="viawebModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div id="results" class="modal-body">
+            <input id="form-name" class="form-control" type="email" placeholder="Your Name" />
+            <br />
+            <input id="form-location" class="form-control" type="text" placeholder="Location" />
+            <br />
+            <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
+            <br />
+            <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="text/templ" id="twTemplate">
       <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
     </script>
@@ -183,15 +208,15 @@
 
           <p class="msg-data">
             
-            <%= unescape(decodeURIComponent(d.message)) %>
+            <%= unescape(unescape(decodeURIComponent(d.message))) %>
             <br /><br />
 
             <% if( d.sender != null ) { %>
-              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(decodeURIComponent(d.sender)) %> | 
+              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(d.sender))) %> | 
             <% } %>
 
             <% if( d.place_tag != null ) { %>
-              <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(decodeURIComponent(d.place_tag)) %></b>
+              <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(d.place_tag))) %></b>
             <% } %>
 
           </p>
@@ -199,7 +224,7 @@
           <div class="share-container">
             <div class="pull-right">
               <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Comments</a> 
-              <a class="share" data-id="<%= d.id %>" data-msg="<%= d.message %>" data-sender="<%= d.sender %>" data-place-tag="<%= d.place_tag %>" href="#">Share</a>
+              <a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>
             </div>
           </div>          
 

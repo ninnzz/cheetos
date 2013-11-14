@@ -117,10 +117,15 @@ $( function () {
    });
 
    $(document).on("click","#viaweb", function(e) {
-
    		e.preventDefault();
+   		$("#viawebModal").modal("show");
+   });
 
-   		var location = $("#form-location").val();
+
+   $(document).on("click","#viawebSend", function(e) {
+   		e.preventDefault();
+   		$("#viawebModal").modal("show");
+   		   		var location = $("#form-location").val();
    		var name = $("#form-name").val();
    		var message = $("#form-message").val();
 
@@ -147,8 +152,9 @@ $( function () {
 	        $( "#msg" ).append( html );
 	        $( ".time" ).prettyDate();
 
-   		});
+	        $("#viawebModal").modal("hide");
 
+   		});
    });
 
    $(document).on("keypress","#search", function(e) {

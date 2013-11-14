@@ -46,6 +46,21 @@ body {
 	outline: none !important;
 }
 
+.navbar-nav{
+	background-color: #294360;
+	color: white;
+	margin-top: 18px;
+	margin-left: 15px;
+}
+.navbar-nav li a {
+
+	font-size: 18px;
+	font-weight: 600;
+	color: white !important;
+	text-transform: uppercase;
+
+}
+
 /* ------------------------------------------------------------------------ */
 /* COPY */
 
@@ -63,6 +78,11 @@ body {
 	font-size: 16px;
 	margin: 30px auto 50px auto;
 	padding: 20px;
+}
+
+#sidebar {
+	padding-left: 60px;
+	padding-right: 30px;
 }
 
 #copy3 {
