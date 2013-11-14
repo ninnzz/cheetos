@@ -185,7 +185,7 @@
     <script type="text/javascript">
       $( function () {
 
-        $(".time").prettyDate();
+        $(".times").prettyDate();
         
       });
     </script>
