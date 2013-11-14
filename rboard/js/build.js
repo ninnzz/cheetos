@@ -117,21 +117,31 @@ $( function () {
    });
 
    $(document).on("click","#viaweb", function(e) {
-
    		e.preventDefault();
+   		$("#viawebModal").modal("show");
+   });
 
-   		var location = $("#form-location").val();
+
+   $(document).on("click","#viawebSend", function(e) {
+   		e.preventDefault();
+   		$("#viawebModal").modal("show");
+   		   		var location = $("#form-location").val();
    		var name = $("#form-name").val();
    		var message = $("#form-message").val();
 
    		var data = {
-   			user_number: "09167574286",
+   			user_number: "",
    			address: location,
    			name: name,
    			message: message
    		};
 
-   		$.post('http://www.reliefboard.com/messages/feed', data).done( function( result ) {
+   		if( trim(name) == " " || trim(message) == " " || trim(name) == "" || trim(message) == " " ) {
+   			alert("Your Name and Message is required");
+   			return;
+   		}
+
+   		$.post('http://reliefboard.com/messages/feed', data).done( function( result ) {
 
    			var html = "";
 
@@ -140,15 +150,16 @@ $( function () {
 				html = html + post_template(d);
 			});
 
-			$("#form-location").val("");
+   		});
+
+   					$("#form-location").val("");
 			$("#form-name").val("");
 			$("#form-message").val("");
 
 	        $( "#msg" ).append( html );
 	        $( ".time" ).prettyDate();
 
-   		});
-
+	        $("#viawebModal").modal("hide");
    });
 
    $(document).on("keypress","#search", function(e) {
