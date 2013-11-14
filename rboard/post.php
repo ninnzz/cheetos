@@ -22,14 +22,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- META COPY FOR SEO -->
-    <meta name="description" content="<?php echo urldecode($data['message']); ?>">
+    <meta name="description" content="<?php echo urldecode(urldecode($data['message'])); ?>">
 
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
-    <meta property="og:description" content="<?php echo urldecode($data['message']); ?>">
+    <meta property="og:description" content="<?php echo urldecode(urldecode($data['message'])); ?>">
 
     <!-- GOOGLE ANALYTICS -->
     <script>
@@ -135,11 +135,11 @@
                 <br /><br />
 
                 <?php if( $data['sender'] != null || $data['sender'] != "" ) { ?>
-                  <b><span class="glyphicon glyphicon-user"></span> <?php echo urldecode(urldecode($data['sender'])); ?> | 
+                  <b><span class="glyphicon glyphicon-user"></span> <?php echo urldecode(urldecode($data['sender'])); ?> 
                 <?php } ?>
 
                 <?php if( $data['place_tag'] != null || $data['place_tag'] != "" ) { ?>
-                  <span class="glyphicon glyphicon-map-marker"></span> <?php echo urldecode(urldecode($data['place_tag'])); ?></b>
+                  | <span class="glyphicon glyphicon-map-marker"></span> <?php echo urldecode(urldecode($data['place_tag'])); ?></b>
                 <?php } ?>
 
               </p>
