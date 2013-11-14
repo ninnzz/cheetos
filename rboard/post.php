@@ -92,13 +92,13 @@
           <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
 
-        <div class="navbar-collapse collapse navbar-right">
+<!--         <div class="navbar-collapse collapse navbar-right">
           
           <div id="search-container">
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
           </div>
 
-        </div>
+        </div> -->
       
       </div>
 
@@ -126,7 +126,7 @@
               
               <div class="time-container">
                 <div class="time-asset"></div>
-                <div class="time-data"><span class="time" data-time="<?php echo $data['date_created']; ?>"></span></div>
+                <div class="time-data"><span class="times" data-time="<?php echo $data['date_created']; ?>"></span></div>
               </div>
 
               <p class="msg-data">
@@ -186,10 +186,6 @@
       $( function () {
 
         $(".time").prettyDate();
-      
-        setInterval( function() {
-          $( ".time" ).prettyDate();    
-        }, 10000);
         
       });
     </script>

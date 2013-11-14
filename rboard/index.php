@@ -78,19 +78,16 @@
           <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
 
-        <ul class="nav navbar-nav">
-          <li><a id="viaweb" href="#">POST</a></li>
-          <li><a href="#">HELP</a></li>
-          <li><a href="#">ABOUT</a></li>
-        </ul>
-
-        <div class="navbar-collapse collapse navbar-right">
-          
-          <div id="search-container">
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+            <li><a id="viaweb" href="#">POST</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
-          </div>
-
-        </div>
+            </li>
+          </ul>
+        </nav>
       
       </div>
 
@@ -104,7 +101,7 @@
 
       <div class="row">
 
-        <div class="col-lg-7">
+        <div class="col-lg-7 col-md-7">
 
           <div id="copy">
             <b style="font-weight: 800; font-size: 23px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
@@ -116,19 +113,10 @@
                 ReliefBoard is a bulletin board that helps you reach the world in times of calamities.  Post your message via SMS and we’ll store it, post it to our Facebook and Twitter account, and give you a permanent web page so others can share or respond to your message
               </p>
           </div>
-
-          <div>
-
-            <div id="notif-container" class="col-lg-7"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
-            <div id="msg">
-
-            </div>
-
-          </div>
         
         </div>
 
-        <div id="sidebar" class="col-lg-5">
+        <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
           <div id="copy3">
             <p style="color: #294360; font-weight: 800; font-size: 22px;">
               To post on ReliefBoard.com text: <br /> <span style="color: #112c4a">LOCATION/YOUR NAME/MESSAGE</span> <br /> and send to: <br /> <span style="color: #112c4a">23737102</span> (Globe) <br /> <span style="color: #112c4a">68009</span> (Smart)
@@ -141,6 +129,17 @@
             </p>
           </div>
         </div>
+
+        <div class="col-lg-7 col-md-7" style="float: left; margin-top: -75px;">
+          <div id="notif-container" class="col-lg-7">
+            <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
+          </div>
+          <div id="msg"></div>
+        </div>
+
+      </div>
+
+      <div class="row">
 
       </div>
 
