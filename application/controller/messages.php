@@ -71,7 +71,7 @@ class Messages extends Kiel_Controller{
 			$res = $this->feed_model->add_messages($user_no,$addr,null,$message);
 		} else {
 			if(trim($smsMsg) !== ""){
-				$message = $msg_arr[1];
+				$message = $smsMsg;
 				$res = $this->feed_model->add_messages($user_no,null,null,$message);
 			}
 		}
@@ -120,7 +120,7 @@ class Messages extends Kiel_Controller{
 			$res = $this->feed_model->add_messages($user_no,$addr,null,$message);
 		} else {
 			if(trim($smsMsg) !== ""){
-				$message = $msg_arr[1];
+				$message = $smsMsg;
 				$res = $this->feed_model->add_messages($user_no,null,null,$message);
 			}
 		}		
