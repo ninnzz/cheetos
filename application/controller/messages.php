@@ -53,17 +53,33 @@ class Messages extends Kiel_Controller{
 	public function feed_callback_smart_get()
 	{
 		$this->load_model('feed_model');
-		$this->userNumber = $data['from'];
-		$message	= $data['text'];
-		$this->rrn	= $data['rrn'];
-		$this->svc_id	= $data['svc_id'];
-		
-		$file = fopen("/home/ubuntu/cheetos/sample.txt","w");
-		echo fwrite($file,$message);
-		fclose($file);
 
-		//$res = $this->get_args;
-		$this->response(array('status'=>'Success','data'=>$res),200);
+		$data=$this->get_args;
+		$user_no = $data['from'];
+
+		$msg_arr = explode('/',$data['text']);
+		if(count($msg_arr) === 3){
+			$addr = $msg_arr[0];
+			$name = $msg_arr[1];
+			$message = $msg_arr[2];
+
+			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message);
+		} else if(count($msg_arr) === 2){
+			$addr = $msg_arr[0];
+			$message = $msg_arr[1];
+
+			$res = $this->feed_model->add_messages($user_no,$addr,null,$message);
+		} else {
+			if(trim($smsMsg) !== ""){
+				$message = $msg_arr[1];
+				$res = $this->feed_model->add_messages($user_no,null,null,$message);
+			}
+		}
+
+		if($res)		
+		{	
+			$this->sns_crosspost($message);
+		}
 	}
 
 	public function feed_callback_post()
@@ -107,8 +123,9 @@ class Messages extends Kiel_Controller{
 				$message = $msg_arr[1];
 				$res = $this->feed_model->add_messages($user_no,null,null,$message);
 			}
-		}
-		if($res){
+		}		
+		if($res)		
+		{	
 			$this->sns_crosspost($message);
 		}
 	}
