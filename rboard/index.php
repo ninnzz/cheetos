@@ -128,8 +128,7 @@
           <div id="copy3">
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
               <b style="font-weight: 900;">To post via SMS:</b>
-              <ul>
-                <li>
+                  <br/>
                   <strong>LOCATION/YOUR NAME/MESSAGE </strong><br/>
                   and send to <strong>23737102 (Globe)</strong> or <strong>68009 (Smart).</strong> <br/>
                   
@@ -142,9 +141,7 @@
                     <li>Palo, Leyte/Matthew Cruz/ We do not have enough medicines.</li>
                   </ul>
                   
-                </li>
-                <li><strong>Click on POST A NEW MESSAGE</strong></li>
-              </ul>
+                <!--<li><strong>Click on POST A NEW MESSAGE</strong></li>-->
             </p>
 
           </div>
