@@ -212,11 +212,11 @@
             <br /><br />
 
             <% if( d.sender != null ) { %>
-              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(d.sender))) %> | 
+              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(d.sender))) %> 
             <% } %>
 
             <% if( d.place_tag != null ) { %>
-              <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(d.place_tag))) %></b>
+              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(d.place_tag))) %></b>
             <% } %>
 
           </p>
