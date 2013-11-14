@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" >
 
-  <head prefix="og: http://ogp.me/ns/website#">
+  <head prefix="og: http://ogp.me/ns/website#" >
 
     <title>ReliefBoard</title>
 
@@ -18,6 +18,7 @@
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
+    <meta property="website:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
     <meta property="og:description" "Need help? Looking for someone? Want to share information? We help you get the word out." />
 
@@ -110,8 +111,8 @@
               </p>
           </div>
           
-          <div id="copy3">
-          <a id="viaweb" class="btn btn-danger " href="#">POST A NEW MESSAGE</a>
+          <div id="copy3" style="text-align: center;">
+            <a id="viaweb" class="btn btn-danger " href="#">POST A NEW MESSAGE</a>
           </div>
         
         </div>
@@ -142,9 +143,7 @@
               </ul>
             </p>
 
-            
           </div>
-          <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
           <div>
           <br/>
           <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors / Partners :</p>
@@ -172,7 +171,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-hidden="true">
+<!--     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-body">
@@ -185,7 +184,7 @@
         </div>
       </div>
     </div>
-
+ -->
     <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -202,16 +201,25 @@
     <div class="modal fade" id="viawebModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div id="results" class="modal-body">
+
+          <div id="loginToFacebook" class="modal-body">
+            <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
+            <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
+          </div>
+
+          <div id="authenticated" class="modal-body" style="display: none;">
+            <b>Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
+            <br /><br />
+            <b>Details: </b>
+            <br /><br />
             <input id="form-location" class="form-control" type="text" placeholder="Location" />
             <br />
             <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
             <br />
             <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
-          </div>
+
         </div>
       </div>
     </div>
