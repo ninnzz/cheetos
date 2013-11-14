@@ -100,15 +100,17 @@
 
         <div class="col-lg-7 col-md-7">
           <div id="copy">
-            <b style="font-weight: 800; font-size: 23px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
-            <h2 style="font-weight: 800; font-size: 40px; margin-top: -1px; color: #1d2f43;">We help you get the word out</h2>
+            <b style="font-weight: 800; font-size: 22px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
+
+              
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">We help you get the word out</h2>
           </div>
           
           <div id="copy2">
-              <p style="color: #294360; font-weight: 800;">
-                ReliefBoard is a bulletin board that helps you reach the world in times of calamities.  Post your message and we’ll store it, post it to our Facebook and Twitter accounts, and give you a permanent web page so others can share or respond to your message
-             
+              <p style="color: #294360; font-weight: 800; font-size: 16px;">
+                ReliefBoard is a bulletin board that helps you reach the world in times of calamities.
               </p>
+              <img src="img/banner.png" height="180px";>
           </div>
           
           <div id="copy3" style="text-align: center;">
@@ -118,17 +120,19 @@
         </div>
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
+          <div id="copy">
+            <b style="color: #294360; font-weight: 800; font-size: 20px;">
+              A service for Filipinos affected by  Typhoon Yolanda
+            </b>
+          </div>
           <div id="copy3">
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">
-              We launched this service to help the Philippine Yolanda Typhoon victims.
-            </p>
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
-              To post:
+              <b style="font-weight: 900;">To post via SMS:</b>
               <ul>
                 <li>
-                  <strong>Send SMS from within the Philippines</strong>, to 23737102 (Globe) or 68009 (Smart). <br/>
-                  We recommend the following message format for SMS messages: <br/>
-                   LOCATION/YOUR NAME/MESSAGE <br/>
+                  <strong>LOCATION/YOUR NAME/MESSAGE </strong><br/>
+                  and send to <strong>23737102 (Globe)</strong> or <strong>68009 (Smart).</strong> <br/>
+                  
                   <span style="color: #3c4958; font-size: 14px;">
                     Examples
                   </span>
