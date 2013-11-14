@@ -131,7 +131,7 @@
         <div id="sidebar" class="col-lg-5">
           <div id="copy3">
             <p style="color: #294360; font-weight: 800; font-size: 22px;">
-              To post on ReliefBoard.com text: <br /> <span style="color: #112c4a">LOCATION/YOUR NAME/MESSAGE</span> <br /> and send to <span style="color: #112c4a">23737102</span> (Globe)
+              To post on ReliefBoard.com text: <br /> <span style="color: #112c4a">LOCATION/YOUR NAME/MESSAGE</span> <br /> and send to: <br /> <span style="color: #112c4a">23737102</span> (Globe) <br /> <span style="color: #112c4a">68009</span> (Smart)
             </p>
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
               EXAMPLES: <br />
