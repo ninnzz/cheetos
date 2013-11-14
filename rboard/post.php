@@ -139,7 +139,7 @@
                 <?php } ?>
 
                 <?php if( $data['place_tag'] != null || $data['place_tag'] != "" ) { ?>
-                  <span class="glyphicon glyphicon-map-marker"></span> <?php echo urldecode(urldecode($data['place_tag'])); ?> | </b>
+                  <span class="glyphicon glyphicon-map-marker"></span> <?php echo urldecode(urldecode($data['place_tag'])); ?></b>
                 <?php } ?>
 
               </p>
