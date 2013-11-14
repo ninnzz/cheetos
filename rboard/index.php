@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- META COPY FOR SEO -->
-    <meta name="description" content="Search for your loved ones and find out how you can help in relief efforts" />
+    <meta name="description" content="Need help? Looking for someone? Want to share information? We help you get the word out." />
 
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
-    <meta property="og:description" content="Search for your loved ones and find out how you can help in relief efforts" />
+    <meta property="og:description" "Need help? Looking for someone? Want to share information? We help you get the word out." />
 
     <!-- GOOGLE ANALYTICS -->
     <script>
@@ -156,7 +156,7 @@
           </div>
         </div>
 
-        <div class="col-lg-7 col-md-7" style="float: left; margin-top: -75px;">
+        <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
           <div id="notif-container" class="col-lg-7">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div>
