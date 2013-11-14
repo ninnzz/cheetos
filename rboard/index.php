@@ -89,9 +89,6 @@
         </div>
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav">
-            <li><a id="viaweb" href="#">POST</a></li>
-          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
@@ -119,8 +116,13 @@
           
           <div id="copy2">
               <p style="color: #294360; font-weight: 800;">
-                ReliefBoard is a bulletin board that helps you reach the world in times of calamities.  Post your message via SMS and we’ll store it, post it to our Facebook and Twitter account, and give you a permanent web page so others can share or respond to your message
+                ReliefBoard is a bulletin board that helps you reach the world in times of calamities.  Post your message and we’ll store it, post it to our Facebook and Twitter accounts, and give you a permanent web page so others can share or respond to your message
+             
               </p>
+          </div>
+          
+          <div id="copy3">
+          <a id="viaweb" class="btn btn-danger " href="#">POST A NEW MESSAGE</a>
           </div>
         
         </div>
@@ -128,14 +130,30 @@
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
           <div id="copy3">
             <p style="color: #294360; font-weight: 800; font-size: 22px;">
-              To post on ReliefBoard.com text: <br /> <span style="color: #112c4a">LOCATION/YOUR NAME/MESSAGE</span> <br /> and send to: <br /> <span style="color: #112c4a">23737102</span> (Globe) <br /> <span style="color: #112c4a">68009</span> (Smart)
+              We launched this service to help the Philippine Yolanda Typhoon victims.
             </p>
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
-              EXAMPLES: <br />
-              “Tacloban/Juan dela Cruz/Family and I are safe”
-              “Tacloban/Maria Santos/I’m looking for Lisa Santos from Tacloban City”
-              “Palo, Leyte/Matthew Cruz/ do not have enough medicines. Contact me if you can send help.”
+              To post:
+              <ul>
+                <li>
+                  <strong>Send SMS from within the Philippines</strong>, to 23737102 (Globe) or 68009 (Smart). <br/>
+                  We recommend the following message format for SMS messages: <br/>
+                   LOCATION/YOUR NAME/MESSAGE <br/>
+                  <span style="color: #3c4958; font-size: 14px;">
+                    Examples
+                  </span>
+                  <ul>
+                    <li>Bohol/Juan dela Cruz/Family and I are safe</li>
+                    <li>Cebu/Maria Santos/I’m looking for Lisa Santos. Pls help.</li>
+                    <li>Palo, Leyte/Matthew Cruz/ We do not have enough medicines.</li>
+                  </ul>
+                  
+                </li>
+                <li><strong>Click on POST A NEW MESSAGE</strong></li>
+              </ul>
             </p>
+
+            
           </div>
           <div class="fb-login-button" data-width="200" show-faces=true></div>
           <div>
@@ -156,6 +174,7 @@
         </div>
 
       </div>
+
 
       <div class="row">
 
@@ -248,6 +267,8 @@
         </div>
         <% } %>
     </script>
+
+
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
