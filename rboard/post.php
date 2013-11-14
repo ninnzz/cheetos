@@ -120,7 +120,7 @@
 
       <div class="container">
 
-        <div id="msg" class="col-lg-7">
+        <div id="msg-single" class="col-lg-7">
 
           <div class="post" data-id="<?php echo $data['id']; ?>">
               

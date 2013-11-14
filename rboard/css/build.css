@@ -119,6 +119,14 @@ body {
 	margin: 50px -16px;
 }
 
+#msg-single {
+	background-color: #ebeaea;
+	float: none;
+	min-height: 100px;
+	padding: 0 13px;
+	margin: 50px auto;
+}
+
 .post {
 	background: white;
 	border-left: 5px solid #e2e2e2;
