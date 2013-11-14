@@ -130,11 +130,16 @@ $( function () {
    		var message = $("#form-message").val();
 
    		var data = {
-   			user_number: "09167574286",
+   			user_number: "",
    			address: location,
    			name: name,
    			message: message
    		};
+
+   		if( trim(name) == " " || trim(message) == " " || trim(name) == "" || trim(message) == " " ) {
+   			alert("Your Name and Message is required");
+   			return;
+   		}
 
    		$.post('http://reliefboard.com/messages/feed', data).done( function( result ) {
 
