@@ -125,25 +125,27 @@ $( function () {
    $(document).on("click","#viawebSend", function(e) {
    		e.preventDefault();
    		   		var location = $("#form-location").val();
-   		var name = $("#form-name").val();
    		var message = $("#form-message").val();
 
-   		var data = {
-   			user_number: "",
-   			address: location,
-   			name: name,
-   			message: message
-   		};
+   		FB.api('/me', function(response) {
+   			var data = {
+   				user_number: "",
+   				name   :response.name,
+   				address: location,
+   				message: message
+   			};
+		});
 
-   		if( trim(name) == " " || trim(message) == " " || trim(name) == "" || trim(message) == " " ) {
-   			alert("Your Name and Message is required");
+   		if( trim(message) == " " || trim(message) == "" ) {
+   			alert("Message is required");
    			return;
    		}
 
-   		$.post('http://reliefboard.com/messages/feed', data);
+   		console.log(data);
+
+   		//$.post('http://reliefboard.com/messages/feed', data);
 
 		$("#form-location").val("");
-		$("#form-name").val("");
 		$("#form-message").val("");
 
         $("#viawebModal").modal("hide");

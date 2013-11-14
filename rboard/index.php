@@ -58,8 +58,7 @@
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=214855112027480";
         fjs.parentNode.insertBefore(js, fjs);
       } (document, 'script', 'facebook-jssdk'));
-    </script>
-
+    </script>   
     <!-- END - SOCIAL NETWORK SCRIPTS -->
 
     <!-- START - FIXED NAV -->
@@ -145,7 +144,7 @@
 
             
           </div>
-          <div class="fb-login-button" data-width="200" show-faces=true></div>
+          <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
           <div>
           <br/>
           <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors / Partners :</p>
@@ -204,8 +203,6 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div id="results" class="modal-body">
-            <input id="form-name" class="form-control" type="email" placeholder="Your Name" />
-            <br />
             <input id="form-location" class="form-control" type="text" placeholder="Location" />
             <br />
             <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
