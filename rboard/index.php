@@ -18,7 +18,7 @@
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
-    <meta property="website:image" content="http://www.reliefboard.com/rboard/img/profile-pic.jpg" />
+    <meta property="website:image" content="http://www.reliefboard.com/rboard/img/profile-pic-205.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
     <meta property="og:description" "Need help? Looking for someone? Want to share information? We help you get the word out." />
 
