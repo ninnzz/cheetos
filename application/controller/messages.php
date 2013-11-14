@@ -129,6 +129,16 @@ class Messages extends Kiel_Controller{
 			$this->sns_crosspost($message);
 		}
 	}
+
+	public function message_flag_post()
+	{
+		$this->load_model('feed_model');
+
+		$data = $this->post_args;
+		$res = $this->feed_model->update_status($data);
+		
+		$this->response(array('status'=>'Success'),200);	
+	}
 	
 	private function sns_crosspost($message)
 	{
