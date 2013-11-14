@@ -98,7 +98,7 @@
 
       <div class="row">
         <div id="copy" class="col-lg-5">
-          <h2 style="font-weight: 800; font-size: 25px;">Search for your loved ones and find out how you can help in relief efforts</h2>
+          <h2 style="font-weight: 800; font-size: 25px;">We help you get the word out - if you are looking for someone, need help, or want to share information.</h2>
         </div>
         <div id="copy2" class="col-lg-7">
             <p style="color: #3c444d; font-weight: 800;">Reliefboard.com is an SMS-to-web service that allows you to inquire <br /> about missing persons or to post updates on search and rescue efforts.</p>
