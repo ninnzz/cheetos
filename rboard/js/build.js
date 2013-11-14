@@ -124,7 +124,6 @@ $( function () {
 
    $(document).on("click","#viawebSend", function(e) {
    		e.preventDefault();
-   		$("#viawebModal").modal("show");
    		   		var location = $("#form-location").val();
    		var name = $("#form-name").val();
    		var message = $("#form-message").val();
@@ -141,25 +140,14 @@ $( function () {
    			return;
    		}
 
-   		$.post('http://reliefboard.com/messages/feed', data).done( function( result ) {
+   		$.post('http://reliefboard.com/messages/feed', data);
 
-   			var html = "";
+		$("#form-location").val("");
+		$("#form-name").val("");
+		$("#form-message").val("");
 
-			_.each( result.data.result, function(d) {
-				id_list.push(d.id);
-				html = html + post_template(d);
-			});
+        $("#viawebModal").modal("hide");
 
-   		});
-
-   					$("#form-location").val("");
-			$("#form-name").val("");
-			$("#form-message").val("");
-
-	        $( "#msg" ).append( html );
-	        $( ".time" ).prettyDate();
-
-	        $("#viawebModal").modal("hide");
    });
 
    $(document).on("keypress","#search", function(e) {
