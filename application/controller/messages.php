@@ -124,7 +124,7 @@ class Messages extends Kiel_Controller{
 				$res = $this->feed_model->add_messages($user_no,null,null,$message);
 			}
 		}		
-		if($res)		
+		if($res == 1)		
 		{	
 			$this->sns_crosspost($message);
 		}
@@ -137,7 +137,7 @@ class Messages extends Kiel_Controller{
 		$data = $this->post_args;
 		$res = $this->feed_model->update_status($data);
 		
-		if($res = 1){
+		if($res){
 			$this->response(array('status'=>'Success'),200);	
 		}
 		else{
