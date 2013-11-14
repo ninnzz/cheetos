@@ -120,17 +120,21 @@
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
           <div id="copy">
-            <b style="color: #294360; font-weight: 800; font-size: 20px;">
+            <b style="color: #294360; font-weight: 800; font-size: 16px;">
               A service for Filipinos affected by  Typhoon Yolanda
             </b>
           </div>
-          <div id="copy3">
+<div id="copy3">
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">
+              We launched this service to help the Philippine Yolanda Typhoon victims.
+            </p>
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
-              <b style="font-weight: 900;">To post via SMS:</b>
-                  <br/>
-                  <strong>LOCATION/YOUR NAME/MESSAGE </strong><br/>
-                  and send to <strong>23737102 (Globe)</strong> or <strong>68009 (Smart).</strong> <br/>
-                  
+              To post:
+              </p><ul>
+                <li>
+                  <strong>Send SMS from within the Philippines</strong>, to&nbsp;23737102&nbsp;(Globe) or&nbsp;68009&nbsp;(Smart). <br>
+                  We recommend the following message format for SMS messages: <br>
+                   LOCATION/YOUR NAME/MESSAGE <br>
                   <span style="color: #3c4958; font-size: 14px;">
                     Examples
                   </span>
@@ -140,8 +144,10 @@
                     <li>Palo, Leyte/Matthew Cruz/ We do not have enough medicines.</li>
                   </ul>
                   
-                <!--<li><strong>Click on POST A NEW MESSAGE</strong></li>-->
-            </p>
+                </li>
+                <li><strong>Click on POST A NEW MESSAGE</strong></li>
+              </ul>
+            <p></p>
 
           </div>
           <div>
