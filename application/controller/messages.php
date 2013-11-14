@@ -130,11 +130,11 @@ class Messages extends Kiel_Controller{
 		}
 	}
 
-	public function message_flag_put()
+	public function message_flag_post()
 	{
 		$this->load_model('feed_model');
 
-		$data = $this->put_args;
+		$data = $this->post_args;
 		$res = $this->feed_model->update_status($data);
 		
 		if($res = 1){
