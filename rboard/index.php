@@ -116,7 +116,7 @@
       </div> 
       -->
 
-      <div class="row">
+<!--       <div class="row">
         <div id="copy4" class="col-lg-7">
           <input id="form-location" class="form-control" type="text" placeholder="Location" />
           <br />
@@ -126,7 +126,7 @@
           <br />
          <button id="viaweb" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
         </div>
-      </div>
+      </div> -->
 
       <div class="row">
 
@@ -178,13 +178,12 @@
               <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(decodeURIComponent(d.place_tag)) %> | </b>
             <% } %>
 
-            <span class="glyphicon glyphicon-link"></span> <a href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Details</a> 
-
           </p>
           
           <div class="share-container">
             <div class="pull-right">
-              <button class="share" data-id="<%= d.id %>" data-msg="<%= d.message %>" data-sender="<%= d.sender %>" data-place-tag="<%= d.place_tag %>">Share</button>
+              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Comment</a> 
+              <a class="share" data-id="<%= d.id %>" data-msg="<%= d.message %>" data-sender="<%= d.sender %>" data-place-tag="<%= d.place_tag %>" href="#">Share</a>
             </div>
           </div>          
 
