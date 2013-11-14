@@ -112,8 +112,6 @@
       <div class="row">
 
         <div class="col-lg-7 col-md-7">
-           <div class="fb-login-button" data-width="200" show-faces=true></div>
-          
           <div id="copy">
             <b style="font-weight: 800; font-size: 23px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
             <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">We help you get the word out</h2>
@@ -139,6 +137,8 @@
               “Palo, Leyte/Matthew Cruz/ do not have enough medicines. Contact me if you can send help.”
             </p>
           </div>
+          <div class="fb-login-button" data-width="200" show-faces=true></div>
+          
         </div>
 
         <div class="col-lg-7 col-md-7" style="float: left; margin-top: -75px;">
