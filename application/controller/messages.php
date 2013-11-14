@@ -54,9 +54,9 @@ class Messages extends Kiel_Controller{
 	{
 		$this->load_model('feed_model');
 
-		$data=$this->get_args;
+		$data 	 = $this->get_args;
 		$user_no = $data['from'];
-
+		$smsMsg  = $data['text'];
 		$msg_arr = explode('/',$data['text']);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
