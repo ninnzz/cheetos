@@ -70,6 +70,12 @@
     }(document, 'script', 'facebook-jssdk'));
     </script>
 
+    <script>
+      FB.api('/me', function(response) {
+        console.log(response);
+      });
+    </script>
+
     <!-- END - SOCIAL NETWORK SCRIPTS -->
 
     <!-- START - FIXED NAV -->
