@@ -52,8 +52,9 @@ class Messages extends Kiel_Controller{
 	
 	public function feed_callback_smart_get()
 	{
-
-
+		$this->load_model('feed_model');
+		$res = $ths->get_args();
+		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
 	public function feed_callback_post()
