@@ -97,41 +97,44 @@
     <div id="main-container" class="container">
 
       <div class="row">
-        <div id="copy" class="col-lg-5">
-          <h2 style="font-weight: 800; font-size: 25px;">We help you get the word out - if you are looking for someone, need help, or want to share information.</h2>
-        </div>
-        <div id="copy2" class="col-lg-7">
-            <p style="color: #3c444d; font-weight: 800;">Reliefboard.com is an SMS-to-web service that allows you to inquire <br /> about missing persons or to post updates on search and rescue efforts.</p>
-            <b style="color: #242b33; font-weight: 800;">To post on ReliefBoard.com, send SMS to 23737102 (Globe): location/full name/message</b>
-            <br /><br />
-            <p style="color: #575e66; font-weight: 800;">(example: “Tacloban/Juan dela Cruz/My family and I are safe”, <br /> “Tacloban/Maria Santos/I’m looking for Lisa Santos from Tacloban City”)</p>
-        </div>
-      </div>
 
-      <!--       
-      <div class="row">
-        <div id="copy3" class="col-lg-7">
-          <div class="triangle"></div>
+        <div class="col-lg-7">
+
+          <div id="copy">
+            <b style="font-weight: 800; font-size: 23px;">Need help? Looking for someone? Want to share information?</b>
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -10px">We help you get the word out</h2>
+          </div>
+          
+          <div id="copy2">
+              <p style="color: #3c444d; font-weight: 800;">
+                ReliefBoard is a bulletin board that helps you reach the world in times of calamities.  Post your message via SMS and we’ll store it, post it to our Facebook and Twitter account, and give you a permanent web page so others can share or respond to your message
+              </p>
+          </div>
+
+          <div>
+
+            <div id="notif-container" class="col-lg-7"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
+            <div id="msg">
+
+            </div>
+
+          </div>
+        
         </div>
-      </div> 
-      -->
 
-<!--       <div class="row">
-        <div id="copy4" class="col-lg-7">
-          <input id="form-location" class="form-control" type="text" placeholder="Location" />
-          <br />
-          <input id="form-name" class="form-control" type="email" placeholder="Name" />
-          <br />
-          <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
-          <br />
-         <button id="viaweb" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
+        <div class="col-lg-5">
+          <div id="copy3">
+            <p style="color: #294360; font-weight: 800; font-size: 25px;">
+              To post on ReliefBoard.com text: <br /> <span style="color: #112c4a">LOCATION/YOUR NAME/MESSAGE</span> <br /> and send to <span style="color: #112c4a">23737102</span> (Globe)
+            </p>
+            <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
+              EXAMPLES: <br />
+              “Tacloban/Juan dela Cruz/Family and I are safe”
+              “Tacloban/Maria Santos/I’m looking for Lisa Santos from Tacloban City”
+              “Palo, Leyte/Matthew Cruz/ do not have enough medicines. Contact me if you can send help.”
+            </p>
+          </div>
         </div>
-      </div> -->
-
-      <div class="row">
-
-        <div id="notif-container" class="col-lg-7"><a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a></div>
-        <div id="msg" class="col-lg-7"></div>
 
       </div>
 
@@ -144,6 +147,19 @@
           <div class="modal-body">
             <div id="fb"class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
             <div id="tw-container"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div id="results" class="modal-body">
+
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
@@ -171,7 +187,7 @@
             <br /><br />
 
             <% if( d.sender != null ) { %>
-              <b>By: <span class="glyphicon glyphicon-user"></span> <%= unescape(decodeURIComponent(d.sender)) %> | 
+              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(decodeURIComponent(d.sender)) %> | 
             <% } %>
 
             <% if( d.place_tag != null ) { %>
@@ -182,7 +198,7 @@
           
           <div class="share-container">
             <div class="pull-right">
-              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Comment</a> 
+              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="Permalink" target="_blank">Comments</a> 
               <a class="share" data-id="<%= d.id %>" data-msg="<%= d.message %>" data-sender="<%= d.sender %>" data-place-tag="<%= d.place_tag %>" href="#">Share</a>
             </div>
           </div>          
