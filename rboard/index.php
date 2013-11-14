@@ -112,7 +112,7 @@
       <div class="row">
 
         <div class="col-lg-7 col-md-7">
-           <div class="fb-login-button" data-width="200"></div>
+           <div class="fb-login-button" data-width="200" show-faces=true></div>
           
           <div id="copy">
             <b style="font-weight: 800; font-size: 23px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
