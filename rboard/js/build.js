@@ -110,6 +110,41 @@ $( function () {
 
    });
 
+   $(document).on("click","#viaweb", function(e) {
+
+   		e.preventDefault();
+
+   		var location = $("#form-location").val();
+   		var name = $("#form-name").val();
+   		var message = $("#form-message").val();
+
+   		var data = {
+   			user_number: "09167574286",
+   			address: location,
+   			name: name,
+   			message: message
+   		};
+
+   		$.post('http://www.reliefboard.com/messages/feed', data).done( function( result ) {
+
+   			var html = "";
+
+			_.each( result.data.result, function(d) {
+				id_list.push(d.id);
+				html = html + post_template(d);
+			});
+
+			$("#form-location").val("");
+			$("#form-name").val("");
+			$("#form-message").val("");
+
+	        $( "#msg" ).append( html );
+	        $( ".time" ).prettyDate();
+
+   		});
+
+   });
+
 	//Start Application
 	init();
 

@@ -73,6 +73,12 @@ body {
 	margin: 20px auto;
 }
 
+#copy4 {
+	float: none;
+	text-align: center;
+	margin: 0px auto;
+}
+
 .triangle {
 	width: 0px;
 	height: 0px;
@@ -116,7 +122,7 @@ body {
 #msg {
 	background-color: #ebeaea;
 	float: none;
-	height: 100px;
+	min-height: 100px;
 	padding: 0 0 0 16px;
 	margin: 50px auto;
 }
@@ -160,10 +166,10 @@ body {
 }
 
 .share-container {
-	height: 25px;
+	min-height: 25px;
 }
 
-.share {
+.comment, .share {
 	border: none;
 	border-radius: 5px;
 	background-color: #3695ed;
@@ -172,4 +178,24 @@ body {
 	font-size: 16px;
 	padding: 2px 10px;
 	text-transform: uppercase;
+	text-decoration: none;
 }
+
+.comment:hover, .share:hover {
+	color: white;
+	text-decoration: none;
+}
+
+/* ------------------------------------------------------------------------ */
+/* DETAILS PAGE */
+
+.comments-container {
+	height: 1000px;
+}
+
+/*FACEBOOK CSS*/
+
+.fb-comments {
+    display: table;
+    margin: 0 auto;
+} 
