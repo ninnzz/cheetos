@@ -12,16 +12,16 @@ class Search extends Kiel_Controller
 
 		$str = '';
 		if($data['loc'] === "1"){
-			$str .= " place_tag like %'{$data['query']}'% AND";
+			$str .= " place_tag like '%{$data['query']}%' OR";
 		}
 		if($data['name'] === "1"){
-			$str .= " sender like %'{$data['query']}'% AND";
+			$str .= " sender like '%{$data['query']}%' OR";
 		}
 		if($data['message'] === "1"){
-			$str .= " message like %'{$data['query']}'%";
+			$str .= " message like '%{$data['query']}%'";
 		}
 
-		$str = rtrim($str, 'AND');
+		$str = rtrim($str, 'OR');
 
 		if($str != ''){
 			$str = 'WHERE '.$str;
