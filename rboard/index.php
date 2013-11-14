@@ -140,10 +140,10 @@
           <div class="fb-login-button" data-width="200" show-faces=true></div>
           <div>
           <br/>
-          <p style="color: #294360; font-weight: 800; font-size: 22px;">We would like to thank:</p>
+          <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors / Partners :</p>
             <div align="center">
-              <img src="img/globelabs_logo_new_blue.png" height="40px">
-              <img src="img/youphoric_labs_logo.png" height="70px">
+              <a href="https://www.globelabs.com.ph"><img src="img/globelabs_logo_new_blue.png" height="30px"></a>
+              <a href="http://youphoriclabs.com/"><img src="img/youphoric_labs_logo.png" height="150px" ></a>
             </div>
           </div>
         </div>
