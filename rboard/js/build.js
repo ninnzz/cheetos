@@ -251,12 +251,17 @@ $( function () {
 
 	$(document).on("focus","#search", function(e) {
 		$("#search-filter").show();
+		search_mode = true;
 	});
 
 	$(document).on("blur","#search", function(e) {
 		if(!search_mode) {
 			$("#search-filter").hide();
 		}
+	});
+
+	$(document).on("click","#search-filter",function(e) {
+		e.stopPropagation();
 	});
 
 	// PAGINATION
