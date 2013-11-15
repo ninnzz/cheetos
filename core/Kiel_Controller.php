@@ -59,8 +59,8 @@
 		}
 
 		public function checkAuth($access_token)
-		{	
-				
+		{
+			
 		}
 
 		public function setDataHandler($db_connector)
