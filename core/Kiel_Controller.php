@@ -60,7 +60,12 @@
 
 		public function checkAuth($access_token)
 		{
-			
+			$this->load_model('auth_model');
+			$res = $this->auth_model->check_access($access_token);
+			if($res['result_count'] !== 1){
+				header("HTTP/1.0 500 Internal Server Error");
+				throw new Exception("Authentication failed. Invalid APP_ID", 1);
+			}
 		}
 
 		public function setDataHandler($db_connector)

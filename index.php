@@ -71,8 +71,8 @@
 
 		header('Content-Type: application/json');
 			
-		header('HTTP/1.1: ' . $http_code);
-		header('Status: ' . $http_code);
+		header('HTTP/1.1: ' . 500);
+		header('Status: ' . 500);
 		header('Access-Control-Allow-Origin: *');
 		header('Access-Control-Allow-Methods: OPTIONS, DELETE, PUT');
 		header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');

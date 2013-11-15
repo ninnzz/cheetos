@@ -208,12 +208,13 @@ $( function () {
 		var location = $("#form-location").val();
 		var message = $("#form-message").val();
 		var name = $("#authenticated-name").text();
-
+		var app_id = '2b198w.reliefboard.web';
 		var data = {
 			user_number: "",
 			name: name,
 			address: location,
-			message: message
+			message: message,
+			app_id: app_id
 		};
 
 		if( trim(message) == "" || trim(message) == " " ) {
