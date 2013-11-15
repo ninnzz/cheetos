@@ -97,10 +97,10 @@
 			$query_message = "SELECT {$data} FROM {$table} ";
 
 			if($order != NULL){
-				$query_message .= "ORDER BY {$order} desc";
+				$query_message .= "ORDER BY {$order} desc ";
 			}
 
-			$query_message = "LIMIT {$offset}, {$limit}";
+			$query_message .= "LIMIT {$offset}, {$limit}";
 
 			$query_message .= ';';
 
@@ -149,10 +149,10 @@
 
 
 			if($order != NULL){
-				$query_message .= "ORDER BY {$order} desc";
+				$query_message .= "ORDER BY {$order} desc ";
 			}
 
-			$query_message = "LIMIT {$offset}, {$limit}";
+			$query_message .= "LIMIT {$offset}, {$limit}";
 
 			$query_message .= ';';
 
