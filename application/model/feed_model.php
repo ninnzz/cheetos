@@ -19,7 +19,7 @@ class Feed_model extends Kiel_Model{
 
 	public function search_item($q, $offset = 0, $limit = 10)
 	{
-		$query = "SELECT * FROM messages $q LIMIT {$offset}, {$limit};";
+		$query = "SELECT * FROM messages $q ORDER BY date_created desc LIMIT {$offset}, {$limit};";
 		return $this->data_handler->query($query);
 	}
 
