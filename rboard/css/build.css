@@ -50,8 +50,11 @@ body {
 }
 
 #search-filter {
+	background-color: #294360;
 	padding: 20px;
 	display: none;
+	position: absolute;
+	width: 100%;
 }
 
 .navbar-nav {

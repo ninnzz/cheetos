@@ -86,19 +86,19 @@
               
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" checked="checked" id="filter-name"> Name
+                  <input type="checkbox" checked="checked" id="filter-name" class="filter"> Name
                 </label>
               </div>
 
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" checked="checked" id="filter-location"> Location
+                  <input type="checkbox" checked="checked" id="filter-location" class="filter"> Location
                 </label>
               </div>
 
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" checked="checked" id="filter-message"> Message
+                  <input type="checkbox" checked="checked" id="filter-message" class="filter"> Message
                 </label>
               </div>
 
@@ -140,8 +140,9 @@
         
         </div>
 
-        <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none;">
+        <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin-bottom: 20px;">
           <h3>Search Results:</h3>
+          <button id="back-to-feed" class="btn btn-default">Back to Feeds</button>
         </div>
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
@@ -187,11 +188,9 @@
         </div>
 
         <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
-          <!--      
           <div id="notif-container" class="col-lg-7">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 
-          -->
           <div id="msg"></div>
           <div id="results"></div>
 
