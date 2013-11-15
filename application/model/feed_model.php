@@ -29,7 +29,7 @@ class Feed_model extends Kiel_Model{
 		//return $this->data_handler->query($query);	
 	}
 
-	public function add_messages($user_no,$addr,$name,$message)
+	public function add_messages($user_no,$addr,$name,$message,$source)
 	{
 		$data = '';
 		$tm = $this->_time;
@@ -51,7 +51,7 @@ class Feed_model extends Kiel_Model{
 		$message = strip_tags(filter_var(trim($message),FILTER_SANITIZE_ENCODED));
 		$data .= " '{$message}',";
 		
-		$data .= " {$tm}, {$tm}, NULL, 'pending' ";
+		$data .= " {$tm}, {$tm}, NULL, 'pending' , '{$source}' ";
 
 		return $this->data_handler->insert('messages',$data);
 	}

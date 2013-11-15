@@ -79,7 +79,7 @@
 	 * 
 	 *
 	 */
-	$config['application_path'] = "";
+	$config['application_path'] = "/rboard";
 
 	$config['load_db'] = TRUE;
 ?>
