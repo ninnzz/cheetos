@@ -91,7 +91,7 @@ $( function () {
 
 	setInterval( function() {
 		$( ".time" ).prettyDate();    
-	}, 10000);
+	},10000);
 
 	// SET INTERVAL FOR RETRIEVING NEW RECORDS
 
@@ -300,25 +300,32 @@ $( function () {
 			$( ".time" ).prettyDate();
 		});
 
-		search(val);
+		//search(val);
 
 	});
 
 	$(document).on("focus","#search", function(e) {
 		$("#search-filter").show();
-		search_mode = true;
+		//search_mode = true;
 	});
 
 	$(document).on("blur","#search", function(e) {
+		//$("#search-filter").hide();
+		/*
 		if(!search_mode) {
 			$("#search-filter").hide();
 			search_mode = false;
-		}
+		}*/
+	});
+
+	$(document).on("click","#main-container", function(e){
+		e.stopPropagation();
+		$("#search-filter").hide();
 	});
 
 	$(document).on("click","#search-filter",function(e) {
 		e.stopPropagation();
-		search_mode = true;
+		$("#search-filter").show();
 	});
 
 	$(document).on("click",".filter",function(e){
@@ -358,7 +365,7 @@ $( function () {
 	$(window).scroll(function () {
 		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
 			if(!search_mode) {
-				offset = offset + 10;
+				offset = offset + 5;
 				feed();
 			}
 		}
