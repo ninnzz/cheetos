@@ -347,7 +347,7 @@ $( function () {
 			id: postID,
 			status: "flagged"
 		};
-		$.post('http://reliefboard.com/messages/message_flag', data);
+		$.post('http://www.reliefboard.com/messages/message_flag', data);
 		$(".post"+postID).remove();		
 	});
 
