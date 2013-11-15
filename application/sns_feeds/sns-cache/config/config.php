@@ -29,13 +29,13 @@ define('PARSE_INTERVAL', 2);
 define('CLEANUP_SIZE_INTERVAL', 5);
 define('CLEANUP_TIME_INTERVAL', 5);
 
-define("PID_LOCATION", "/home/ubuntu/cheetos/sns_feeds/deploy/monit/scripts/sns-cache/");
-define("LOG_LOCATION", "/home/ubuntu/cheetos/sns_feeds/sns-cache/logs/");
+define("PID_LOCATION", "/home/ubuntu/cheetos/application/sns_feeds/deploy/monit/scripts/sns-cache/");
+define("LOG_LOCATION", "/home/ubuntu/cheetos/application/sns_feeds/sns-cache/logs/");
 
 $db = array(
     "hostname" => "localhost",
     "user"     => "root",
-    "password" => 'p@ssword',
+    "password" => 'P@ssw0rd',
     "db_name"  => "sns_cache"
 );
 
