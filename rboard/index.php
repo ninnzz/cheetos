@@ -125,9 +125,9 @@
             </b>
           </div>
 <div id="copy3">
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">
+            <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
               We launched this service to help the Philippine Yolanda Typhoon victims.
-            </p>
+            </p> -->
             <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
               To post:
               </p><ul>
