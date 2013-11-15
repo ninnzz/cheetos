@@ -119,7 +119,7 @@
 			$result->free();
 			$link->commit();
 			$link->close() or die('no links to close');
-			return(array('result' => $res, 'result_count'=>$cnt));
+			return(array('result' => $res, 'result_count'=>$cnt, 'query'=>$query_message));
 		}
 
 		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
