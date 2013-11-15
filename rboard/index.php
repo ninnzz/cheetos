@@ -92,6 +92,12 @@
 
               <div class="checkbox">
                 <label>
+                  <input type="checkbox" checked="checked" id="filter-location"> Location
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label>
                   <input type="checkbox" checked="checked" id="filter-message"> Message
                 </label>
               </div>

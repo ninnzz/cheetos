@@ -218,14 +218,17 @@ $( function () {
 		else
 			filter += "&name=0";
 
+		if($("#filter-location").is(":checked"))
+			filter += "&loc=1";
+		else
+			filter += "&loc=0";
+
 		if($("#filter-message").is(":checked"))
 			filter += "&message=1";
 		else
 			filter += "&message=0";
 
 		var url = "http://reliefboard.com/messages/search?q=" + val + filter;
-
-		console.log(url);
 
 		$.ajax( {
 			type: "GET",
