@@ -49,6 +49,44 @@ $( function () {
 		s = s.replace(/\n /,"\n"); return s;
 	}
 
+	function search(val) {
+
+		var filter = "";
+
+		if($("#filter-name").is(":checked"))
+			filter += "&name=1";
+		else
+			filter += "&name=0";
+
+		if($("#filter-location").is(":checked"))
+			filter += "&loc=1";
+		else
+			filter += "&loc=0";
+
+		if($("#filter-message").is(":checked"))
+			filter += "&message=1";
+		else
+			filter += "&message=0";
+
+		var url = "http://www.reliefboard.com/search?query=" + val + filter;
+
+		$.ajax( {
+			type: "GET",
+			url: url
+		} ).done( function ( result ) {
+			var html = "";
+			_.each( result.data.result, function(d) {
+
+				html = html + post_template(d);
+
+			});
+			$( "#results" ).html("");
+			$( "#results" ).append( html );
+			$( ".time" ).prettyDate();
+		});
+
+	}
+
 	// PRETTY DATE REFRESH
 
 	setInterval( function() {
@@ -57,39 +95,43 @@ $( function () {
 
 	// SET INTERVAL FOR RETRIEVING NEW RECORDS
 
-	/*    setInterval( function() {
+	setInterval( function() {
 
-	$.ajax( {
-	type: "GET",
-	url: "http://www.reliefboard.com/messages/feed"
-	} ).done( function ( result ) {
+		if(!search_mode) {
 
-	var html = "";
-	var title = $("title").text();
-	title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
+			$.ajax( {
+				type: "GET",
+				url: "http://www.reliefboard.com/messages/feed?offset=0&limit=5"
+			} ).done( function ( result ) {
 
-	_.each( result.data.result, function(d) {
+				var html = "";
+				var title = $("title").text();
+				title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
 
-	if(  ! ( $.inArray( d.id , id_list ) > -1 ) ) {
-	id_list.push(d.id);
-	html = html + post_template(d);
-	feed_cache = html + feed_cache;
-	fresh_count = fresh_count + 1;
-	}
+				_.each( result.data.result, function(d) {
 
-	});
+					if(  ! ( $.inArray( d.id , id_list ) > -1 ) ) {
+						id_list.push(d.id);
+						html = html + post_template(d);
+						feed_cache = html + feed_cache;
+						fresh_count = fresh_count + 1;
+					}
 
-	if( fresh_count > 0 ) {
-	$(".notif").parent().show();
-	$(".notif").show();
-	$(".notif").css("display","block");
-	$("#count").text(fresh_count);
-	$("title").text(title + " (" + fresh_count + ")" );
-	}
+				});
 
-	});
+				if( fresh_count > 0 ) {
+					$(".notif").parent().show();
+					$(".notif").show();
+					$(".notif").css("display","block");
+					$("#count").text(fresh_count);
+					$("title").text(title + " (" + fresh_count + ")" );
+				}
 
-	}, 5000);*/
+			});
+
+		}
+
+	}, 5000);
 
 	// START THE APPLICATION
 	feed();
@@ -97,7 +139,7 @@ $( function () {
 
 	//EVENTS
 
-	/*$(document).on("click", ".notif", function(e) {
+	$(document).on("click", ".notif", function(e) {
 		e.preventDefault();
 		$( "#msg" ).prepend( feed_cache );
 		$(".notif").hide();
@@ -110,7 +152,7 @@ $( function () {
 		$("title").text(title);
 		FB.XFBML.parse();
 		$.getScript('http://platform.twitter.com/widgets.js');
-	});*/
+	});
 
 	$(document).on("click","#viaweb", function(e) {
 
@@ -191,6 +233,7 @@ $( function () {
 	$(document).on("keyup","#search", function(e) {
 
 		var val = $(this).val();
+
 		var search_count = 0;
 		offset = 0;
 		$( "#search-count" ).text(search_count);
@@ -218,6 +261,7 @@ $( function () {
 			search_mode = false;
 			return;
 		}
+
 
 		var filter = "";
 
@@ -255,16 +299,43 @@ $( function () {
 			$( ".time" ).prettyDate();
 		});
 
+		search(val);
+
 	});
 
 	$(document).on("focus","#search", function(e) {
 		$("#search-filter").show();
+		search_mode = true;
 	});
 
 	$(document).on("blur","#search", function(e) {
 		if(!search_mode) {
 			$("#search-filter").hide();
+			search_mode = false;
 		}
+	});
+
+	$(document).on("click","#search-filter",function(e) {
+		e.stopPropagation();
+		search_mode = true;
+	});
+
+	$(document).on("click",".filter",function(e){
+		e.stopPropagation();
+		var val = $("#search").val();
+		search(val);
+	});
+
+	$(document).on("click","#back-to-feed",function(e) {
+		e.preventDefault();
+		$("#copy-container").fadeIn(100);
+		$("#search-copy-container").fadeOut(100);
+		$("#msg").fadeIn(100);
+		$("#results").hide();
+		$("#search").val("");
+		$("#search-filter").hide();
+		search_mode = false;
+		return;
 	});
 
 	// PAGINATION
