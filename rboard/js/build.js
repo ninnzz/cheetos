@@ -49,8 +49,7 @@ $( function () {
 		s = s.replace(/\n /,"\n"); return s;
 	}
 
-	function search(val) {
-
+	function search(val,search_offset) {
 		var filter = "";
 
 		if($("#filter-name").is(":checked"))
@@ -67,22 +66,31 @@ $( function () {
 			filter += "&message=1";
 		else
 			filter += "&message=0";
+		
+		$(window).scroll(function () {
+			console.log("doc"+$(document).height());
+			console.log("win"+$(window).scrollTop());
+			if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+				if(search_mode) {
+					search_offset += 5;
+					var url = "http://www.reliefboard.com/search?query=" + val + filter + "&offset=" + search_offset +"&limit=5";
+					console.log(url);
+					$.ajax( {
+						type: "GET",
+						url: url
+					} ).done( function ( result ) {
+						var html = "";
+						_.each( result.data.result, function(d) {
 
-		var url = "http://www.reliefboard.com/search?query=" + val + filter;
+							html = html + post_template(d);
 
-		$.ajax( {
-			type: "GET",
-			url: url
-		} ).done( function ( result ) {
-			var html = "";
-			_.each( result.data.result, function(d) {
-
-				html = html + post_template(d);
-
-			});
-			$( "#results" ).html("");
-			$( "#results" ).append( html );
-			$( ".time" ).prettyDate();
+						});
+						$( "#results" ).html("");
+						$( "#results" ).append( html );
+						$( ".time" ).prettyDate();
+					});
+				}
+			}
 		});
 
 	}
@@ -231,78 +239,69 @@ $( function () {
 
 	});
 
-	$(document).on("keyup","#search", function(e) {
+	$('#search').keypress(function(e) {
+		if(e.which == 13){
+			var val = $(this).val();
 
-		var val = $(this).val();
+			var search_count = 0;
+			$( "#search-count" ).text(search_count);
 
-		var search_count = 0;
-		offset = 0;
-		$( "#search-count" ).text(search_count);
+			if( val.length > 0 ) {
+				$("#copy-container").fadeOut(100);
+				$("#search-copy-container").fadeIn(100);
+				$("#msg").fadeOut(100);
+				$("#results").show();
+				$(window).scrollTop(0);
+				search_mode = true;
+			} else {
+				$("#copy-container").fadeIn(100);
+				$("#search-copy-container").fadeOut(100);
+				$("#msg").fadeIn(100);
+				$("#results").hide();
+				search_mode = false;
+				return;
+			}
 
-		if( val.length > 0 ) {
-			$("#copy-container").fadeOut(100);
-			$("#search-copy-container").fadeIn(100);
-			$("#msg").fadeOut(100);
-			$("#results").show();
-			$(window).scrollTop(0);
-			$(window).scroll(function () {
-				if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
-					if(!search_mode) {
-						offset = offset + 10;
-						feed();
-					}
-				}
+
+			var filter = "";
+			var search_offset = 0;
+
+			if($("#filter-name").is(":checked"))
+				filter += "&name=1";
+			else
+				filter += "&name=0";
+
+			if($("#filter-location").is(":checked"))
+				filter += "&loc=1";
+			else
+				filter += "&loc=0";
+
+			if($("#filter-message").is(":checked"))
+				filter += "&message=1";
+			else
+				filter += "&message=0";
+
+			var url = "http://www.reliefboard.com/search?query=" + val + "&offset=0&limit=5" +filter;
+			$.ajax( {
+				type: "GET",
+				url: url
+			} ).done( function ( result ) {
+				var html = "";
+				_.each( result.data.result, function(d) {
+
+					//id_list.push(d.id);
+					html = html + post_template(d);
+					search_count = search_count + 1;
+
+				});
+				$( "#results" ).html("");
+				$( "#results" ).append( html );
+				$( ".time" ).prettyDate();
 			});
-			search_mode = true;
-		} else {
-			$("#copy-container").fadeIn(100);
-			$("#search-copy-container").fadeOut(100);
-			$("#msg").fadeIn(100);
-			$("#results").hide();
-			search_mode = false;
-			return;
-		}
-
-
-		var filter = "";
-
-		if($("#filter-name").is(":checked"))
-			filter += "&name=1";
-		else
-			filter += "&name=0";
-
-		if($("#filter-location").is(":checked"))
-			filter += "&loc=1";
-		else
-			filter += "&loc=0";
-
-		if($("#filter-message").is(":checked"))
-			filter += "&message=1";
-		else
-			filter += "&message=0";
-
-		var url = "http://www.reliefboard.com/search?query=" + val + "&offset=" + offset + filter;
-
-		$.ajax( {
-			type: "GET",
-			url: url
-		} ).done( function ( result ) {
-			var html = "";
-			_.each( result.data.result, function(d) {
-
-				//id_list.push(d.id);
-				html = html + post_template(d);
-				search_count = search_count + 1;
-
-			});
-			$( "#results" ).html("");
-			$( "#results" ).append( html );
-			$( ".time" ).prettyDate();
-		});
-
-		//search(val);
-
+			search(val,search_offset);
+		}	
 	});
+
 
 	$(document).on("focus","#search", function(e) {
 		$("#search-filter").show();
