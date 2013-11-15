@@ -1,9 +1,12 @@
 <?php
 class Feed_model extends Kiel_Model{
 
-	public function get_messages()
+	public function get_messages($page = 1)
 	{
-		return $this->data_handler->get('messages',null,null,null,null,'date_created');
+		$default_limit = 10;
+		$offset = ($default_limit * $page) - $default_limit;
+		
+		return $this->data_handler->get('messages',null,$offset,$default_limit,null,'date_created');
 	}
 	
 	public function single_item($id)
@@ -11,15 +14,21 @@ class Feed_model extends Kiel_Model{
 		return $this->data_handler->get_where('messages',null," WHERE id = '{$id}' ",null,null,null,'date_created');
 	}
 
-	public function search($q)
+	public function search($q, $page = 1)
 	{
-		$query  = "SELECT * FROM messages WHERE MATCH (sender,message,place_tag,sender_number) AGAINST ('{$q}' WITH QUERY EXPANSION)";
+		$default_limit = 10;
+		$offset = ($default_limit * $page) - $default_limit;
+
+		$query  = "SELECT * FROM messages WHERE MATCH (sender,message,place_tag,sender_number) AGAINST ('{$q}' WITH QUERY EXPANSION) LIMIT {$offset},{$default_limit}";
 		return $this->data_handler->query($query);
 	}
 
-	public function search_item($q)
+	public function search_item($q, $page = 1)
 	{
-		$query = "SELECT * FROM messages $q ;";
+		$default_limit = 10;
+		$offset = ($default_limit * $page) - $default_limit;
+
+		$query = "SELECT * FROM messages $q LIMIT {$offset}, {$default_limit};";
 		return $this->data_handler->query($query);
 	}
 
