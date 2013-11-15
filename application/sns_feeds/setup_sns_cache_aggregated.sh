@@ -15,11 +15,11 @@ if [ ! -f $FILE ]; then
 fi
 
 echo "Creating SNS Cache database."
-mysql -uroot -p1234 < $STDIR/libraries/sns-cache/db/sns_cache_db.sql;
+mysql -uroot -pP@ssw0rd < $STDIR/sns_feeds/sns-cache/db/sns_cache_db.sql;
 
 echo " - Creating tables.";
 
-php $STDIR/libraries/sns-cache/db/create_tables.php;
+php $STDIR/sns_feeds/sns-cache/db/create_tables.php;
 
 #echo " - Adding Users.";
 

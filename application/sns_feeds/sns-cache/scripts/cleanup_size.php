@@ -1,6 +1,6 @@
 <?php
 
-require_once "/home/spuser/buzzboard/new_api/application/libraries/sns-cache/config/config.php";
+require_once "/home/ubuntu/cheetos/application/sns_feeds/sns-cache/config/config.php";
 
 
 function cs_log($message) {
