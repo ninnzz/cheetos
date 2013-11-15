@@ -34,6 +34,10 @@ class Search extends Kiel_Controller
 
 	}
 
+	public function google_finder_get()
+	{
+		//https://www.google.org/personfinder/2013-yolanda/api/search?key=smo7n6_B3sgRMD9Y&q=mj
+	}
 }
 
 ?>
