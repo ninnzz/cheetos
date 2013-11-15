@@ -37,6 +37,7 @@ class Messages extends Kiel_Controller{
 
 	public function feed_post()
 	{
+		
 		$this->load_model('feed_model');
 		$user_no = $this->post_args['user_number'];
 		$addr = $this->post_args['address'];
