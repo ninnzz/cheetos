@@ -228,7 +228,7 @@
 
 		public function update_where($table,$data,$where)
 		{
-
+			
 		}
 
 		public function update_batch($table, $data=array(),$where=array())
