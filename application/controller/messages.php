@@ -45,6 +45,9 @@ class Messages extends Kiel_Controller{
 	public function search_get()
 	{
 		$page = $this->get_args['page'];
+		if(empty($page)){
+			$page = 1;
+		}
 		if($this->get_args['q'] && isset($this->get_args['q']) && $this->get_args['q'] != ""){
 			$this->load_model('feed_model');
 			$res = $this->feed_model->search($this->get_args['q'], $page);
