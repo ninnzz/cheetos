@@ -43,7 +43,7 @@ $( function () {
 		$( ".time" ).prettyDate();    
     }, 10000);
 
-    setInterval( function() {
+/*    setInterval( function() {
 
     	$.ajax( {
 			type: "GET",
@@ -75,7 +75,7 @@ $( function () {
 
 		});
 
-    }, 5000);
+    }, 5000)*/;
 
    $(document).on("click", ".notif", function(e) {
 		e.preventDefault();
