@@ -271,7 +271,7 @@
 
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
-      <div class="post" data-id="<%= d.id %>">
+      <div class="post<%= d.id %>" data-id="<%= d.id %>">
           
           <div class="time-container">
             <div class="time-asset"></div>
@@ -279,17 +279,16 @@
           </div>
 
           <p class="msg-data">
-            
-            <%= convertToLinks(unescape(unescape(decodeURIComponent(d.message)))) %>
+                <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
             <br /><br />
 
             <% if( d.sender != null ) { %>
-              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(d.sender))) %> 
+              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
             <% } %>
 
             <% if( d.place_tag != null ) { %>
-              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(d.place_tag))) %></b>
-            <% } %>
+              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
+            <% }%>
 
           </p>
           
@@ -297,6 +296,7 @@
             <div class="pull-right">
               <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Comments</a> 
               <!--<a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>-->
+              <a class="share" target="_blank" data-id="<%= d.id %>">Report</a>
             </div>
           </div>          
 

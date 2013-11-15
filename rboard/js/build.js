@@ -338,6 +338,20 @@ $( function () {
 		return;
 	});
 
+	$(document).on("click",".share",function(e) {
+		e.preventDefault();
+		var _this  = $(this),
+			postID = _this.data('id');
+		
+		var data = {
+			id: postID,
+			status: "flagged"
+		};
+		$.post('http://reliefboard.com/messages/message_flag', data);
+		$(".post"+postID).remove();		
+	});
+
+
 	// PAGINATION
 
 	$(window).scroll(function () {
