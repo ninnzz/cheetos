@@ -40,12 +40,18 @@ body {
 	background-position: 10px 7px;
 	box-shadow:none !important;
 	border: none !important;
+	display: none;
 	font-size: 18px;
 	font-weight: 700;
 	padding-left: 38px;
 	outline: none !important;
 	margin: 10px;
 	width: 405px;
+}
+
+#search-filter {
+	padding: 20px;
+	display: none;
 }
 
 .navbar-nav {
@@ -115,7 +121,7 @@ body {
   }
 }
 
-#copy3 {
+.copy3 {
 	background-color: #d9d9d9;
 	padding: 20px;
 	margin: 20px auto;
@@ -161,12 +167,16 @@ body {
 /* ------------------------------------------------------------------------ */
 /* msg */
 
-#msg {
+#msg,#results {
 	background-color: #ebeaea;
 	float: none;
 	min-height: 100px;
 	padding: 0 13px;
 	margin: 50px -16px;
+}
+
+#results {
+	display: none;
 }
 
 #msg-single {
