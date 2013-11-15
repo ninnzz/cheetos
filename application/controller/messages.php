@@ -14,11 +14,15 @@ class Messages extends Kiel_Controller{
 	public function feed_get()
 	{
 		$this->load_model('feed_model');
-		$page = $this->get_args['page'];
-		if(empty($page)){
-			$page = 1;
+		$offset = $this->get_args['offset'];
+		$limit  = $this->get_args['limit'];
+		
+		if(empty($limit)){
+			$limit  = 0;
+			$offset = 10;
 		}
-		$res  = $this->feed_model->get_messages($page);
+
+		$res  = $this->feed_model->get_messages($offset, $limit);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
@@ -44,13 +48,17 @@ class Messages extends Kiel_Controller{
 
 	public function search_get()
 	{
-		$page = $this->get_args['page'];
-		if(empty($page)){
-			$page = 1;
+		$offset = $this->get_args['offset'];
+		$limit  = $this->get_args['limit'];
+		
+		if(empty($limit)){
+			$limit  = 0;
+			$offset = 10;
 		}
+		
 		if($this->get_args['q'] && isset($this->get_args['q']) && $this->get_args['q'] != ""){
 			$this->load_model('feed_model');
-			$res = $this->feed_model->search($this->get_args['q'], $page);
+			$res = $this->feed_model->search($this->get_args['q'], $offset, $limit);
 			$this->response(array('status'=>'Success','data'=>$res),200);
 
 		} else {
