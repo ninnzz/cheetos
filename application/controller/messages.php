@@ -18,8 +18,8 @@ class Messages extends Kiel_Controller{
 		$limit  = $this->get_args['limit'];
 		
 		if(empty($limit)){
-			$limit  = 0;
-			$offset = 10;
+			$offset = 0;
+			$limit  = 10;
 		}
 
 		$res  = $this->feed_model->get_messages($offset, $limit);
@@ -52,10 +52,10 @@ class Messages extends Kiel_Controller{
 		$limit  = $this->get_args['limit'];
 		
 		if(empty($limit)){
-			$limit  = 0;
-			$offset = 10;
+			$offset = 0;
+			$limit  = 10;
 		}
-		
+
 		if($this->get_args['q'] && isset($this->get_args['q']) && $this->get_args['q'] != ""){
 			$this->load_model('feed_model');
 			$res = $this->feed_model->search($this->get_args['q'], $offset, $limit);
