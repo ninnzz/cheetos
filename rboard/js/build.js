@@ -228,7 +228,7 @@ $( function () {
 		else
 			filter += "&message=0";
 
-		var url = "http://reliefboard.com/messages/search?q=" + val + filter;
+		var url = "http://reliefboard.com/messages/search?query=" + val + filter;
 
 		$.ajax( {
 			type: "GET",
