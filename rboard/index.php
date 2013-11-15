@@ -76,14 +76,30 @@
           </button>
           <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
-<!-- 
+
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
             <li>
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
+            <div id="search-filter">
+              <b>Filter Search</b>
+              
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" checked="checked" id="filter-name"> Name
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" checked="checked" id="filter-message"> Message
+                </label>
+              </div>
+
+            </div>
             </li>
           </ul>
-        </nav> -->
+        </nav>
       
       </div>
 
@@ -97,7 +113,7 @@
 
       <div class="row">
 
-        <div class="col-lg-7 col-md-7">
+        <div id="copy-container" class="col-lg-7 col-md-7">
           <div id="copy">
             <b style="font-weight: 800; font-size: 22px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
 
@@ -112,10 +128,14 @@
               <img src="img/banner.png" height="180px";>
           </div>
           
-          <div id="copy3" style="text-align: center;">
+          <div class="copy3" style="text-align: center;">
             <a id="viaweb" class="btn btn-danger " href="#">POST A NEW MESSAGE</a>
           </div>
         
+        </div>
+
+        <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none;">
+          <h3>Search Results:</h3>
         </div>
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
@@ -124,7 +144,7 @@
               A service for Filipinos affected by  Typhoon Yolanda
             </b>
           </div>
-<div id="copy3">
+          <div class="copy3">
             <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
               We launched this service to help the Philippine Yolanda Typhoon victims.
             </p> -->
@@ -161,10 +181,14 @@
         </div>
 
         <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
+          <!--      
           <div id="notif-container" class="col-lg-7">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
-          </div>
+          </div> 
+          -->
           <div id="msg"></div>
+          <div id="results"></div>
+
         </div>
 
       </div>
@@ -191,18 +215,6 @@
       </div>
     </div>
  -->
-    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div id="results" class="modal-body">
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="modal fade" id="viawebModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
