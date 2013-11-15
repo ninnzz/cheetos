@@ -25,7 +25,7 @@ class Search extends Kiel_Controller
 
 		if($str != ''){
 			$str = 'WHERE '.$str;
-			$res = $this->feed_model->search_item($str);
+			$res = $this->feed_model->search_item($str, $data['offset'], $data['limit']);
 		} else {
 			$res = $this->feed_model->get_messages();
 		}
