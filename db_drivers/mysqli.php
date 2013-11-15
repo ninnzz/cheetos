@@ -72,7 +72,7 @@
 
 		}
 
-		public function get($table=NULL,$data=NULL,$offset=NULL,$limit=NULL,$sort=NULL,$order=NULL)
+		public function get($table=NULL,$data=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
 		{
 			$row_count = 0;
 			$res = array();
@@ -100,6 +100,8 @@
 				$query_message .= "ORDER BY {$order} desc";
 			}
 
+			$query_message = "LIMIT {$offset}, {$limit}";
+
 			$query_message .= ';';
 
 			if(!$result = $link->query($query_message)){
@@ -120,7 +122,7 @@
 			return(array('result' => $res, 'result_count'=>$cnt));
 		}
 
-		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=NULL,$limit=NULL,$sort=NULL,$order=NULL)
+		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
 		{
 
 			$row_count = 0;
@@ -149,6 +151,8 @@
 			if($order != NULL){
 				$query_message .= "ORDER BY {$order} desc";
 			}
+
+			$query_message = "LIMIT {$offset}, {$limit}";
 
 			$query_message .= ';';
 
