@@ -109,7 +109,7 @@
               <p style="color: #294360; font-weight: 800; font-size: 16px;">
                 ReliefBoard is a bulletin board that helps you reach the world in times of calamities.
               </p>
-              <img src="img/banner.png" height="180px";>
+              <img src="img/banner.png" style="width:100%;">
           </div>
           
           <div id="copy3" style="text-align: center;">
