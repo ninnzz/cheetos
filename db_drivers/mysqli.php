@@ -119,7 +119,7 @@
 			$result->free();
 			$link->commit();
 			$link->close() or die('no links to close');
-			return(array('result' => $res, 'result_count'=>$cnt));
+			return(array('result' => $res, 'result_count'=>$cnt, 'query'=>$query_message));
 		}
 
 		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
@@ -226,9 +226,45 @@
 
 		}
 
-		public function update_where($table,$data,$where)
+		public function update_where($table=NULL,$data=NULL,$where=NULL)
 		{
+			$query_message = '';
+			$row_count = 0;
+			$res = array();
 
+			if(!$table){
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Error :: Unknown table", 1);
+			}
+			if(!$data){
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Error :: No data to insert", 1);	
+			}
+
+			// $link = mysqli_connect(DBConfig::DB_HOST, DBConfig::DB_USERNAME, DBConfig::DB_PASSWORD, DBConfig::DB_NAME) or die('Database Connection Error');
+			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
+			if($link->connect_errno > 0){
+    			$err = $link->connect_error;
+				$link->close() or die('no links to close');
+ 				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Connection Error [" . $err . "]", 1);
+			}
+			$link->autocommit(FALSE);
+
+			$query_message = "INSERT into {$table} values({$data});";
+			
+			if(!$result = $link->query($query_message)){
+				$err = $link->error;
+				$errNo = $link->errno;
+				$affected = $link->affected_rows;
+				$link->close();
+ 				return array('errcode'=>$errNo ,'error'=>$err,'affected_rows'=>$affected);
+			}
+			$res['affected_rows'] = $link->affected_rows;
+			
+			$link->commit();
+			$link->close() or die('no links to close');
+			return($res);
 		}
 
 		public function update_batch($table, $data=array(),$where=array())
