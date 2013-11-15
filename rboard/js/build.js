@@ -1,192 +1,171 @@
 $( function () {
 
+	//VARIABLES
+
 	var id_list = [];
 	var fresh_count = 0;
 	var feed_cache = "";
 
+	var offset = 0;
+	var search_mode = false;
+
+	//APPLY FORMATING TO SINGLE RESULT
+
 	function post_template (d) {
 		var html = _.template( $("#post").html() , {d:d} );
-        return html;
+		return html;
 	}
 
-	function init () {
+	// FEED CALL
 
-		/* START THE FETCH */
+	function feed () {
+
+		/* FETCH FEED */
 
 		$.ajax( {
 			type: "GET",
-			url: "http://www.reliefboard.com/messages/feed"
+			url: "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5"
 		} ).done( function ( result ) {
-			
+
 			var html = "";
 
 			_.each( result.data.result, function(d) {
-				id_list.push(d.id);
-				html = html + post_template(d);
+			id_list.push(d.id);
+			html = html + post_template(d);
 			});
 
-			$( "#msg" ).html("");
-	        $( "#msg" ).append( html );
-	        $( ".time" ).prettyDate();
+			$( "#msg" ).append( html );
+			$( ".time" ).prettyDate();
 
 		});
 
 	}
 
+	// TRIM FUNCTIONS
+
 	function trim(s) { 
-	    s = s.replace(/(^\s*)|(\s*$)/gi,"");
-	    s = s.replace(/[ ]{2,}/gi," "); 
-	    s = s.replace(/\n /,"\n"); return s;
+		s = s.replace(/(^\s*)|(\s*$)/gi,"");
+		s = s.replace(/[ ]{2,}/gi," "); 
+		s = s.replace(/\n /,"\n"); return s;
 	}
+
+	// PRETTY DATE REFRESH
 
 	setInterval( function() {
 		$( ".time" ).prettyDate();    
-    }, 10000);
+	}, 10000);
 
-/*    setInterval( function() {
+	// SET INTERVAL FOR RETRIEVING NEW RECORDS
 
-    	$.ajax( {
-			type: "GET",
-			url: "http://www.reliefboard.com/messages/feed"
-		} ).done( function ( result ) {
-			
-			var html = "";
-			var title = $("title").text();
-			title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
+	/*    setInterval( function() {
 
-			_.each( result.data.result, function(d) {
+	$.ajax( {
+	type: "GET",
+	url: "http://www.reliefboard.com/messages/feed"
+	} ).done( function ( result ) {
 
-			  	if(  ! ( $.inArray( d.id , id_list ) > -1 ) ) {
-			  		id_list.push(d.id);
-			  		html = html + post_template(d);
-		        	feed_cache = html + feed_cache;
-		        	fresh_count = fresh_count + 1;
-				}
+	var html = "";
+	var title = $("title").text();
+	title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
 
-			});
+	_.each( result.data.result, function(d) {
 
-			if( fresh_count > 0 ) {
-				$(".notif").parent().show();
-				$(".notif").show();
-				$(".notif").css("display","block");
-				$("#count").text(fresh_count);
-				$("title").text(title + " (" + fresh_count + ")" );
-			}
+	if(  ! ( $.inArray( d.id , id_list ) > -1 ) ) {
+	id_list.push(d.id);
+	html = html + post_template(d);
+	feed_cache = html + feed_cache;
+	fresh_count = fresh_count + 1;
+	}
 
-		});
-
-    }, 5000)*/;
-
-   $(document).on("click", ".notif", function(e) {
-		e.preventDefault();
-	    $( "#msg" ).prepend( feed_cache );
-	    $(".notif").hide();
-	    $(".notif").parent().hide();
-	    $( ".time" ).prettyDate();
-	    feed_cache = "";
-	    fresh_count = 0;
-	    var title = $("title").text();
-	    title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
-        $("title").text(title);
-        FB.XFBML.parse();
-        $.getScript('http://platform.twitter.com/widgets.js');
 	});
 
-   $(document).on("click", ".share", function(e) {
+	if( fresh_count > 0 ) {
+	$(".notif").parent().show();
+	$(".notif").show();
+	$(".notif").css("display","block");
+	$("#count").text(fresh_count);
+	$("title").text(title + " (" + fresh_count + ")" );
+	}
 
-   		e.preventDefault();
-   		
-   		var id = $(this).attr("data-id");
-   		var msg = $(this).attr("data-msg");
-   		var place_tag = $(this).attr("data-place-tag");
-   		var sender = $(this).attr("data-sender");
+	});
 
-   		$("#tw-container").html("");
-   		$("#tw-container").html($("#twTemplate").html());
+	}, 5000);*/
 
-   		$("#fb").attr("data-href","http://www.reliefboard.com/rboard/post.php?id=" + id);
-   		$("#tw").attr("data-text", unescape(decodeURIComponent(msg)) + ' - ' + unescape(decodeURIComponent(place_tag)) + ' - ' + unescape(decodeURIComponent(sender)) + ' #reliefboard VIA reliefboard.com');
+	// START THE APPLICATION
+	feed();
+	$("#search").fadeIn(1000);
 
-   		//Refresh Social Network Share Buttons
-   		
-	    FB.XFBML.parse();
-	    $.getScript('http://platform.twitter.com/widgets.js');
+	//EVENTS
 
-	    $("#shareModal").modal("show");
+	/*$(document).on("click", ".notif", function(e) {
+		e.preventDefault();
+		$( "#msg" ).prepend( feed_cache );
+		$(".notif").hide();
+		$(".notif").parent().hide();
+		$( ".time" ).prettyDate();
+		feed_cache = "";
+		fresh_count = 0;
+		var title = $("title").text();
+		title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
+		$("title").text(title);
+		FB.XFBML.parse();
+		$.getScript('http://platform.twitter.com/widgets.js');
+	});*/
 
-   });
+	$(document).on("click","#viaweb", function(e) {
 
-   $(document).on("click","#viaweb", function(e) {
-   		
-   		e.preventDefault();
-   		$("#viawebModal").modal("show");
+		e.preventDefault();
+		$("#viawebModal").modal("show");
 
-   		FB.getLoginStatus(function(response) {
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				// the user is logged in and has authenticated your
+				// app, and response.authResponse supplies
+				// the user's ID, a valid access token, a signed
+				// request, and the time the access token 
+				// and signed request each expire
+				var uid = response.authResponse.userID;
+				var accessToken = response.authResponse.accessToken;
 
-		if (response.status === 'connected') {
-		    // the user is logged in and has authenticated your
-		    // app, and response.authResponse supplies
-		    // the user's ID, a valid access token, a signed
-		    // request, and the time the access token 
-		    // and signed request each expire
-		    var uid = response.authResponse.userID;
-		    var accessToken = response.authResponse.accessToken;
+				FB.api('/me', function(response) {
+					$("#authenticated-name").text(response.name);
+				});
 
-		    FB.api('/me', function(response) {
-  				$("#authenticated-name").text(response.name);
-			});
+				$("#loginToFacebook").hide();
+				$("#authenticated").show();
 
-		    $("#loginToFacebook").hide();
-		    $("#authenticated").show();
-
-		  } else if (response.status === 'not_authorized') {
-		    // the user is logged in to Facebook, 
-		    // but has not authenticated your app
-		  } else {
-		    // the user isn't logged in to Facebook.
-		  }
-
-		 });
-
-   		FB.Event.subscribe('auth.authResponseChange', function(response) {
-		    // Here we specify what we do with the response anytime this event occurs. 
-		    if (response.status === 'connected') {
-		      // The response object is returned with a status field that lets the app know the current
-		      // login status of the person. In this case, we're handling the situation where they 
-		      // have logged in to the app.
-		      $("#loginToFacebook").hide();
-			  $("#authenticated").show();
-
-			FB.api('/me', function(response) {
-				$("#authenticated-name").text(response.name);
-			});
-
-		    } else if (response.status === 'not_authorized') {
-		      // In this case, the person is logged into Facebook, but not into the app, so we call
-		      // FB.login() to prompt them to do so. 
-		      // In real-life usage, you wouldn't want to immediately prompt someone to login 
-		      // like this, for two reasons:
-		      // (1) JavaScript created popup windows are blocked by most browsers unless they 
-		      // result from direct interaction from people using the app (such as a mouse click)
-		      // (2) it is a bad experience to be continually prompted to login upon page load.
-		    } else {
-		      // In this case, the person is not logged into Facebook, so we call the login() 
-		      // function to prompt them to do so. Note that at this stage there is no indication
-		      // of whether they are logged into the app. If they aren't then they'll see the Login
-		      // dialog right after they log in to Facebook. 
-		      // The same caveats as above apply to the FB.login() call here.
-		    }
+			} else if (response.status === 'not_authorized') {
+			// the user is logged in to Facebook, 
+			// but has not authenticated your app
+			} else {
+			// the user isn't logged in to Facebook.
+			}
 		});
 
-   });
+		FB.Event.subscribe('auth.authResponseChange', function(response) {
+			// Here we specify what we do with the response anytime this event occurs. 
+			if (response.status === 'connected') {
+				// The response object is returned with a status field that lets the app know the current
+				// login status of the person. In this case, we're handling the situation where they 
+				// have logged in to the app.
+				$("#loginToFacebook").hide();
+				$("#authenticated").show();
+				FB.api('/me', function(response) {
+					$("#authenticated-name").text(response.name);
+				});
+			}
+		});
 
+	});
 
-   $(document).on("click","#viawebSend", function(e) {
-   		e.preventDefault();
-   		
-   		var location = $("#form-location").val();
-   		var message = $("#form-message").val();
-   		var name = $("#authenticated-name").text();
+	// POST TO WEB
+	$(document).on("click","#viawebSend", function(e) {
+
+		e.preventDefault();
+
+		var location = $("#form-location").val();
+		var message = $("#form-message").val();
+		var name = $("#authenticated-name").text();
 
 		var data = {
 			user_number: "",
@@ -195,31 +174,101 @@ $( function () {
 			message: message
 		};
 
-   		if( trim(message) == "" || trim(message) == " " ) {
-   			alert("Message is required");
-   			return;
-   		}
+		if( trim(message) == "" || trim(message) == " " ) {
+			alert("Message is required");
+			return;
+		}
 
-   		$.post('http://reliefboard.com/messages/feed', data);
+		$.post('http://reliefboard.com/messages/feed', data);
 
 		$("#form-location").val("");
 		$("#form-message").val("");
 
-        $("#viawebModal").modal("hide");
+		$("#viawebModal").modal("hide");
 
-   });
+	});
 
-   $(document).on("keypress","#search", function(e) {
+	$(document).on("keyup","#search", function(e) {
 
-   		if( e.which == 13 && $(this).val() != "" ) {
+		var val = $(this).val();
+		var search_count = 0;
 
-        	alert('You pressed enter!');
+		$( "#search-count" ).text(search_count);
 
-    	}
+		if( val.length > 0 ) {
+			$("#copy-container").fadeOut(100);
+			$("#search-copy-container").fadeIn(100);
+			$("#msg").fadeOut(100);
+			$("#results").show();
+			$(window).scrollTop(0);
+			search_mode = true;
+		} else {
+			$("#copy-container").fadeIn(100);
+			$("#search-copy-container").fadeOut(100);
+			$("#msg").fadeIn(100);
+			$("#results").hide();
+			search_mode = false;
+			return;
+		}
 
-   });
+		var filter = "";
 
-	//Start Application
-	init();
+		if($("#filter-name").is(":checked"))
+			filter += "&name=1";
+		else
+			filter += "&name=0";
+
+		if($("#filter-location").is(":checked"))
+			filter += "&loc=1";
+		else
+			filter += "&loc=0";
+
+		if($("#filter-message").is(":checked"))
+			filter += "&message=1";
+		else
+			filter += "&message=0";
+
+		var url = "http://reliefboard.com/messages/search?q=" + val + filter;
+
+		$.ajax( {
+			type: "GET",
+			url: url
+		} ).done( function ( result ) {
+			var html = "";
+			_.each( result.data.result, function(d) {
+
+				//id_list.push(d.id);
+				html = html + post_template(d);
+				search_count = search_count + 1;
+
+			});
+			$( "#results" ).html("");
+			$( "#results" ).append( html );
+			$( ".time" ).prettyDate();
+		});
+
+	});
+
+	$(document).on("focus","#search", function(e) {
+		$("#search-filter").show();
+	});
+
+	$(document).on("blur","#search", function(e) {
+		if(!search_mode) {
+			$("#search-filter").hide();
+		}
+	});
+
+	// PAGINATION
+
+	$(window).scroll(function () {
+		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+			if(!search_mode) {
+				offset = offset + 10;
+				feed();
+			}
+		}
+	});
+
 
 });
