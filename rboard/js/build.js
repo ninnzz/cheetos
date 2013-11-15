@@ -234,12 +234,24 @@ $( function () {
 
 		var val = $(this).val();
 
+		var search_count = 0;
+		offset = 0;
+		$( "#search-count" ).text(search_count);
+
 		if( val.length > 0 ) {
 			$("#copy-container").fadeOut(100);
 			$("#search-copy-container").fadeIn(100);
 			$("#msg").fadeOut(100);
 			$("#results").show();
 			$(window).scrollTop(0);
+			$(window).scroll(function () {
+				if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+					if(!search_mode) {
+						offset = offset + 10;
+						feed();
+					}
+				}
+			});
 			search_mode = true;
 		} else {
 			$("#copy-container").fadeIn(100);
@@ -250,8 +262,45 @@ $( function () {
 			return;
 		}
 
+
+		var filter = "";
+
+		if($("#filter-name").is(":checked"))
+			filter += "&name=1";
+		else
+			filter += "&name=0";
+
+		if($("#filter-location").is(":checked"))
+			filter += "&loc=1";
+		else
+			filter += "&loc=0";
+
+		if($("#filter-message").is(":checked"))
+			filter += "&message=1";
+		else
+			filter += "&message=0";
+
+		var url = "http://www.reliefboard.com/search?query=" + val + "&offset=" + offset + filter;
+
+		$.ajax( {
+			type: "GET",
+			url: url
+		} ).done( function ( result ) {
+			var html = "";
+			_.each( result.data.result, function(d) {
+
+				//id_list.push(d.id);
+				html = html + post_template(d);
+				search_count = search_count + 1;
+
+			});
+			$( "#results" ).html("");
+			$( "#results" ).append( html );
+			$( ".time" ).prettyDate();
+		});
+
 		search(val);
-		
+
 	});
 
 	$(document).on("focus","#search", function(e) {
