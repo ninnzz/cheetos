@@ -37,7 +37,10 @@ class Messages extends Kiel_Controller{
 
 	public function feed_post()
 	{
-		
+		$required = array('app_id','message','name');
+		$this->required_fields($required,$this->post_args);
+		$this->checkAuth($this->post_args['app_id']);
+
 		$this->load_model('feed_model');
 		$user_no = $this->post_args['user_number'];
 		$addr = $this->post_args['address'];
