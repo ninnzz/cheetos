@@ -15,6 +15,9 @@ class Messages extends Kiel_Controller{
 	{
 		$this->load_model('feed_model');
 		$page = $this->get_args['page'];
+		if(empty($page)){
+			$page = 1;
+		}
 		$res  = $this->feed_model->get_messages($page);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
