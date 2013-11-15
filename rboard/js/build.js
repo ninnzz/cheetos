@@ -349,12 +349,10 @@ $( function () {
 
 	$(window).scroll(function () {
 		if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+			offset = offset + 5;
 			if(!search_mode) {
-				offset = offset + 5;
 				feed();
 			}else{
-				offset = offset + 5;
-				console.log(offset);
 				search($("#search").val());
 			}
 		}
