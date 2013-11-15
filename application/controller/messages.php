@@ -73,7 +73,13 @@ class Messages extends Kiel_Controller{
 	public function feed_callback_semaphore_post()
 	{
 		$data = $this->post_args;
+		$msg = $data['message'];
+		$num = $data['number'];
+		$id = $data['message_id'];
 		
+
+		$this->response(array('status'=>'Success','data'=>''),200);
+
 	}
 	
 	public function feed_callback_smart_get()
