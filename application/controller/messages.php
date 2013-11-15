@@ -46,7 +46,15 @@ class Messages extends Kiel_Controller{
 		$addr = $this->post_args['address'];
 		$name = $this->post_args['name'];
 		$message = $this->post_args['message'];
-		$this->feed_model->add_messages($user_no,$addr,$name,$message,'web.primary');	
+		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'web.primary');	
+
+		if($res)		
+		{	
+			$this->sns_crosspost($message);
+		}
+
+		$this->response(array('status'=>'Success'),200);
+
 	}
 
 
