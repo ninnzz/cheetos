@@ -30,9 +30,15 @@ class Feed_model extends Kiel_Model{
 		//return $this->data_handler->query($query);	
 	}
 
-	public function add_messages($user_no,$addr,$name,$message,$source)
+	public function add_messages($user_no,$addr,$name,$message,$source,$parent_id)
 	{
 		$data = '';
+		if(!empty($parent_id)){
+			$data .= "'{$parent_id}'."; 
+		}
+		else{
+			$data .= " NULL,";
+		}
 		$tm = $this->_time;
 		$id = md5($this->_time.$name);
 		$data .= "'{$id}',";

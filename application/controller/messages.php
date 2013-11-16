@@ -1,16 +1,6 @@
 <?php
 class Messages extends Kiel_Controller{
 
-	/**
-	* == Login for users ==
-	* 
-	* @param 		username
-	* @param 		password
-	* @author 		Ninz Eclarin |  nreclarin@gmail.com
-	* @return 		user_id
-	* @version 		Version 1.0
-	* 
-	*/
 	public function feed_get()
 	{
 		$this->load_model('feed_model');
@@ -46,7 +36,8 @@ class Messages extends Kiel_Controller{
 		$addr = $this->post_args['address'];
 		$name = $this->post_args['name'];
 		$message = $this->post_args['message'];
-		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'web.primary');	
+		$parent_id = $this->post_args['parent_id'];
+		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'web.primary',$parent_id);	
 
 		if($res)		
 		{	
@@ -179,7 +170,7 @@ class Messages extends Kiel_Controller{
 		
 		$this->response(array('status'=>'Success'),200);	
 	}
-	
+
 	private function sns_crosspost($message)
 	{
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBAHJqjx4fqE8iN006WvF9tBoJK9s7DWy5UAM4RMWyhiMGxQOyuMR32uYhZBrUlx42Jv9SOefXh2JA051xig8l2TAd5XymykksQD3ximfthOXl2CnSlY3KaqFDtbZBuz1WOFI3ZAVaY9U9FLiZCugYCUhVZBjzeJbRXeM2EIos9QXO0azcCE6EZD';
