@@ -4,10 +4,10 @@ class Feed_model extends Kiel_Model{
 	public function get_messages($parent_id = null, $offset = 0, $limit = 10,$source)
 	{ 
 		if($parent_id !== NULL){
-			$where = " WHERE status != 'flagged' parent_id is not null ";  
+			$where = " WHERE status != 'flagged' AND parent_id is not null ";  
 		}
 		else{
-			$where = " WHERE status != 'flagged' parent_id is NULL ";	
+			$where = " WHERE status != 'flagged' AND parent_id is NULL ";	
 		}
 		if($source !== NULL){
 			$where .= " and source = '{$source}' ";
