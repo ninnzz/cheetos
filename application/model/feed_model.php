@@ -11,15 +11,10 @@ class Feed_model extends Kiel_Model{
 		}
 		if($source !== NULL){
 			$source = $this->data_handler->get_where('applications',null," WHERE app_code = '{$source}' ",null,null,null,'date_created','');
-			print_r($source);
-			print_r('----------------------<br/>');
-			print_r($source->data);
-			print_r('----------------------<br/>');
-			print_r($source->data->result);
-			die();
-			if($source->data->result_count != 0){
+			
+			if($source['result_count'] != 0){
 
-				$s = $source->data->result[0]->id;
+				$s = $source['result'][0]['id'];
 				$where .= " and source = '{$s}' ";
 			} else{
 				return array('result'=>array(),'result_count'=>0);
