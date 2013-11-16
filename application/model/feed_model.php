@@ -10,7 +10,13 @@ class Feed_model extends Kiel_Model{
 			$where = " WHERE status != 'flagged' AND parent_id is NULL ";	
 		}
 		if($source !== NULL){
-			$where .= " and source = '{$source}' ";
+			$source = $this->data_handler->get_where('applications',null," WHERE app_code = '{$source}' ",null,null,null,'date_created','');
+			if($source['result_count'] != 0){
+				$s = $source['result'][0]->app_code;
+				$where .= " and source = '{$s}' ";
+			} else{
+				return array('result'=>array(),'result_count'=>0);
+			}
 		}
 
 		$added = " ,(select logo from applications where applications.id = messages.source) as logo, (select name from applications where applications.id = messages.source) as app_name ";
