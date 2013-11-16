@@ -33,18 +33,21 @@ class Feed_model extends Kiel_Model{
 		//return $this->data_handler->query($query);	
 	}
 
-	public function add_messages($user_no,$addr,$name,$message,$source,$parent_id)
+	public function add_messages($user_no,$addr,$name,$message,$source,$source_type,$parent_id)
 	{
 		$data = '';
+
+		$tm = $this->_time;
+		$id = md5($this->_time.$name);
+		$data .= "'{$id}',";
+
 		if(!empty($parent_id)){
-			$data .= "'{$parent_id}'."; 
+			$data .= " '{$parent_id}',"; 
 		}
 		else{
 			$data .= " NULL,";
 		}
-		$tm = $this->_time;
-		$id = md5($this->_time.$name);
-		$data .= "'{$id}',";
+
 		if($addr != NULL){
 			$addr = strip_tags(filter_var(trim($addr),FILTER_SANITIZE_ENCODED));
 			$data .= " '{$addr}',";
@@ -61,8 +64,14 @@ class Feed_model extends Kiel_Model{
 		$message = strip_tags(filter_var(trim($message),FILTER_SANITIZE_ENCODED));
 		$data .= " '{$message}',";
 		
-		$data .= " {$tm}, {$tm}, NULL, 'pending' , '{$source}' ";
+		$data .= " {$tm}, {$tm}, NULL, 'pending' , '{$source}'  ";
 
+		if($source_type != NULL){
+			$data .= " ,'{$source_type}'";
+		} else{
+			$data .= " ,NULL";
+		}
+		
 		return $this->data_handler->insert('messages',$data);
 	}
 }
