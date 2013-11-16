@@ -161,18 +161,18 @@ class Messages extends Kiel_Controller{
 				$source = 'HYCH';
 				if(count($msg_arr) === 5 ){
 					$addr = $msg_arr[3];
-					$name = $msg_artr[1];
+					$name = $msg_arr[1];
 					$message = $msg_arr[4];	
 					$user_no = $msg_arr[2];	
 					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
 				} else if(count($msg_arr) === 4){
-					$message = $msg_artr[1].'/'.$msg_arr[2].'/'.$msg_arr[3];
+					$message = $msg_arr[1].'/'.$msg_arr[2].'/'.$msg_arr[3];
 					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
 				} else if(count($msg_arr) === 3){
-					$message = $msg_artr[1].'/'.$msg_arr[2];
+					$message = $msg_arr[1].'/'.$msg_arr[2];
 					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
 				} else if(count($msg_arr) === 2){
-					$message = $msg_artr[1];
+					$message = $msg_arr[1];
 					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
 				} else{
 					$res = false;
