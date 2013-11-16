@@ -36,7 +36,25 @@ class Search extends Kiel_Controller
 
 	public function google_finder_get()
 	{
-		//https://www.google.org/personfinder/2013-yolanda/api/search?key=smo7n6_B3sgRMD9Y&q=mj
+		$q = $this->get_args['query'];
+
+		$key = "smo7n6_B3sgRMD9Y";
+  
+        $url = "https://www.google.org/personfinder/2013-yolanda/api/search?key={$key}&q={$q}";
+
+        $response   = file_get_contents($url);
+        $data = preg_replace("/pfif\:/", "", $response);
+        
+        $xml = simplexml_load_string($data);
+
+        $json = json_encode($xml);
+        $array = json_decode($json,TRUE);
+
+        if(count($array) > 0 && trim($array[0]) != "" ){
+			$this->response(array('status'=>'Success','data'=>$array),200);
+		} else {
+			$this->response(array('status'=>'Success','data'=>''),200);
+		}
 	}
 }
 
