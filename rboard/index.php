@@ -271,7 +271,7 @@
 
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
-      <div class="post<%= d.id %>" data-id="<%= d.id %>">
+      <div class="post<%= d.id %> post" data-id="<%= d.id %>">
           
           <div class="time-container">
             <div class="time-asset"></div>
@@ -296,7 +296,7 @@
             <div class="pull-right">
               <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Comments</a> 
               <!--<a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>-->
-              <a class="share" target="_blank" data-id="<%= d.id %>">Report</a>
+              <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
             </div>
           </div>          
 
