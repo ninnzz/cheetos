@@ -277,6 +277,12 @@
             <div class="time-asset"></div>
             <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
           </div>
+          <% if(d.logo != ""){ %>
+            <img src="<%= d.logo %>" width='20' />
+          <% } %>
+          <% if(d.app_name){ %>
+            <em> from <%= d.app_name %></em>
+          <% } %>
 
           <p class="msg-data">
                 <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
