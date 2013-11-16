@@ -14,11 +14,17 @@ class Messages extends Kiel_Controller{
 			$parent_id = NULL; 
 		}
 
+		if(isset($this->get_args['source'])){
+			$source = $this->get_args['parent_id']; 
+		} else{
+			$source = NULL;
+		}
+
 		if(empty($limit)){
 			$offset = 0;
 			$limit  = 10;
 		}
-		$res  = $this->feed_model->get_messages($parent_id ,$offset ,$limit);
+		$res  = $this->feed_model->get_messages($parent_id ,$offset ,$limit,$source);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
@@ -160,7 +166,19 @@ class Messages extends Kiel_Controller{
 					$message = $msg_arr[4];	
 					$user_no = $msg_arr[2];	
 					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
+				} else if(count($msg_arr) === 4){
+					$message = $msg_artr[1].'/'.$msg_arr[2].'/'.$msg_arr[3];
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+				} else if(count($msg_arr) === 3){
+					$message = $msg_artr[1].'/'.$msg_arr[2];
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+				} else if(count($msg_arr) === 2){
+					$message = $msg_artr[1];
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+				} else{
+					$res = false;
 				}
+
 			}
 
 
