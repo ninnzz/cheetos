@@ -152,8 +152,10 @@
 				$query_message .= "ORDER BY {$order} desc ";
 			}
 
-			$query_message .= " LIMIT {$offset}, {$limit}";
-
+			if($offset !== NULL){
+				$query_message .= " LIMIT {$offset}, {$limit}";
+			}
+			
 			$query_message .= ';';
 
 
