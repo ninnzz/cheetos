@@ -341,7 +341,9 @@ $( function () {
 			status: "flagged"
 		};
 		$.post('http://www.reliefboard.com/messages/message_flag', data);
-		$(".post"+postID).remove();		
+		$(".post"+postID).fadeOut(1000,function() {
+			$(".post"+postID).remove();	
+		});	
 	});
 
 
