@@ -72,7 +72,7 @@
 
 		}
 
-		public function get($table=NULL,$data=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL,$where=NULL)
+		public function get($table=NULL,$data=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
 		{
 			$row_count = 0;
 			$res = array();
@@ -95,9 +95,6 @@
 			$link->autocommit(FALSE);
 	
 			$query_message = "SELECT {$data} FROM {$table} ";
-			if(!empty($where)){
-				$query_message .= " WHERE {$where} ";
-			}
 
 			if($order != NULL){
 				$query_message .= "ORDER BY {$order} desc ";
@@ -159,11 +156,13 @@
 
 			$query_message .= ';';
 
+
+
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$link->close();
  				header("HTTP/1.0 500 Internal Server Error");
-    			throw new Exception("Database Connection Error [" . $err . "]", 1);
+    			throw new Exception("Database Connection Error [" . $err . "] query = ({$query_message})", 1);
 			}
 
 			while($row = $result->fetch_assoc()){
