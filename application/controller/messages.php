@@ -90,8 +90,7 @@ class Messages extends Kiel_Controller{
 		$msg = $data['message'];
 		$num = $data['number'];
 		$id = $data['message_id'];
-		
-
+	
 		$this->response(array('status'=>'Success','data'=>''),200);
 
 	}
@@ -232,19 +231,17 @@ class Messages extends Kiel_Controller{
 		$params['twitter_access_secret'] = '2SO03jgYn31wJEZyXkaQI48MfX56Ktbo8fM7G2URiFfUB';
 		$params['place'] = '454373604683875';
 		$params['message'] = $message;
-		//open connection
+		
 		$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+		    curl_setopt($ch, CURLOPT_VERBOSE, 0);
+		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
+		    curl_setopt($ch, CURLOPT_URL, 'http://api.buzzboarddev.stratpoint.com/posts/v1/fb_post');
+		    curl_setopt($ch, CURLOPT_POST, true);
 
-		//set the url, number of POST vars, POST data
-		curl_setopt($ch,CURLOPT_URL, 'http://api.buzzboarddev.stratpoint.com/posts/v1/fb_post');
-		curl_setopt($ch,CURLOPT_POST, 3);
-		curl_setopt($ch,CURLOPT_POSTFIELDS, $params);
-
-		//execute post
-		$result = curl_exec($ch);
-		//close connection
-		curl_close($ch);
-		$this->response(array('status'=>'Success'),200);
+		    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+		    curl_exec($ch);
 	}
 }
 
