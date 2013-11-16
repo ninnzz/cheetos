@@ -4,15 +4,14 @@ class Messages extends Kiel_Controller{
 	public function feed_get()
 	{
 		$this->load_model('feed_model');
-		$offset = $this->get_args['offset'];
-		$limit  = $this->get_args['limit'];
-		
+		$offset    = $this->get_args['offset'];
+		$limit     = $this->get_args['limit'];
+		$parent_id = $this->get_args['parent_id']; 
 		if(empty($limit)){
 			$offset = 0;
 			$limit  = 10;
 		}
-
-		$res  = $this->feed_model->get_messages($offset, $limit);
+		$res  = $this->feed_model->get_messages($parent_id ,$offset ,$limit);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 

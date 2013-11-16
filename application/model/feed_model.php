@@ -1,9 +1,12 @@
 <?php
 class Feed_model extends Kiel_Model{
 
-	public function get_messages($offset = 0, $limit = 10)
-	{
-		return $this->data_handler->get('messages',null,$offset,$limit,null,'date_created');
+	public function get_messages($parent_id = NULL, $offset = 0, $limit = 10)
+	{ 
+		if(!empty($parent_id)){
+			$where = "$parent_id = '{$parent_id}'"; 
+		}
+		return $this->data_handler->get('messages',null,$offset,$limit,null,'date_created',$where);
 	}
 	
 	public function single_item($id)
