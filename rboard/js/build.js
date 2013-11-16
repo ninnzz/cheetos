@@ -333,7 +333,7 @@ $( function () {
 
 	$(document).on("click",".share",function(e) {
 		e.preventDefault();
-		c = confirm("Do you want to report this post as ABBUSIVE?");
+		c = confirm("Do you want to report this post as ABUSIVE?");
 		if(!c)
 			return false;
 
