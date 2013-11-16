@@ -1,14 +1,45 @@
 <html>
 <head>
-<title></title>
+<title>API DOCUMENTATION</title>
 </head>
 <body>
+<pre>
+API DOCUMENTATION
+	
+endpoint    : http://www.reliefboard.com/messages/feed/
+description : retrieve all messages/feeds 
+method 	    : GET
+params      : (int)offset, (int)limit
+result 	    :  {
+				"status": "Success",
+					"data": {
+						"result": [
+						{
+						"id": "bd4e6b11ff9ef39a45651d9f91ac3ba4",		post_id	
+						"place_tag": "manila",							place or location of sender
+						"sender": "Z-clothing%2520Line",				name of sender				
+						"sender_number": "",							sender number
+						"message": "",									
+						"date_created": "1384587346",
+						"date_updated": "1384587346",
+						"fb_post_link": null,   
+						"status": "pending",   							(pending,flagged,approved)
+						"source": "web.primary" 						(web.primary,globe.mobile,smart.mobile)
+						}
+					],
+				"result_count": 1,
+				},
+				"method": "GET",
+				"memory_usage": "1.02MB",
+				"ellapsed_time": 0.0027821063995361,
+			 	"compress_output": true
+			    }
 
-<p>endpoint    : http://www.reliefboard.com/messages/feed/</p>
-<p>description : retrieve all messages/feeds</p> 
-<p>method 	   : GET</p>
-<p>params      : (int)offset, (int)limit</p>
-<p>result 	    :  {
+endpoint    : http://www.reliefboard.com/messages/feed_item/
+description : retrieve a specific message
+method 	    : GET
+params      : message_id (varchar(32))
+result 	    :  {
 				"status": "Success",
 					"data": {
 						"result": [
@@ -32,36 +63,7 @@
 				"ellapsed_time": 0.0027821063995361,
 			 	"compress_output": true
 			    }
-</p>
-<p>endpoint    : http://www.reliefboard.com/messages/feed_item/</p>
-<p>description : retrieve a specific message</p>
-<p>method 	    : GET</p>
-<p>params      : message_id (varchar(32))</p>
-<p>result 	    :  {
-				"status": "Success",
-					"data": {
-						"result": [
-						{
-						"id": "bd4e6b11ff9ef39a45651d9f91ac3ba4",		post_id	
-						"place_tag": "manila",							place or location of sender
-						"sender": "Z-clothing%2520Line",				name of sender				
-						"sender_number": "",							sender number
-						"message": "",									
-						"date_created": "1384587346",
-						"date_updated": "1384587346",
-						"fb_post_link": null,   
-						"status": "pending",   							(pending,flagged,approved)
-						"source": "web.primary" 						(web.primary,globe.mobile,smart.mobile)
-						}
-					],
-				"result_count": 1,
-				},
-				"method": "GET",
-				"memory_usage": "1.02MB",
-				"ellapsed_time": 0.0027821063995361,
-			 	"compress_output": true
-			    }
-</p>
+
 
 endpoint    : http://www.reliefboard.com/messages/feed/
 description : post message  
@@ -133,9 +135,6 @@ result 	    :  {
 			 	"compress_output": true
 			    }
 
-
-Just create a <filename>.php in db_drivers
-
-
+</pre>
 </body>
 </html>
