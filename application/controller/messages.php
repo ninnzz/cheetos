@@ -46,7 +46,7 @@ class Messages extends Kiel_Controller{
 		$addr = $this->post_args['address'];
 		$name = $this->post_args['name'];
 		$message = $this->post_args['message'];
-		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'web.primary');	
+		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'web.primary',null);	
 
 		if($res)		
 		{	
@@ -103,16 +103,16 @@ class Messages extends Kiel_Controller{
 			$name = $msg_arr[1];
 			$message = $msg_arr[2];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.smart');
+			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.smart',null);
 		} else if(count($msg_arr) === 2){
 			$addr = $msg_arr[0];
 			$message = $msg_arr[1];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.smart');
+			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.smart',null);
 		} else {
 			if(trim($smsMsg) !== ""){
 				$message = $smsMsg;
-				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.smart');
+				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.smart',null);
 			}
 		}
 
@@ -144,26 +144,52 @@ class Messages extends Kiel_Controller{
 		}
 
 
-		/*********MESSAGE PART******************/
-		
+
 		$msg_arr = explode('/',$smsMsg);
-		if(count($msg_arr) === 3){
-			$addr = $msg_arr[0];
-			$name = $msg_arr[1];
-			$message = $msg_arr[2];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.globe');
-		} else if(count($msg_arr) === 2){
-			$addr = $msg_arr[0];
-			$message = $msg_arr[1];
+		/*****FOR HYCH******/
 
-			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.globe');
-		} else {
-			if(trim($smsMsg) !== ""){
-				$message = $smsMsg;
-				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.globe');
+		if(isset($msg_arr[0])){
+			$key_word = explode(' ',trim($msg_arr[0]));
+			if(trim(strtolower($key_word[0])) === 'hych'){
+				$source_type = trim(strtolower($key_word[1]));
+				$source = 'HYCH';
+				if(count($msg_arr) === 5 ){
+					$addr = $msg_arr[3];
+					$name = $msg_artr[1];
+					$message = $msg_arr[4];	
+					$user_no = $msg_arr[2];	
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
+				}
 			}
-		}		
+
+
+			/***For relief board***/
+			else {
+
+				if(count($msg_arr) === 3){
+					$addr = $msg_arr[0];
+					$name = $msg_arr[1];
+					$message = $msg_arr[2];
+
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.globe',null);
+				} else if(count($msg_arr) === 2){
+					$addr = $msg_arr[0];
+					$message = $msg_arr[1];
+
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.globe',null);
+				} else {
+					if(trim($smsMsg) !== ""){
+						$message = $smsMsg;
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.globe',null);
+					}
+				}
+			}
+			/******Relief Board end******/
+
+		}
+
+
 		if($res)		
 		{	
 			$this->sns_crosspost($message);
