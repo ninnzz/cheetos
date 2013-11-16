@@ -4,10 +4,10 @@ class Feed_model extends Kiel_Model{
 	public function get_messages($parent_id = null, $offset = 0, $limit = 10)
 	{ 
 		if($parent_id !== NULL){
-			$where = " WHERE $parent_id not null ";  
+			$where = " WHERE parent_id not null ";  
 		}
 		else{
-			$where = " WHERE $parent_id = NULL ";	
+			$where = " WHERE parent_id = NULL ";	
 		}
 		return $this->data_handler->get_where('messages',null,$where,$offset,$limit,null,'date_created');
 	}
