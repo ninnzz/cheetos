@@ -1,9 +1,12 @@
 <?php
 class Feed_model extends Kiel_Model{
 
-	public function get_messages($offset = 0, $limit = 10)
-	{
-		return $this->data_handler->get('messages',null,$offset,$limit,null,'date_created');
+	public function get_messages($parent_id = null, $offset = 0, $limit = 10)
+	{ 
+		if(!empty($parent_id)){
+			$where = "$parent_id = '{$parent_id}'"; 
+		}
+		return $this->data_handler->get('messages',null,$offset,$limit,null,'date_created',$where);
 	}
 	
 	public function single_item($id)
@@ -30,12 +33,21 @@ class Feed_model extends Kiel_Model{
 		//return $this->data_handler->query($query);	
 	}
 
-	public function add_messages($user_no,$addr,$name,$message,$source,$source_type)
+	public function add_messages($user_no,$addr,$name,$message,$source,$source_type,$parent_id)
 	{
 		$data = '';
+
 		$tm = $this->_time;
 		$id = md5($this->_time.$name);
 		$data .= "'{$id}',";
+
+		if(!empty($parent_id)){
+			$data .= " '{$parent_id}',"; 
+		}
+		else{
+			$data .= " NULL,";
+		}
+
 		if($addr != NULL){
 			$addr = strip_tags(filter_var(trim($addr),FILTER_SANITIZE_ENCODED));
 			$data .= " '{$addr}',";
@@ -52,8 +64,14 @@ class Feed_model extends Kiel_Model{
 		$message = strip_tags(filter_var(trim($message),FILTER_SANITIZE_ENCODED));
 		$data .= " '{$message}',";
 		
-		$data .= " {$tm}, {$tm}, NULL, 'pending' , '{$source}', '{$source_type}' ";
+		$data .= " {$tm}, {$tm}, NULL, 'pending' , '{$source}'  ";
 
+		if($source_type != NULL){
+			$data .= " ,'{$source_type}'";
+		} else{
+			$data .= " ,NULL";
+		}
+		
 		return $this->data_handler->insert('messages',$data);
 	}
 }

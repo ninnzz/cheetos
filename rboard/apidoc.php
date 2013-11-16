@@ -1,10 +1,15 @@
-kiel-rsl
-========
-
+<html>
+<head>
+<title>API DOCUMENTATION</title>
+</head>
+<body>
+<pre>
+API DOCUMENTATION
+	
 endpoint    : http://www.reliefboard.com/messages/feed/
 description : retrieve all messages/feeds 
 method 	    : GET
-params      : offset, limit
+params      : (int)offset, (int)limit
 result 	    :  {
 				"status": "Success",
 					"data": {
@@ -33,7 +38,7 @@ result 	    :  {
 endpoint    : http://www.reliefboard.com/messages/feed_item/
 description : retrieve a specific message
 method 	    : GET
-params      : message_id
+params      : message_id (varchar(32))
 result 	    :  {
 				"status": "Success",
 					"data": {
@@ -63,7 +68,7 @@ result 	    :  {
 endpoint    : http://www.reliefboard.com/messages/feed/
 description : post message  
 method 	    : POST
-params      : app_id, message, name
+params      : app_id, message (text), name (varchar(32))
 result 	    :  {
 				"status": "Success",
 				"method": "POST",
@@ -75,7 +80,7 @@ result 	    :  {
 endpoint    : http://www.reliefboard.com/search/
 description : search location, name, or message  through the query param. set loc/name/message to 1 for the category of search 
 method 	    : GET
-params      : loc,name,message,query,offset,limit
+params      : loc (varchar(32)),name (varchar(32)),message (text), query, offset (int),limit (int)
 result 	    :  {
 				"status": "Success",
 					"data": {
@@ -130,6 +135,6 @@ result 	    :  {
 			 	"compress_output": true
 			    }
 
-
-Just create a <filename>.php in db_drivers
-
+</pre>
+</body>
+</html>

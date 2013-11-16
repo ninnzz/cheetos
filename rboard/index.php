@@ -46,7 +46,6 @@
   <body>
 
     <h1 style="display: none;">ReliefBoard</h1>
-
     <!-- START - SOCIAL NETWORK SCRIPTS -->
 
     <div id="fb-root"></div>
@@ -183,6 +182,7 @@
             <div align="center">
               <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="30px"></a>
               <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="150px" ></a>
+              <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a>
             </div>
           </div>
         </div>

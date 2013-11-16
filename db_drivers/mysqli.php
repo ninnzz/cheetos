@@ -72,7 +72,7 @@
 
 		}
 
-		public function get($table=NULL,$data=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
+		public function get($table=NULL,$data=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL,$where=NULL)
 		{
 			$row_count = 0;
 			$res = array();
@@ -95,6 +95,9 @@
 			$link->autocommit(FALSE);
 	
 			$query_message = "SELECT {$data} FROM {$table} ";
+			if(!empty($where)){
+				$query_message .= " WHERE {$where} ";
+			}
 
 			if($order != NULL){
 				$query_message .= "ORDER BY {$order} desc ";
