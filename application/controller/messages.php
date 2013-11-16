@@ -53,10 +53,10 @@ class Messages extends Kiel_Controller{
 
 		$parent_id = $this->post_args['parent_id'];
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id);	
-
 		if($res)		
 		{	
 			$this->sns_crosspost($message);
+			$this->post_to_sms($message,$res['id']);
 		}
 
 		$this->response(array('status'=>'Success'),200);
@@ -238,6 +238,23 @@ class Messages extends Kiel_Controller{
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
 		    curl_setopt($ch, CURLOPT_URL, 'http://api.buzzboarddev.stratpoint.com/posts/v1/fb_post');
+		    curl_setopt($ch, CURLOPT_POST, true);
+
+		    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+		    curl_exec($ch);
+	}
+
+	private function post_to_sms($message,$parent_id)
+	{
+		$params['message']    = $message;
+		$params['message_id'] = $parent_id; 
+		
+		$ch = curl_init();
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+		    curl_setopt($ch, CURLOPT_VERBOSE, 0);
+		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
+		    curl_setopt($ch, CURLOPT_URL, 'http://tma.herokuapp.com/notify');
 		    curl_setopt($ch, CURLOPT_POST, true);
 
 		    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
