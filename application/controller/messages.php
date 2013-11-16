@@ -247,7 +247,7 @@ class Messages extends Kiel_Controller{
 	private function post_to_sms($message,$parent_id)
 	{
 		$params['message']    = $message;
-		$params['message_id'] = $parent_id; 
+		$params['msg_id'] = $parent_id; 
 		
 		$ch = curl_init();
 			curl_setopt($ch, CURLOPT_HEADER, 0);
