@@ -333,6 +333,10 @@ $( function () {
 
 	$(document).on("click",".share",function(e) {
 		e.preventDefault();
+		c = confirm("Do you want to report this post as ABBUSIVE?");
+		if(!c)
+			return false;
+
 		var _this  = $(this),
 			postID = _this.data('id');
 		
