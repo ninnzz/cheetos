@@ -182,7 +182,8 @@ class Messages extends Kiel_Controller{
 	
 	private function sns_crosspost($message)
 	{
-		$params['facebook_access_token'] = 'CAADDaNqhbVgBAGrF4lMAGmZAfzWbZAinLIgqg7pmDxx6G1GprRMW4D8vpwO64CoQhwjuW96oZCAeMDoyC0tP1HtPXZAklJ3WrJCZAvlLp46DbpBPegsligpGAZCi3ndEZAzcOqLnZCDhQIhc1KzF4WmZBw0FkOZAmsykKz6lPyuIEpzwjSUzTjXrH4CZBG9NxfrlWWR4urLqJZCajAZDZD';
+		$params['facebook_access_token'] = 'https://graph.facebook.com/oauth/access_token?client_id=214855112027480&client_secret=d481012df6d2e947e8442cc35d211fd3&grant_type=fb_exchange_token&fb_exchange_token=CAADDaNqhbVgBANj7yKGTdxr5NEOlT5U5o2JZBL4o1u3fg1vDYGZB318aU5WYjg500vx8pta4xVzZACrPPqsbJ9Gy5F4FLgsyZBWYQL7DAFwngOCAZA17JZBaRppuDvv1HY0b9jZAm0ZBPN31WvzeXZAACIxlGnztB5Yaf7KZAd0F3z9Fvts6ljZBhWPepumeSubj5fZArAZAuxZC44TgZDZD';
+		//https://graph.facebook.com/oauth/access_token?client_id=214855112027480&client_secret=d481012df6d2e947e8442cc35d211fd3&grant_type=fb_exchange_token&fb_exchange_token=
 		$params['twitter_access_token'] = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
 		$params['twitter_access_secret'] = '2SO03jgYn31wJEZyXkaQI48MfX56Ktbo8fM7G2URiFfUB';
 		$params['place'] = '454373604683875';
