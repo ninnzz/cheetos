@@ -79,8 +79,9 @@ class Feed_model extends Kiel_Model{
 		} else{
 			$data .= " ,NULL";
 		}
-		
-		return $this->data_handler->insert('messages',$data);
+		$res = $this->data_handler->insert('messages',$data);
+		$res['id'] = $id;
+		return $res;
 	}
 }
 
