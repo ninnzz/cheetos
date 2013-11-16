@@ -7,6 +7,13 @@ class Messages extends Kiel_Controller{
 		$offset    = $this->get_args['offset'];
 		$limit     = $this->get_args['limit'];
 		$parent_id = $this->get_args['parent_id']; 
+		
+		if(isset($this->get_args['parent_id'])){
+			$parent_id = $this->get_args['parent_id']; 
+		} else{
+			$parent_id = NULL; 
+		}
+
 		if(empty($limit)){
 			$offset = 0;
 			$limit  = 10;
