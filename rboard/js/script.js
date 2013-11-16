@@ -121,7 +121,7 @@ $( function () {
 		var search_count = 0;
 
 		 $( "#search-count" ).text(search_count);
-
+		 
 		if( val.length > 0 ) {
 			$(".search-container").show();
 		} else {
