@@ -54,10 +54,10 @@ class Messages extends Kiel_Controller{
 		$parent_id = $this->post_args['parent_id'];
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id);	
 
-		/*if($res)		
+		if($res)		
 		{	
 			$this->sns_crosspost($message);
-		}*/
+		}
 
 		$this->response(array('status'=>'Success'),200);
 
