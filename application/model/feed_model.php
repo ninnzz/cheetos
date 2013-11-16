@@ -1,7 +1,7 @@
 <?php
 class Feed_model extends Kiel_Model{
 
-	public function get_messages($parent_id = NULL, $offset = 0, $limit = 10)
+	public function get_messages($parent_id = null, $offset = 0, $limit = 10)
 	{ 
 		if(!empty($parent_id)){
 			$where = "$parent_id = '{$parent_id}'"; 
