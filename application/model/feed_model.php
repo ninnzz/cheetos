@@ -11,6 +11,7 @@ class Feed_model extends Kiel_Model{
 		}
 		if($source !== NULL){
 			$source = $this->data_handler->get_where('applications',null," WHERE app_code = '{$source}' ",null,null,null,'date_created','');
+			return $source;
 			if($source['result_count'] != 0){
 				$s = $source['result'][0]->app_code;
 				$where .= " and source = '{$s}' ";
