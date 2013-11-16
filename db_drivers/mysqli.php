@@ -122,7 +122,7 @@
 			return(array('result' => $res, 'result_count'=>$cnt, 'query'=>$query_message));
 		}
 
-		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL)
+		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL,$added='')
 		{
 
 			$row_count = 0;
@@ -145,7 +145,7 @@
 			}
 			$link->autocommit(FALSE);
 	
-			$query_message = "SELECT {$data} FROM {$table} {$where}";
+			$query_message = "SELECT {$data} {$added} FROM {$table} {$where}";
 
 
 			if($order != NULL){
@@ -155,7 +155,7 @@
 			if($offset !== NULL){
 				$query_message .= " LIMIT {$offset}, {$limit}";
 			}
-			
+
 			$query_message .= ';';
 
 
