@@ -15,7 +15,7 @@ class Messages extends Kiel_Controller{
 		}
 
 		if(isset($this->get_args['source'])){
-			$source = $this->get_args['parent_id']; 
+			$source = trim(strtolower($this->get_args['source'])); 
 		} else{
 			$source = NULL;
 		}
