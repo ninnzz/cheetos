@@ -6,7 +6,7 @@ class Messages extends Kiel_Controller{
 		$this->load_model('feed_model');
 		$offset    = $this->get_args['offset'];
 		$limit     = $this->get_args['limit'];
-		$parent_id = $this->get_args['parent_id']; 
+		$parent_id = isset($this->get_args['parent_id'])?$this->get_args['parent_id']:NULL; 
 		
 		if(isset($this->get_args['parent_id'])){
 			$parent_id = $this->get_args['parent_id']; 
