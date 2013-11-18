@@ -38,6 +38,7 @@
 
     <!-- CSS CODE -->
     <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/select2.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
 
 
@@ -172,7 +173,7 @@
               To post:
               </p><ul>
                 <li>
-                  <strong>Send SMS from within the Philippines</strong>, <br /> to 260011 (All Networks) <br /> or 23737102 (Globe) or 68009 (Smart). <br>
+                  <strong>Send SMS from within the Philippines</strong>, to&nbsp;23737102&nbsp;(Globe) or&nbsp;68009&nbsp;(Smart). <br>
                   We recommend the following message format for SMS messages: <br>
                    LOCATION/YOUR NAME/MESSAGE <br>
                   <span style="color: #3c4958; font-size: 14px;">
@@ -191,22 +192,14 @@
 
           </div>
           <div>
-            <br/>
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
-              <div align="center">
-                <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a>
-                <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
-                <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
-              </div>
-              <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
-              <div align="center">
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" ></a>
-                <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="60px" ></a>
-                <br /><br />
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
-              </div>
+          <br/>
+          <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors / Partners :</p>
+            <div align="center">
+              <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="30px"></a>
+              <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="150px" ></a>
+              <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" ></a><br/>
+              <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a>
+            </div>
           </div>
         </div>
 
@@ -258,7 +251,13 @@
             <br /><br />
             <b>Details: </b>
             <br /><br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+            <b>
+              <select multiple>
+                <option>Hello</option>
+              </select>
+            </b>
+            <br />
+            <p>Add post tags so others can easily reach you out</p>
             <br />
             <input id="form-location" class="form-control" type="text" placeholder="Location" />
             <br />
@@ -267,6 +266,7 @@
             <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
             <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
           </div>
+
         </div>
       </div>
     </div>
@@ -359,6 +359,7 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
+    <script src="js/select2.min.js"></script>
     <script src="js/time.js"></script>
     <script src="js/build.js"></script>
 
