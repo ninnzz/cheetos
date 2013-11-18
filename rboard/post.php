@@ -59,6 +59,7 @@
 
     <!-- START - SOCIAL NETWORK SCRIPTS -->
 
+    <!--FACEBOOK -->
     <div id="fb-root"></div>
     <script> 
       (function(d, s, id) {
@@ -70,8 +71,20 @@
       } (document, 'script', 'facebook-jssdk'));
     </script>
 
+    <!--TWITTER -->
     <script>
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>
+
+    <!--USER REPORT-->
+    <script type="text/javascript">
+    var _urq = _urq || [];
+    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
+    (function() {
+    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
+    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
+    })();
     </script>
 
     <!-- END - SOCIAL NETWORK SCRIPTS -->

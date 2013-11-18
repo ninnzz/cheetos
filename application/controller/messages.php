@@ -48,13 +48,13 @@ class Messages extends Kiel_Controller{
 		$addr = $this->post_args['address'];
 		$name = $this->post_args['name'];
 		$message = $this->post_args['message'];
-		$app_id = $this->post_args['app_id'];
-
+		$app_id = $this->post_args['app_id'];		
 
 		$parent_id = $this->post_args['parent_id'];
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id);	
 		if($res)		
-		{	
+		{
+			$message = urldecode($message);
 			$this->sns_crosspost($message);
 			$this->post_to_sms($message,$res['id']);
 		}
@@ -116,7 +116,6 @@ class Messages extends Kiel_Controller{
 		}
 	
 		$this->response(array('status'=>'Success','data'=>''),200);
-
 	}
 	
 	public function feed_callback_smart_get()
@@ -147,6 +146,7 @@ class Messages extends Kiel_Controller{
 
 		if($res)		
 		{	
+			$message = urldecode($message);
 			$this->sns_crosspost($message);
 		}
 	}
@@ -230,9 +230,10 @@ class Messages extends Kiel_Controller{
 
 		}
 
-
+		
 		if($res)		
 		{	
+			$message = urldecode($message);
 			$this->sns_crosspost($message);
 		}
 	}
