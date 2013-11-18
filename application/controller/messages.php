@@ -90,8 +90,8 @@ class Messages extends Kiel_Controller{
 		$msg = $data['message'];
 		$num = $data['number'];
 		$id = $data['message_id'];
-	
-		$this->response(array('status'=>'Success','data'=>''),200);
+		
+		$this->response(array('status'=>'Success','data'=>json_encode($data)),200);
 
 	}
 	
