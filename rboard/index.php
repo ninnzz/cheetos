@@ -250,7 +250,7 @@
             <br /><br />
             <b>Details: </b>
             <br /><br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile Number" />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile" />
             <br />
             <input id="form-location" class="form-control" type="text" placeholder="Location" />
             <br />
