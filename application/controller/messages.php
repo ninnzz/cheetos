@@ -252,7 +252,7 @@ class Messages extends Kiel_Controller{
 		$this->response(array('status'=>'Success'),200);	
 	}
 
-	private function sns_crosspost($message,sender,loc)
+	private function sns_crosspost($message,$sender,$loc)
 	{
 		$text = $sender. ' of ' .$loc. ' says: ';
 		if(strlen($message)>140){	
