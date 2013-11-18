@@ -200,13 +200,13 @@ $( function () {
 	$(document).on("click","#viawebSend", function(e) {
 
 		e.preventDefault();
-
+        var mobile_number = $("#form-mobile-number").val();
 		var location = $("#form-location").val();
 		var message = $("#form-message").val();
 		var name = $("#authenticated-name").text();
 		var app_id = '2b198w.reliefboard.web';
 		var data = {
-			user_number: "",
+			user_number: mobile_number,
 			name: name,
 			address: location,
 			message: message,
@@ -222,7 +222,6 @@ $( function () {
 
 		$("#form-location").val("");
 		$("#form-message").val("");
-
 		$("#viawebModal").modal("hide");
 
 	});
