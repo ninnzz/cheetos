@@ -93,7 +93,7 @@ class Messages extends Kiel_Controller{
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		error_log(print_r($data));
+		error_log($smsMsg);
 		$msg_arr = explode('/',$smsMsg);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
@@ -114,6 +114,7 @@ class Messages extends Kiel_Controller{
 		}
 		if($res)		
 		{	
+			$message = urldecode($message);
 			$this->sns_crosspost($message);
 		}
 	
