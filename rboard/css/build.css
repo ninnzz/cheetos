@@ -198,6 +198,17 @@ body {
 	padding: 20px;
 }
 
+.from-app {
+	padding: 15px 20px 0 20px;
+}
+
+.app-name {
+	vertical-align: -3px;
+	font-size: 14px;
+	font-weight: 700;
+	color: #777;
+}
+
 .time-container {
 	height: 35px;
 }
