@@ -87,12 +87,35 @@ class Messages extends Kiel_Controller{
 	public function feed_callback_semaphore_post()
 	{
 		$data = $this->post_args;
-		$msg = $data['message'];
-		$num = $data['number'];
-		$id = $data['message_id'];
-		
-		$this->response(array('status'=>'Success','data'=>json_encode($data)),200);
 
+		$smsMsg = $data['message'];
+		$user_no = $data['number'];
+		$id = $data['message_id'];
+
+		$msg_arr = explode('/',$data['text']);
+		if(count($msg_arr) === 3){
+			$addr = $msg_arr[0];
+			$name = $msg_arr[1];
+			$message = $msg_arr[2];
+
+			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null);
+		} else if(count($msg_arr) === 2){
+			$addr = $msg_arr[0];
+			$message = $msg_arr[1];
+
+			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null);
+		} else {
+			if(trim($smsMsg) !== ""){
+				$message = $smsMsg;
+				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null);
+			}
+		}
+		if($res)		
+		{	
+			$this->sns_crosspost($message);
+		}
+	
+		$this->response(array('status'=>'Success','data'=>''),200);
 	}
 	
 	public function feed_callback_smart_get()
