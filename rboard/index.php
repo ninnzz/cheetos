@@ -258,6 +258,8 @@
             <br /><br />
             <b>Details: </b>
             <br /><br />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+            <br />
             <input id="form-location" class="form-control" type="text" placeholder="Location" />
             <br />
             <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
@@ -265,7 +267,6 @@
             <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
             <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
           </div>
-
         </div>
       </div>
     </div>

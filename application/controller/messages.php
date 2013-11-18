@@ -6,7 +6,7 @@ class Messages extends Kiel_Controller{
 		$this->load_model('feed_model');
 		$offset    = $this->get_args['offset'];
 		$limit     = $this->get_args['limit'];
-		$parent_id = $this->get_args['parent_id']; 
+		$parent_id = isset($this->get_args['parent_id'])?$this->get_args['parent_id']:NULL; 
 		
 		if(isset($this->get_args['parent_id'])){
 			$parent_id = $this->get_args['parent_id']; 
@@ -86,13 +86,38 @@ class Messages extends Kiel_Controller{
 
 	public function feed_callback_semaphore_post()
 	{
+		$this->load_model('feed_model');
 		$data = $this->post_args;
-		$msg = $data['message'];
-		$num = $data['number'];
-		$id = $data['message_id'];
-		
-		$this->response(array('status'=>'Success','data'=>json_encode($data)),200);
 
+		$smsMsg = urldecode($data['message']);
+		$user_no = $data['number'];
+		$id = $data['message_id'];
+
+		$msg_arr = explode('/',$smsMsg);
+		if(count($msg_arr) === 3){
+			$addr = $msg_arr[0];
+			$name = $msg_arr[1];
+			$message = $msg_arr[2];
+
+			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null);
+		} else if(count($msg_arr) === 2){
+			$addr = $msg_arr[0];
+			$message = $msg_arr[1];
+
+			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null);
+		} else {
+			if(trim($smsMsg) !== ""){
+				$message = $smsMsg;
+				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null);
+			}
+		}
+		if($res)		
+		{	
+			$message = urldecode($message);
+			$this->sns_crosspost($message);
+		}
+	
+		$this->response(array('status'=>'Success','data'=>''),200);
 	}
 	
 	public function feed_callback_smart_get()

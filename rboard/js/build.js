@@ -200,13 +200,13 @@ $( function () {
 	$(document).on("click","#viawebSend", function(e) {
 
 		e.preventDefault();
-
+        var mobile_number = $("#form-mobile-number").val();
 		var location = $("#form-location").val();
 		var message = $("#form-message").val();
 		var name = $("#authenticated-name").text();
 		var app_id = '2b198w.reliefboard.web';
 		var data = {
-			user_number: "",
+			user_number: mobile_number,
 			name: name,
 			address: location,
 			message: message,
@@ -218,11 +218,10 @@ $( function () {
 			return;
 		}
 
-		$.post('http://reliefboard.com/messages/feed', data);
+		$.post('http://www.reliefboard.com/messages/feed', data);
 
 		$("#form-location").val("");
 		$("#form-message").val("");
-
 		$("#viawebModal").modal("hide");
 
 	});
