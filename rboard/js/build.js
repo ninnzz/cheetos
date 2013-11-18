@@ -212,14 +212,13 @@ $( function () {
 			message: message,
 			app_id: app_id
 		};
-		console.log(data);
 
 		if( trim(message) == "" || trim(message) == " " ) {
 			alert("Message is required");
 			return;
 		}
 
-		$.post('http://reliefboard.com/messages/feed', data);
+		$.post('http://www.reliefboard.com/messages/feed', data);
 
 		$("#form-location").val("");
 		$("#form-message").val("");
