@@ -265,8 +265,8 @@
             <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
             <br />
             <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number (Optional)" />
-            <br />
-              <input id="form-tags" type="hidden" class="form-control" placeholder="">
+<!--             <br />
+              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
             <br /><br />
             <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
             <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
