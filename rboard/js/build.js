@@ -213,9 +213,13 @@ $( function () {
 			app_id: app_id
 		};
 
-		if( trim(message) == "" || trim(message) == " " ) {
+		if( trim(message) == "" || trim(message) == " ") {
 			alert("Message is required");
 			return;
+		}
+		if(trim(mobile_number) == "" || trim(mobile_number) == " ") {
+			alert("Mobile number is required");
+			return;	
 		}
 
 		$.post('http://www.reliefboard.com/messages/feed', data);
