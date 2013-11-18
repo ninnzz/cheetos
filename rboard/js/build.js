@@ -212,6 +212,7 @@ $( function () {
 			message: message,
 			app_id: app_id
 		};
+		console.log(data);
 
 		if( trim(message) == "" || trim(message) == " " ) {
 			alert("Message is required");
