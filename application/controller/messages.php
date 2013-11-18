@@ -86,15 +86,15 @@ class Messages extends Kiel_Controller{
 
 	public function feed_callback_semaphore_post()
 	{
+		$this->load_model('feed_model');
 		$data = $this->post_args;
 
 		$smsMsg = $data['message'];
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		error_log(print_r($data));
 
-		$msg_arr = explode('/',$data['text']);
+		$msg_arr = explode('/',$smsMsg);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
 			$name = $msg_arr[1];
