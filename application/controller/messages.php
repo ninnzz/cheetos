@@ -89,11 +89,10 @@ class Messages extends Kiel_Controller{
 		$this->load_model('feed_model');
 		$data = $this->post_args;
 
-		$smsMsg = $data['message'];
+		$smsMsg = urldecode($data['message']);
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		error_log($smsMsg);
 		$msg_arr = explode('/',$smsMsg);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
