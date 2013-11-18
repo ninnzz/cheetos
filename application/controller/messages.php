@@ -257,7 +257,7 @@ class Messages extends Kiel_Controller{
 		$sender = urldecode($sender);
 		$loc = urldecode($loc);
 		$text = $sender. ' of ' .$loc. ' says:';
-		$message = $text.' '.$message.' '.'(http://www.reliefboard.com/rboard/?post.php?id='.$id.')';
+		$message = $text.' '.$message.' '.'(http://www.reliefboard.com/rboard/post.php?id='.$id.')';
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBAHJqjx4fqE8iN006WvF9tBoJK9s7DWy5UAM4RMWyhiMGxQOyuMR32uYhZBrUlx42Jv9SOefXh2JA051xig8l2TAd5XymykksQD3ximfthOXl2CnSlY3KaqFDtbZBuz1WOFI3ZAVaY9U9FLiZCugYCUhVZBjzeJbRXeM2EIos9QXO0azcCE6EZD';
 		//https://graph.facebook.com/oauth/access_token?client_id=214855112027480&client_secret=d481012df6d2e947e8442cc35d211fd3&grant_type=fb_exchange_token&fb_exchange_token=
 		$params['twitter_access_token']  = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
