@@ -48,6 +48,8 @@
     <h1 style="display: none;">ReliefBoard</h1>
     <!-- START - SOCIAL NETWORK SCRIPTS -->
 
+    
+    <!-- FACEBOOK -->
     <div id="fb-root"></div>
     <script> 
       (function(d, s, id) {
@@ -57,7 +59,19 @@
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=214855112027480";
         fjs.parentNode.insertBefore(js, fjs);
       } (document, 'script', 'facebook-jssdk'));
-    </script>   
+    </script>
+
+    <!--USER REPORT-->
+    <script type="text/javascript">
+    var _urq = _urq || [];
+    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
+    (function() {
+    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
+    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
+    })();
+    </script>
+
     <!-- END - SOCIAL NETWORK SCRIPTS -->
 
     <!-- START - FIXED NAV -->
