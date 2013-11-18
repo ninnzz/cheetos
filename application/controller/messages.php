@@ -255,7 +255,7 @@ class Messages extends Kiel_Controller{
 	private function sns_crosspost($message,$sender,$loc,$id)
 	{
 		$sender = urldecode($sender);
-		$loc = urldecode($sender);
+		$loc = urldecode($loc);
 		$text = $sender. ' of ' .$loc. ' says:';
 		$message = $text.' '.$message.' '.'(http://www.reliefboard.com/rboard/?post.php?id='.$id.')';
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBAHJqjx4fqE8iN006WvF9tBoJK9s7DWy5UAM4RMWyhiMGxQOyuMR32uYhZBrUlx42Jv9SOefXh2JA051xig8l2TAd5XymykksQD3ximfthOXl2CnSlY3KaqFDtbZBuz1WOFI3ZAVaY9U9FLiZCugYCUhVZBjzeJbRXeM2EIos9QXO0azcCE6EZD';
