@@ -254,6 +254,9 @@ class Messages extends Kiel_Controller{
 
 	private function sns_crosspost($message)
 	{
+		if(strlen($message)>140){	
+			$message = "Click here to view the message : http://www.reliefboard.com/rboard/post.php?id=b8b38bff898749f4545b78924f8edac8";
+		}
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBAHJqjx4fqE8iN006WvF9tBoJK9s7DWy5UAM4RMWyhiMGxQOyuMR32uYhZBrUlx42Jv9SOefXh2JA051xig8l2TAd5XymykksQD3ximfthOXl2CnSlY3KaqFDtbZBuz1WOFI3ZAVaY9U9FLiZCugYCUhVZBjzeJbRXeM2EIos9QXO0azcCE6EZD';
 		//https://graph.facebook.com/oauth/access_token?client_id=214855112027480&client_secret=d481012df6d2e947e8442cc35d211fd3&grant_type=fb_exchange_token&fb_exchange_token=
 		$params['twitter_access_token']  = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
