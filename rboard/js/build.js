@@ -223,9 +223,13 @@ $( function () {
 			form_tags:  form_tags
 		};
 
-		if( trim(message) == "" || trim(message) == " " ) {
+		if( trim(message) == "" || trim(message) == " ") {
 			alert("Message is required");
 			return;
+		}
+		if(trim(mobile_number) == "" || trim(mobile_number) == " ") {
+			alert("Mobile number is required");
+			return;	
 		}
 
 		console.log(data);
