@@ -38,6 +38,8 @@
 
     <!-- CSS CODE -->
     <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/select2.css" rel="stylesheet" />
+    <link href="css/select2-bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
 
 
@@ -142,9 +144,13 @@
           
           <div id="copy2">
               <p style="color: #294360; font-weight: 800; font-size: 16px;">
-                ReliefBoard is a bulletin board that helps you reach the world in times of calamities.
+                ReliefBoard is a messaging service that helps you reach the world in times of calamities.
               </p>
-              <img src="img/banner.png" style="width:100%;">
+              <!-- 
+              <p style="text-align:center;">
+                <img src="img/banner.png" style="width:80%;">
+              </p> 
+              -->
           </div>
           
           <div class="copy3" style="text-align: center;">
@@ -161,34 +167,30 @@
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
           <div id="copy">
             <b style="color: #294360; font-weight: 800; font-size: 22px;">
-              A service for Filipinos affected by  Typhoon Yolanda
+              A service for Filipinos affected by  Typhoon Yolanda / Haiyan
             </b>
           </div>
           <div class="copy3">
             <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
               We launched this service to help the Philippine Yolanda Typhoon victims.
             </p> -->
-            <p style="color: #3c4958; font-weight: 800; font-size: 16px;">
-              To post:
-              </p><ul>
-                <li>
-                  <strong>Send SMS from within the Philippines</strong>, <br /> to 260011 (All Networks) <br /> or 23737102 (Globe) or 68009 (Smart). <br>
-                  We recommend the following message format for SMS messages: <br>
-                   LOCATION/YOUR NAME/MESSAGE <br>
-                  <span style="color: #3c4958; font-size: 14px;">
-                    Examples
-                  </span>
-                  <ul>
-                    <li>Bohol/Juan dela Cruz/Family and I are safe</li>
-                    <li>Cebu/Maria Santos/I’m looking for Lisa Santos. Pls help.</li>
-                    <li>Palo, Leyte/Matthew Cruz/ We do not have enough medicines.</li>
-                  </ul>
-                  
-                </li>
-                <li><strong>Click on POST A NEW MESSAGE</strong></li>
-              </ul>
-            <p></p>
-
+            <p style="color: #3c4958; font-weight: 800; font-size: 18px;">
+            How to post to Reliefboard
+            </p>
+            1. Send a <b>FREE SMS</b> to: 
+            <br /> 
+            <b style="font-size: 20px;">260011</b>
+            <br />
+            (from within the Philippines)
+            <br /><br />
+            2. Follow this format:
+            <br />
+            <b style="font-size: 18px;">LOCATION/NAME/MESSAGE</b>
+            <br /><br />
+            Example:<br />
+            <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
+            <br /><br />
+            3. Your message will automatically be posted on ReliefBoard.com
           </div>
           <div>
             <br/>
@@ -254,16 +256,18 @@
           </div>
 
           <div id="authenticated" class="modal-body" style="display: none;">
-            <b>Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
+            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
             <br /><br />
             <b>Details: </b>
             <br /><br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?" />
             <br />
-            <input id="form-location" class="form-control" type="text" placeholder="Location" />
+            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
             <br />
-            <textarea id="form-message" placeholder="Message" class="form-control"></textarea>
-            <br />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number (Optional)" />
+<!--             <br />
+              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
+            <br /><br />
             <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
             <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
           </div>
@@ -329,8 +333,10 @@
 
 
           <p class="msg-data">
-                <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            <br /><br />
+            
+            <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
+            
+             <br /> <br />
 
             <% if( d.sender != null ) { %>
               <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
@@ -341,6 +347,12 @@
             <% }%>
 
           </p>
+
+          <!--<div class="tag-container">
+            <br /><br />
+            <input id="tag_<%= d.id %>" type="hidden" class="form-control" />
+            <br /> <br />
+          </div>-->
           
           <div class="share-container">
             <div class="pull-right">
@@ -359,6 +371,7 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
+    <script src="js/select2.min.js"></script>
     <script src="js/time.js"></script>
     <script src="js/build.js"></script>
 

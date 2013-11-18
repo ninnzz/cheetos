@@ -8,6 +8,13 @@ $( function () {
 
 	var offset = 0;
 	var search_mode = false;
+	var select2_options = {
+		tags: ["volunteer","missing","relief","emergency","rescue"],
+		tokenSeparators: [","],
+		placeholder: "Add Tags - ex. volunteer, missing person, relief goods, rescue, etc.",
+		minimumInputLength: 2,
+		width: "500px"
+	};
 
 	//APPLY FORMATING TO SINGLE RESULT
 
@@ -36,6 +43,7 @@ $( function () {
 
 			$( "#msg" ).append( html );
 			$( ".time" ).prettyDate();
+			/*$( 'input[id^="tag_"]').select2(select2_options);*/
 
 		});
 
@@ -205,12 +213,14 @@ $( function () {
 		var message = $("#form-message").val();
 		var name = $("#authenticated-name").text();
 		var app_id = '2b198w.reliefboard.web';
+		var form_tags = $("#form-tags").val();
 		var data = {
 			user_number: mobile_number,
 			name: name,
 			address: location,
 			message: message,
-			app_id: app_id
+			app_id: app_id,
+			form_tags:  form_tags
 		};
 
 		if( trim(message) == "" || trim(message) == " ") {
@@ -222,11 +232,15 @@ $( function () {
 			return;	
 		}
 
+		console.log(data);
+
 		$.post('http://www.reliefboard.com/messages/feed', data);
 
 		$("#form-location").val("");
 		$("#form-message").val("");
 		$("#viawebModal").modal("hide");
+		$("#form-tags").val("");
+		$("#form-tags").trigger("change");
 
 	});
 
@@ -366,6 +380,12 @@ $( function () {
 			}
 		}
 	});
+
+	/* TAGS */
+
+	// ADD SELECT2 to FORM
+	
+	/*$("#form-tags").select2(select2_options);*/
 
 
 });
