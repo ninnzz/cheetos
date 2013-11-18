@@ -51,6 +51,7 @@ class Messages extends Kiel_Controller{
 		$app_id = $this->post_args['app_id'];		
 
 		$parent_id = $this->post_args['parent_id'];
+		$this->push_post($user_no,$addr,$name,$message,$app_id,$parent_id);
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id);	
 		if($res)		
 		{
@@ -89,10 +90,11 @@ class Messages extends Kiel_Controller{
 		$this->load_model('feed_model');
 		$data = $this->post_args;
 
-		$smsMsg = urldecode($data['message']);
+		$smsMsg = $data['message'];
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
+		error_log($smsMsg);
 		$msg_arr = explode('/',$smsMsg);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
@@ -254,34 +256,44 @@ class Messages extends Kiel_Controller{
 	{
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBAHJqjx4fqE8iN006WvF9tBoJK9s7DWy5UAM4RMWyhiMGxQOyuMR32uYhZBrUlx42Jv9SOefXh2JA051xig8l2TAd5XymykksQD3ximfthOXl2CnSlY3KaqFDtbZBuz1WOFI3ZAVaY9U9FLiZCugYCUhVZBjzeJbRXeM2EIos9QXO0azcCE6EZD';
 		//https://graph.facebook.com/oauth/access_token?client_id=214855112027480&client_secret=d481012df6d2e947e8442cc35d211fd3&grant_type=fb_exchange_token&fb_exchange_token=
-		$params['twitter_access_token'] = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
+		$params['twitter_access_token']  = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
 		$params['twitter_access_secret'] = '2SO03jgYn31wJEZyXkaQI48MfX56Ktbo8fM7G2URiFfUB';
-		$params['place'] = '454373604683875';
-		$params['message'] = $message;
+		$params['place'] 				 = '454373604683875';
+		$params['message'] 				 = $message;
+		$url 							 = 'http://api.buzzboarddev.stratpoint.com/posts/v1/fb_post'; 
 		
-		$ch = curl_init();
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-		    curl_setopt($ch, CURLOPT_VERBOSE, 0);
-		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
-		    curl_setopt($ch, CURLOPT_URL, 'http://api.buzzboarddev.stratpoint.com/posts/v1/fb_post');
-		    curl_setopt($ch, CURLOPT_POST, true);
-
-		    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-		    curl_exec($ch);
+		$this->curl($url, $params);
 	}
 
 	private function post_to_sms($message,$parent_id)
 	{
-		$params['message']    = $message;
-		$params['msg_id'] = $parent_id; 
+		$params['message']  = $message;
+		$params['msg_id'] 	= $parent_id; 
+		$url 				= 'http://tma.herokuapp.com/notify'; 
 		
+		$this->curl($url, $params);
+	}
+
+	private function push_post($user_no,$addr,$name,$message,$app_id,$parent_id)
+	{
+		$params['user_no']  = $user_no;
+		$params['addr'] 	= $addr;
+		$params['app_id'] 	= $app_id;
+		$params['message']  = $message;
+		$params['msg_id'] 	= $parent_id; 
+		$url 				= 'http://push.buzzboard.stratpoint.com:8886/message/add'; 
+		
+		$this->curl($url, $params);
+	}
+
+	private function curl($url, $params)
+	{
 		$ch = curl_init();
 			curl_setopt($ch, CURLOPT_HEADER, 0);
 		    curl_setopt($ch, CURLOPT_VERBOSE, 0);
 		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible;)");
-		    curl_setopt($ch, CURLOPT_URL, 'http://tma.herokuapp.com/notify');
+		    curl_setopt($ch, CURLOPT_URL, $url);
 		    curl_setopt($ch, CURLOPT_POST, true);
 
 		    curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
