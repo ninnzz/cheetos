@@ -93,7 +93,7 @@ class Messages extends Kiel_Controller{
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		error_log($data);
+		error_log(print_r($data));
 		$msg_arr = explode('/',$smsMsg);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
