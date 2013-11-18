@@ -292,12 +292,32 @@
             <div class="time-asset"></div>
             <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
           </div>
-          <% if(d.logo != ""){ %>
-            <img src="<%= d.logo %>" width='20' />
-          <% } %>
-          <% if(d.app_name){ %>
-            <em> from <%= d.app_name %></em>
-          <% } %>
+
+          <div class="from-app">
+            <% if(d.source != null ) { %>
+              <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
+                
+                <img src="img/profile-pic-16.png" width='20' />
+                <span class="app-name"><span class=""></span> Web</span>
+
+              <% } else if(d.source.indexOf("sms") !== -1) { %>
+
+                <img src="img/profile-pic-16.png" width='20' />
+                <span class="app-name"><span class=""></span> SMS</span>
+
+              <% } else if(d.app_name)  { %>
+                
+                <% if(d.logo != "") { %>
+                  <img src="<%= d.logo %>" width='20' />
+                <% } %>
+
+                  <span class="app-name"><%= d.app_name %></span>
+
+              <% } %>
+            <% } %>
+          </div>
+
+
 
           <p class="msg-data">
                 <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
