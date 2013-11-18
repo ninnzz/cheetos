@@ -15,7 +15,7 @@ class Reply extends Kiel_Controller
 		$from = 'ReliefBoard';
 		$url = 'http://api.semaphore.co/api/sms';
 
-		$fields_string = "api={$key}&number={$number}&message={$message}&from={$from}"
+		$fields_string = "api={$key}&number={$number}&message={$message}&from={$from}";
 		//open connection
 		$ch = curl_init();
 
