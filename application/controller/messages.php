@@ -293,7 +293,7 @@ class Messages extends Kiel_Controller{
 
 		error_log( "THE BITLY ADDRESS IS: " . $bitly );
 		
-		$message = "#Yolanda #Haiyan - " . $sender . $loc . $bitly . $message;
+		$message = "#Yolanda #Haiyan - " . $sender . $loc . $bitly . " - " . $message;
 
 		$message = substr($message, 0, 150) . "...";
 
