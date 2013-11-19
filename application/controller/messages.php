@@ -289,7 +289,7 @@ class Messages extends Kiel_Controller{
 
 		// ACCESS TOKEN BITLY = ad38c591217caccf37cbed3b4e98b36470c4cf53
 		
-		$bitly = make_bitly_url($url,'kjventura','ad38c591217caccf37cbed3b4e98b36470c4cf53','json');
+		$bitly = $this->make_bitly_url($url,'kjventura','ad38c591217caccf37cbed3b4e98b36470c4cf53','json');
 
 		error_log( $bitly );
 		
