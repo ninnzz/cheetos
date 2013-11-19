@@ -290,7 +290,7 @@
 
         $.ajax( {
           type: "GET",
-          url: "http://www.reliefboard.com/messages/feed?offset=0&limit=10&parent_id=" + message_id
+          url: "http://www.reliefboard.com/comments?offset=0&limit=10&parent_id=" + message_id
         } ).done( function ( result ) {
             _.each( result.data.result, function(d) {
                 html = html + post_template(d);
