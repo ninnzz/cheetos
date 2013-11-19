@@ -252,12 +252,49 @@ class Messages extends Kiel_Controller{
 		$this->response(array('status'=>'Success'),200);	
 	}
 
+	private function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1') 
+	{
+		//create the URL
+		$bitly = 'http://api.bit.ly/shorten?version='.$version.'&longUrl='.urlencode($url).'&login='.$login.'&apiKey='.$appkey.'&format='.$format;
+		//get the url
+		//could also use cURL here
+		$response = file_get_contents($bitly);
+		
+		//parse depending on desired format
+		if(strtolower($format) == 'json')
+		{
+			$json = @json_decode($response,true);
+			return $json['results'][$url]['shortUrl'];
+		}
+		else //xml
+		{
+			$xml = simplexml_load_string($response);
+			return 'http://bit.ly/'.$xml->results->nodeKeyVal->hash;
+		}
+	}
+
 	private function sns_crosspost($message,$sender,$loc,$id)
 	{
+
 		$sender = urldecode($sender);
 		$loc = urldecode($loc);
-		$text = $sender. ' of ' .$loc. ' says:';
-		$message = $text.' '.$message.' '.'(http://www.reliefboard.com/rboard/post.php?id='.$id.')';
+		
+		if( trim($sender) != "" )
+			$sender .= $sender . " - ";
+
+		if( trim($loc) != "" )
+			$loc .= $loc . ' - ' ;
+
+		$url = "http://www.reliefboard.com/rboard/post.php?id=". $id;
+
+		// ACCESS TOKEN BITLY = ad38c591217caccf37cbed3b4e98b36470c4cf53
+		
+		$bitly = make_bitly_url($url,'kjventura','ad38c591217caccf37cbed3b4e98b36470c4cf53','json');
+		
+		$message .= "#Yolanda #Haiyan - " . $sender . $location . $bitly . $message;
+
+		$message = substr($message, 0, 150) . "...";
+
 		$params['facebook_access_token'] = 'CAADDaNqhbVgBAHJqjx4fqE8iN006WvF9tBoJK9s7DWy5UAM4RMWyhiMGxQOyuMR32uYhZBrUlx42Jv9SOefXh2JA051xig8l2TAd5XymykksQD3ximfthOXl2CnSlY3KaqFDtbZBuz1WOFI3ZAVaY9U9FLiZCugYCUhVZBjzeJbRXeM2EIos9QXO0azcCE6EZD';
 		//https://graph.facebook.com/oauth/access_token?client_id=214855112027480&client_secret=d481012df6d2e947e8442cc35d211fd3&grant_type=fb_exchange_token&fb_exchange_token=
 		$params['twitter_access_token']  = '2190619520-lmj8aeP0mjXFWOH8feFGA144qaBPJMLjlbAy7kF';
@@ -290,8 +327,7 @@ class Messages extends Kiel_Controller{
 		$this->curl($url, $params);
 	}
 
-	private function curl($url, $params)
-	{
+	private function curl($url, $params) {
 		$ch = curl_init();
 			curl_setopt($ch, CURLOPT_HEADER, 0);
 		    curl_setopt($ch, CURLOPT_VERBOSE, 0);
@@ -304,6 +340,3 @@ class Messages extends Kiel_Controller{
 		    curl_exec($ch);
 	}
 }
-
-?>
-
