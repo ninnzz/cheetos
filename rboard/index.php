@@ -179,7 +179,8 @@
             </p>
             1. Send a <b>FREE SMS</b> to: 
             <br /> 
-            <b style="font-size: 20px;">260011</b>
+            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
+            <b style="font-size: 20px;">68009 (SMART) </b>
             <br />
             (from within the Philippines)
             <br /><br />
@@ -196,8 +197,10 @@
             <br/>
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
               <div align="center">
+                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
+                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
+                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
                 <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a>
                 <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
                 <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
               </div>
@@ -355,9 +358,21 @@
           </div>-->
           
           <div class="share-container">
+            <div class="pull-left">
+              <div class="social-item">
+                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+              </div>  
+              <div class="social-item">
+                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-type="button_count"></div>
+              </div>
+              <div class="social-item">
+                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                  Tweet
+                </a>
+              </div>
+            </div>
             <div class="pull-right">
               <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
-              <!--<a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>-->
               <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
             </div>
           </div>          

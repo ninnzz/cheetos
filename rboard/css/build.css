@@ -261,6 +261,11 @@ body {
 	min-height: 25px;
 }
 
+.share-container .social-item {
+	float: left;
+	width: 100px;
+}
+
 .comment, .share {
 	border: none;
 	border-radius: 5px;

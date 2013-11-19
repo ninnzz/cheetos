@@ -45,6 +45,9 @@ $( function () {
 			$( ".time" ).prettyDate();
 			/*$( 'input[id^="tag_"]').select2(select2_options);*/
 
+			 FB.XFBML.parse();
+            $.getScript('http://platform.twitter.com/widgets.js')
+
 		});
 
 	}
