@@ -69,6 +69,21 @@
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=214855112027480";
         fjs.parentNode.insertBefore(js, fjs);
       } (document, 'script', 'facebook-jssdk'));
+
+
+      window.fbAsyncInit = function() {
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+              FB.api('/me', function(response) {
+                $("#label_comment_message").html('Respond as ' + response.first_name + " " + response.last_name);
+              });
+            } else if (response.status === 'not_authorized') {
+               $("#label_comment_message").html('Please authorize Reliefboard');
+            } else {
+              $("#label_comment_message").html('Login to respond');
+            }
+          });
+      };
     </script>
 
     <!--TWITTER -->
@@ -134,8 +149,7 @@
               <p class="msg-data">
                 
                 <p id="msg-message"><?php echo urldecode(urldecode($data['message'])); ?></p>
-                <br /><br />
-
+  
                 <?php if( $data['sender'] != null || $data['sender'] != "" ) { ?>
                   <b><span class="glyphicon glyphicon-user"></span> <?php echo urldecode(urldecode($data['sender'])); ?> 
                 <?php } ?>
@@ -148,13 +162,18 @@
               
               <div class="share-container">
                   <br />
-                  <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-type="button_count"></div>
-                  <br /> <br />
-                  <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="standard" data-action="like" data-show-faces="true" data-share="false"></div>
-                  <br />
-                  <a id="tw" href="https://twitter.com/share"  data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
-                    Tweet
-                  </a>
+                  <div class="social-item">
+                    <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-type="button_count"></div>
+                  </div>
+                  <div class="social-item">
+                    <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<?php echo $id; ?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+                  </div>
+                  <div class="social-item">
+                    <a id="tw" href="https://twitter.com/share"  data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                      Tweet
+                    </a>
+                </div>
+                 <br /><br/>
               </div>
 
           </div>
@@ -171,7 +190,7 @@
                   <br />
                   <div class="comment-highlight">
                     <div class="form-group">
-                      <label for="exampleInputPassword1">Message</label>
+                      <label for="comment_message" id="label_comment_message">Login to respond</label>
                       <textarea class="form-control" rows="3" id="comment_message" ></textarea>
                     </div>
                     <div type="button" class="btn btn-danger" id="comment_via_web">Respond</div>
@@ -386,7 +405,10 @@
 
 
     <!-- END BODY -->
-
+  <div class="fixed-side-social-container">
+    <a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a>
+    <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a>
+  </div>
   </body>
 
 </html>
