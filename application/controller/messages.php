@@ -280,10 +280,10 @@ class Messages extends Kiel_Controller{
 		$loc = urldecode($loc);
 		
 		if( trim($sender) != "" )
-			$sender .= $sender . " - ";
+			$sender = $sender . " - ";
 
 		if( trim($loc) != "" )
-			$loc .= $loc . ' - ' ;
+			$loc = $loc . ' - ' ;
 
 		$url = "http://www.reliefboard.com/rboard/post.php?id=". $id;
 
@@ -291,9 +291,9 @@ class Messages extends Kiel_Controller{
 		
 		$bitly = $this->make_bitly_url($url,'kjventura','ad38c591217caccf37cbed3b4e98b36470c4cf53','json');
 
-		error_log( $bitly );
+		error_log( "THE BITLY ADDRESS IS: " . $bitly );
 		
-		$message .= "#Yolanda #Haiyan - " . $sender . $location . $bitly . $message;
+		$message = "#Yolanda #Haiyan - " . $sender . $loc . $bitly . $message;
 
 		$message = substr($message, 0, 150) . "...";
 
