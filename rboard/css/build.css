@@ -312,7 +312,7 @@ body {
 /* ------------------------------------------------------------------------ */
 /* FIXED SOCIAL ICONS */
 
-.fixed-side-social-container{left:0;width:60px;position:fixed;top:210px;background-repeat:no-repeat;z-index:10}
+.fixed-side-social-container{left:0;width:60px;position:fixed;top:190px;background-repeat:no-repeat;z-index:10}
 .fixed-side-social-container .social-icon{float:left;width:60px;filter:alpha(opacity=75);moz-opacity:.75;-khtml-opacity:.75;opacity:.75;display:block;background-repeat:no-repeat;height:60px;-webkit-transition:all ease .2s;-moz-transition:all ease .2s;-o-transition:all ease .2s;-ms-transition:all ease .2s;transition:all ease .2s;background-position:0 0}
 .fixed-side-social-container .social-icon{background-image:url("http://demos.urprofile.net/images/social-media.png")}
 .fixed-side-social-container .social-icon:hover{filter:alpha(opacity=99);moz-opacity:.99;-khtml-opacity:.99;opacity:.99}

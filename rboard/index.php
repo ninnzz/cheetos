@@ -202,8 +202,8 @@
                 <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
               </div>
               <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Develop</p>
-            <p style="color: #294360; font-weight: 800; font-size: 22px;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>
         </div>
 
