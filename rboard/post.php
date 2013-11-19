@@ -49,7 +49,7 @@
     <!-- CSS CODE -->
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
-
+    <link href="css/post.css" rel="stylesheet" />
 
   </head>
 
@@ -74,17 +74,6 @@
     <!--TWITTER -->
     <script>
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-    </script>
-
-    <!--USER REPORT-->
-    <script type="text/javascript">
-    var _urq = _urq || [];
-    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
-    (function() {
-    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-    })();
     </script>
 
     <!-- END - SOCIAL NETWORK SCRIPTS -->
@@ -174,14 +163,22 @@
               
               <div class="time-container">
                 <div class="time-asset"></div>
-                <div class="time-data">Comments</div>
+                <div class="time-data">Responses</div>
 
                 <div class="msg-data">
-                  <br /><br />
-                  <div class="fb-comments" data-href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div>
                   <br />
-                </div>
-
+                  <!-- <div class="fb-comments" data-href="<?php echo "http://" . $_SERVER['HTTP_HOST'] . $_SERVER["REQUEST_URI"]; ?>" data-numposts="100"></div> -->
+                  <br />
+                  <div class="comment-highlight">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Message</label>
+                      <textarea class="form-control" rows="3" id="comment_message" ></textarea>
+                    </div>
+                    <div type="button" class="btn btn-danger" id="comment_via_web">Respond</div>
+                    <div  class="pull-right" id="posting_loader" >Posting....</div>
+                  </div>
+                </div> 
+                
               </div>
 
           </div>
@@ -192,12 +189,83 @@
 
     <?php endif; ?>
 
+    <script type="text/template" id="post">
+      <% if( d.message != null && d.message != "" ) { %>
+      <div class="comment-post<%= d.id %> comment-post" data-id="<%= d.id %>">
+          
+          <div class="comment-data">
+                
+            <% if( d.sender != null ) { %>
+              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
+            <% } %>
+
+            <% if( d.place_tag != null ) { %>
+              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
+            <% }%>
+            
+            : <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
+
+          </div>
+
+          <div class="from-app">
+            <% if(d.source != null ) { %>
+              <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
+                
+                <img src="img/profile-pic-16.png" width='20' />
+                <span class="app-name"><span class=""></span> Web</span>
+
+              <% } else if(d.source.indexOf("sms") !== -1) { %>
+
+                <img src="img/profile-pic-16.png" width='20' />
+                <span class="app-name"><span class=""></span> SMS</span>
+
+              <% } else if(d.app_name)  { %>
+                
+                <% if(d.logo != "") { %>
+                  <img src="<%= d.logo %>" width='20' />
+                <% } %>
+
+                  <span class="app-name"><%= d.app_name %></span>
+
+              <% } %>
+            <% } %>
+          </div>
+
+        </div>
+        <% } %>
+    </script>
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
     <script src="js/time.js"></script>
+
     <script type="text/javascript">
+      var message_id = $(".comments-container").attr('data-id');
+      var html = "";
+      var app_id= "2b198w.reliefboard.web";
+      var commenting = false;
+
+      //copied from build.js
+      function post_template (d) {
+        var html = _.template( $("#post").html() , {d:d} );
+        return html;
+      }
+      function convertToLinks(text) {
+        var replaceText, replacePattern1;
+         
+        //URLs starting with http://, https://
+        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
+         
+        //URLs starting with "www."
+        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
+         
+        //returns the text result
+         
+        return replacedText;
+      }
       $( function () {
 
         $(".times").prettyDate();
@@ -220,7 +288,100 @@
           
         $("#msg-message").html(convertToLinks($("#msg-message").text()));
 
+        $.ajax( {
+          type: "GET",
+          url: "http://www.reliefboard.com/messages/feed?offset=0&limit=10&parent_id=" + message_id
+        } ).done( function ( result ) {
+            _.each( result.data.result, function(d) {
+                html = html + post_template(d);
+            });
+           
+            $(".comments-container .msg-data ").append(html);
+           
+        });// end of ajax
+
       });
+
+
+      //will transfer this 
+      $(document).on("click","#comment_via_web", function(e) {
+        
+        if(commenting == false){
+          var message = $("#comment_message").val();
+          e.preventDefault();
+
+          FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+              // the user is logged in and has authenticated your
+              // app, and response.authResponse supplies
+              // the user's ID, a valid access token, a signed
+              // request, and the time the access token 
+              // and signed request each expire
+              var uid = response.authResponse.userID;
+              var accessToken = response.authResponse.accessToken;
+              post_comment();
+              
+              
+            } else if (response.status === 'not_authorized') {
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+            } else {
+              FB.login(function(response) {
+                post_comment();
+              },{scope: 'email'}); 
+            }
+          });
+
+          FB.Event.subscribe('auth.authResponseChange', function(response) {
+          // Here we specify what we do with the response anytime this event occurs. 
+            if (response.status === 'connected') {
+              // The response object is returned with a status field that lets the app know the current
+              // login status of the person. In this case, we're handling the situation where they 
+              // have logged in to the app.
+             
+            }
+          });
+
+
+          function post_comment(){
+              loading_show();
+              FB.api('/me', function(response) {
+                  var name = response.first_name + " "+ response.last_name;
+                  $.ajax( {
+                    type: "POST",
+                    data: {app_id : app_id, message: message, name: name, parent_id: message_id},
+                    url: "http://www.reliefboard.com/messages/feed",
+                  } ).done( function ( result ) {
+                    console.log(result);
+                    var post_success = {'message': message, sender: name , source: app_id};
+                    var html_to_insert = post_template(post_success);
+                    $( html_to_insert).insertAfter( ".comment-highlight" );
+                    $("#comment_message").val('')
+                    loading_hide();
+                  });
+                });
+            }
+
+        }
+        
+       // $("#viawebModal").modal("show");
+        
+
+      }); // end of #comment_via_web click
+
+
+      function loading_hide(){
+        $("#posting_loader").css("display", "none");
+        $("#comment_message").prop('disabled',false);
+        commenting = false;
+        
+      }
+
+      function loading_show(){
+        $("#posting_loader").css("display", "block");
+        $("#comment_message").attr('disabled', 'true');
+        commenting = true;
+      }
     </script>
 
 
