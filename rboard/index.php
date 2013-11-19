@@ -208,12 +208,11 @@
         </div>
 
         <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
-          <div id="notif-container" class="col-lg-7">
+          <div id="notif-container">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 
           <div id="msg"></div>
           <div id="results"></div>
-
         </div>
 
       </div>
@@ -395,6 +394,11 @@
     </script>
 
     <!-- END BODY -->
+
+    <div class="fixed-side-social-container">
+    <a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a>
+    <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a>
+    </div>
 
   </body>
 
