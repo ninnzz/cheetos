@@ -59,3 +59,25 @@ body {
 	background-color: white;
 	padding: 20px;
 }
+
+.comment-highlight{
+	padding: 9px 14px;
+	margin-bottom: 14px;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+	border-radius: 4px;
+}
+
+.comment-post .from-app{
+	padding: 15px 20px 0px 0px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.comment-post .comment-data{
+	display: inline-block;
+}
+
+#posting_loader{
+	display: none;
+}
