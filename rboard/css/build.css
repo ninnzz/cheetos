@@ -261,6 +261,11 @@ body {
 	min-height: 25px;
 }
 
+.share-container .social-item {
+	float: left;
+	width: 100px;
+}
+
 .comment, .share {
 	border: none;
 	border-radius: 5px;
@@ -303,3 +308,27 @@ body {
 /*.select2-container-multi .select2-choices .select2-search-field input {
 	padding: 5px 15px;
 }*/
+
+/* ------------------------------------------------------------------------ */
+/* FIXED SOCIAL ICONS */
+
+.fixed-side-social-container{left:0;width:60px;position:fixed;top:190px;background-repeat:no-repeat;z-index:10}
+.fixed-side-social-container .social-icon{float:left;width:60px;filter:alpha(opacity=75);moz-opacity:.75;-khtml-opacity:.75;opacity:.75;display:block;background-repeat:no-repeat;height:60px;-webkit-transition:all ease .2s;-moz-transition:all ease .2s;-o-transition:all ease .2s;-ms-transition:all ease .2s;transition:all ease .2s;background-position:0 0}
+.fixed-side-social-container .social-icon{background-image:url("http://demos.urprofile.net/images/social-media.png")}
+.fixed-side-social-container .social-icon:hover{filter:alpha(opacity=99);moz-opacity:.99;-khtml-opacity:.99;opacity:.99}
+.fixed-side-social-container .linkedin-icon{background-position:0 0}
+.fixed-side-social-container .twitter-icon{background-position:0 -61px}
+.fixed-side-social-container .facebook-icon{background-position:0 -122px}
+.fixed-side-social-container .google-icon{background-position:0 -186px}
+
+@media (max-width: 768px) {
+
+	.fixed-side-social-container {
+		display: none;
+	}
+
+	.urp-no-hide {
+		display: none !important;
+	}
+
+}

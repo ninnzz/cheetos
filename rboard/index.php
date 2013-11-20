@@ -63,17 +63,6 @@
       } (document, 'script', 'facebook-jssdk'));
     </script>
 
-    <!--USER REPORT-->
-    <script type="text/javascript">
-    var _urq = _urq || [];
-    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
-    (function() {
-    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-    })();
-    </script>
-
     <!-- END - SOCIAL NETWORK SCRIPTS -->
 
     <!-- START - FIXED NAV -->
@@ -151,6 +140,21 @@
                 <img src="img/banner.png" style="width:80%;">
               </p> 
               -->
+                        <div class="share-container" style="width: 300px; margin: 0 auto;">
+            <div class="pull-left">
+              <div class="social-item">
+                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+              </div>  
+              <div class="social-item">
+                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard" data-type="button_count"></div>
+              </div>
+              <div class="social-item">
+                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard" data-text="ReliefBoard is a messaging service that helps you reach the world in times of calamities." class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                  Tweet
+                </a>
+              </div>
+            </div>
+              </div>
           </div>
           
           <div class="copy3" style="text-align: center;">
@@ -179,7 +183,8 @@
             </p>
             1. Send a <b>FREE SMS</b> to: 
             <br /> 
-            <b style="font-size: 20px;">260011</b>
+            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
+            <b style="font-size: 20px;">68009 (SMART) </b>
             <br />
             (from within the Philippines)
             <br /><br />
@@ -196,8 +201,10 @@
             <br/>
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
               <div align="center">
+                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
+                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
+                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
                 <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a>
                 <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
                 <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
               </div>
@@ -209,16 +216,18 @@
                 <br /><br />
                 <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
               </div>
+              <br />
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>
         </div>
 
         <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
-          <div id="notif-container" class="col-lg-7">
+          <div id="notif-container">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 
           <div id="msg"></div>
           <div id="results"></div>
-
         </div>
 
       </div>
@@ -355,9 +364,21 @@
           </div>-->
           
           <div class="share-container">
+            <div class="pull-left">
+              <div class="social-item">
+                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+              </div>  
+              <div class="social-item">
+                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-type="button_count"></div>
+              </div>
+              <div class="social-item">
+                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                  Tweet
+                </a>
+              </div>
+            </div>
             <div class="pull-right">
               <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
-              <!--<a class="share" data-id="<%= d.id %>" data-msg="<%= unescape(unescape(decodeURIComponent(d.message))) %>" data-sender="<%= unescape(unescape(decodeURIComponent(d.sender))) %>" data-place-tag="<%= unescape(unescape(decodeURIComponent(d.place_tag))) %>" href="#">Share</a>-->
               <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
             </div>
           </div>          
@@ -376,7 +397,23 @@
     <script src="js/build.js"></script>
 
 
+    <!--USER REPORT-->
+    <script type="text/javascript">
+    var _urq = _urq || [];
+    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
+    (function() {
+    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
+    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
+    })();
+    </script>
+
     <!-- END BODY -->
+
+    <div class="fixed-side-social-container">
+    <a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a>
+    <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a>
+    </div>
 
   </body>
 
