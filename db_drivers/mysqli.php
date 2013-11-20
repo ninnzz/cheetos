@@ -25,15 +25,6 @@
 
    		private function get_wher_clause($data)
    		{
-			// $str = ''; 
-   // 			while ($val = current($data)) {
-			    
-   // 				$str .= key($array)
-			//     if ($fval == 'apple') {
-			//         echo key($array).'<br />';
-			//     }
-			//     next($array);
-			// }
 
    		}
 		public function query($query)
