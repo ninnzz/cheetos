@@ -140,13 +140,13 @@
                 <img src="img/banner.png" style="width:80%;">
               </p> 
               -->
-                        <div class="share-container" style="width: 300px; margin: 0 auto;">
+            <div class="share-container" style="width: 300px; margin: 0 auto;">
             <div class="pull-left">
               <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
               </div>  
               <div class="social-item">
-                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard" data-type="button_count"></div>
+                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard" data-type="button"></div>
               </div>
               <div class="social-item">
                 <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard" data-text="ReliefBoard is a messaging service that helps you reach the world in times of calamities." class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
