@@ -108,7 +108,12 @@
           </button>
           <a id="logo" class="navbar-brand" href="/" title="ReliefBoard"></a>
         </div>
-
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li> <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a></li>
+            <li><a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a></li>
+          </ul>
+        </nav>
 <!--         <div class="navbar-collapse collapse navbar-right">
           
           <div id="search-container">
@@ -405,10 +410,7 @@
 
 
     <!-- END BODY -->
-  <div class="fixed-side-social-container">
-    <a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a>
-    <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a>
-  </div>
+
   </body>
 
 </html>

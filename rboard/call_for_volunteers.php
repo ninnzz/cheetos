@@ -83,34 +83,8 @@
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
-            <li>
-            <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
-            <div id="search-filter">
-              <b>Filter Search</b>
-              
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked="checked" id="filter-name" class="filter"> Name
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked="checked" id="filter-location" class="filter"> Location
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked="checked" id="filter-message" class="filter"> Message
-                </label>
-              </div>
-
-            </div>
-            </li>
             <li> <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a></li>
             <li><a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a></li>
-            
           </ul>
         </nav>
       
@@ -125,51 +99,22 @@
     <div id="main-container" class="container">
 
       <div class="row">
-
+        <div id="search-copy-container" class="col-lg-7 col-md-7" style=" margin: 10px 0;">
+          <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
+          
+        </div>
         <div id="copy-container" class="col-lg-7 col-md-7">
           <div id="copy">
-            <b style="font-weight: 800; font-size: 22px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
+            <b style="font-weight: 800; font-size: 22px; color: #294360;">Are you a volunteer who would like to help the victims of the typhoon hayan on the philippines?</b>
 
               
-            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">We help you get the word out</h2>
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">Call for volunteers</h2>
           </div>
           
-          <div id="copy2">
-              <p style="color: #294360; font-weight: 800; font-size: 16px;">
-                ReliefBoard is a messaging service that helps you reach the world in times of calamities.
-              </p>
-              <!-- 
-              <p style="text-align:center;">
-                <img src="img/banner.png" style="width:80%;">
-              </p> 
-              -->
-            <div class="share-container" style="width: 300px; margin: 0 auto;">
-            <div class="pull-left">
-              <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-              </div>  
-              <div class="social-item">
-                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard" data-type="button"></div>
-              </div>
-              <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard" data-text="ReliefBoard is a messaging service that helps you reach the world in times of calamities." class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
-                  Tweet
-                </a>
-              </div>
-            </div>
-              </div>
-          </div>
-          
-          <div class="copy3" style="text-align: center;">
-            <a id="viaweb" class="btn btn-danger " href="#">POST A NEW MESSAGE</a>
-          </div>
         
         </div>
 
-        <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
-          <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
-          <h3>Search Results:</h3>
-        </div>
+        
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
           <div id="copy">
@@ -193,7 +138,7 @@
             <br /><br />
             2. Follow this format:
             <br />
-            <b style="font-size: 18px;">Location/Name/Message</b>
+            <b style="font-size: 18px;">LOCATION/NAME/MESSAGE</b>
             <br /><br />
             Example:<br />
             <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
@@ -220,8 +165,8 @@
                 <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
               </div>
               <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
-            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Develop</p>
+            <p style="color: #294360; font-weight: 800; font-size: 22px;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>
         </div>
 
@@ -229,7 +174,6 @@
           <div id="notif-container">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 
-          <div id="msg"></div>
           <div id="results"></div>
         </div>
 
@@ -276,7 +220,7 @@
             <br />
             <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
             <br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number (Optional)" />
 <!--             <br />
               <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
             <br /><br />
@@ -397,8 +341,6 @@
     <script src="js/underscore.min.js"></script>
     <script src="js/select2.min.js"></script>
     <script src="js/time.js"></script>
-    <script src="js/build.js"></script>
-
 
     <!--USER REPORT-->
     <script type="text/javascript">
@@ -411,7 +353,58 @@
     })();
     </script>
 
+
+    <script>
+      var offset = 0;
+
+      function post_template (d) {
+        var html = _.template( $("#post").html() , {d:d} );
+        return html;
+      }
+
+      function search(){
+        $.ajax( {
+          type: "GET",
+          url: "http://www.reliefboard.com/search?query=volunteer&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+        } ).done( function ( result ) {
+
+          var html = "";
+          var title = $("title").text();
+          title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
+
+          _.each( result.data.result, function(d) {
+
+              html = html + post_template(d);
+
+          });
+          $( "#results" ).append( html );
+          $( "#results" ).css('display', 'block');
+          $( ".time" ).prettyDate();
+          
+          FB.XFBML.parse();
+          $.getScript('http://platform.twitter.com/widgets.js');
+        });
+      } 
+
+      $(document).on("click","#back-to-feed",function(e) {
+        e.preventDefault();
+        window.location = "http://www.reliefboard.com/rboard/";
+      });
+
+      $(window).scroll(function () {
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+            offset = offset + 5;         
+            search();
+        }
+      });
+
+
+      search();
+    </script>
+
     <!-- END BODY -->
+
+
 
   </body>
 
