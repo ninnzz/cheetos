@@ -273,7 +273,7 @@
             <br />
             <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
             <br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number (Optional)" />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
 <!--             <br />
               <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
             <br /><br />
