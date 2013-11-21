@@ -54,8 +54,6 @@
 			$row_count = 0;
 			$res = array();
 
-			$data = $data?$this->extract_column($data):' * ';
-
 			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
 
 			if($link->connect_errno > 0){
