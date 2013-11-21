@@ -83,8 +83,6 @@
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
-             <li> <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a></li>
-            <li><a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a></li>
             <li>
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
             <div id="search-filter">
@@ -124,48 +122,32 @@
     <!-- START BODY -->
 
     <div id="main-container" class="container">
-
-      <div class="row">
-
-        <div id="copy-container" class="col-lg-7 col-md-7">
-          <div id="copy">
-            <b style="font-weight: 800; font-size: 22px; color: #294360;">Need help? Looking for someone? Want to share information?</b>
-
-              
-            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">We help you get the word out</h2>
-          </div>
+      <div class="col-lg-7 col-md-7" style="background-color:#EBEAEA;margin-top:30px;margin-bottom:20px;">
+        <div id="posting-container">
           
-          <div id="copy2">
-              <p style="color: #294360; font-weight: 800; font-size: 16px;">
-                ReliefBoard is a messaging service that helps you reach the world in times of calamities.
-              </p>
-              <!-- 
-              <p style="text-align:center;">
-                <img src="img/banner.png" style="width:80%;">
-              </p> 
-              -->
-            <div class="share-container" style="width: 300px; margin: 0 auto;">
-            <div class="pull-left">
-              <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-              </div>  
-              <div class="social-item">
-                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard" data-type="button"></div>
-              </div>
-              <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard" data-text="ReliefBoard is a messaging service that helps you reach the world in times of calamities." class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
-                  Tweet
-                </a>
-              </div>
+            <div id="loginToFacebook" class="modal-body">
+              <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
             </div>
-              </div>
+
+          <div id="authenticated" class="modal-body" style="display: none;">-->
+            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
+            <br />
+            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
+            <br />
+            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
+            <br />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+            <br/>
+            <input id="form-tag" class="form-control" type="text" placeholder="Tag" />
+  <!--             <br />
+              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
+            <br />
+            <div align="center">
+              <button id="viawebSend" type="button" class="btn btn-primary">ASK FOR HELP</button>
+            </div>
           </div>
-          
-          <div class="copy3" style="text-align: center;">
-            <a id="viaweb" class="btn btn-danger " href="#">POST A NEW MESSAGE</a>
-          </div>
-        
         </div>
+      </div>
 
         <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
           <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
@@ -200,6 +182,13 @@
             <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
             <br /><br />
             3. Your message will automatically be posted on ReliefBoard.com
+          </div>
+          <div>
+            <p style="color: #294360; font-weight: 800; font-size: 18px;">
+              <a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="Find missing people" id="find_missing_people">Find missing people</a><br/>
+              <a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
+              <a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="Help rescue" id="help_rescue">Help rescue</a><br/>
+            </p>
           </div>
           <div>
             <br/>
@@ -259,35 +248,6 @@
     </div>
  -->
 
-    <div class="modal fade" id="viawebModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-
-          <div id="loginToFacebook" class="modal-body">
-            <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
-            <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
-          </div>
-
-          <div id="authenticated" class="modal-body" style="display: none;">
-            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
-            <br /><br />
-            <b>Details: </b>
-            <br /><br />
-            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?" />
-            <br />
-            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
-            <br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
-<!--             <br />
-              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
-            <br /><br />
-            <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script type="text/templ" id="twTemplate">
       <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
     </script>
@@ -312,14 +272,19 @@
 
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
+      
+      <div class="time-container">
+        <div class="time-asset"></div>
+        <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
+        <div class="status-data"><span class="status-pending">PENDING</span></div>
+      </div>
+
       <div class="post<%= d.id %> post" data-id="<%= d.id %>">
-          
-          <div class="time-container">
-            <div class="time-asset"></div>
-            <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
+          <div class="pull-right">
+            <a target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">REPORT</a>
           </div>
 
-          <div class="from-app">
+          <p class="msg-data">  
             <% if(d.source != null ) { %>
               <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
                 
@@ -338,19 +303,13 @@
                 <% } %>
 
                   <span class="app-name"><%= d.app_name %></span>
-
               <% } %>
             <% } %>
-          </div>
-
-
-
-          <p class="msg-data">
+            
+            <br/><br/>
             
             <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            
-             <br /> <br />
-
+            <br/><br/>  
             <% if( d.sender != null ) { %>
               <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
             <% } %>
@@ -358,17 +317,14 @@
             <% if( d.place_tag != null ) { %>
               | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
             <% }%>
-
+        
           </p>
 
-          <!--<div class="tag-container">
-            <br /><br />
-            <input id="tag_<%= d.id %>" type="hidden" class="form-control" />
-            <br /> <br />
-          </div>-->
-          
+          <hr/> 
           <div class="share-container">
-            <div class="pull-left">
+            <a class="help" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            &nbsp;&nbsp;YOU and 3 people are helping
+            <div class="pull-right">
               <div class="social-item">
                 <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
               </div>  
@@ -381,12 +337,7 @@
                 </a>
               </div>
             </div>
-            <div class="pull-right">
-              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
-              <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
-            </div>
           </div>          
-
         </div>
         <% } %>
     </script>
