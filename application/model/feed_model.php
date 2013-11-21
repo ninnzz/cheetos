@@ -3,19 +3,20 @@ class Feed_model extends Kiel_Model{
 
 	public function get_messages($parent_id = null, $offset = 0, $limit = 10,$source)
 	{ 
+		$where = array();
+		$where['!status'] = 'flagged';
 		if($parent_id !== NULL){
-			$where = " WHERE status != 'flagged' AND parent_id is not null ";  
+			$where['!parent_id'] = NULL;
 		}
 		else{
-			$where = " WHERE status != 'flagged' AND parent_id is NULL ";	
+			$where['parent_id'] = NULL;
 		}
 		if($source !== NULL){
-			$source = $this->data_handler->get_where('applications',null," WHERE app_code = '{$source}' ",null,null,null,'date_created','');
+			$source = $this->data_handler->get_where('applications',null,array('app_code'=>$source),null,null,null,'date_created','');
 			
 			if($source['result_count'] != 0){
-
 				$s = $source['result'][0]['id'];
-				$where .= " and source = '{$s}' ";
+				$where['source'] = $s;
 			} else{
 				return array('result'=>array(),'result_count'=>0);
 			}
@@ -27,7 +28,7 @@ class Feed_model extends Kiel_Model{
 	
 	public function single_item($id)
 	{
-		return $this->data_handler->get_where('messages',null," WHERE id = '{$id}' ",null,null,null,'date_created','');
+		return $this->data_handler->get_where('messages',null,array('id'=>$id),null,null,null,'date_created','');
 	}
 
 	public function search($q, $offset = 0, $limit = 10)
@@ -48,7 +49,7 @@ class Feed_model extends Kiel_Model{
 		return $this->data_handler->query($query);
 	}
 
-	public function add_messages($user_no,$addr,$name,$message,$source,$source_type,$parent_id)
+	public function add_messages($user_no,$addr,$name,$message,$source,$source_type,$parent_id,$fb_id,$tags,$expires)
 	{
 		$data = '';
 
@@ -82,10 +83,15 @@ class Feed_model extends Kiel_Model{
 		$data .= " {$tm}, {$tm}, 'pending' , '{$source}'  ";
 
 		if($source_type != NULL){
-			$data .= " ,'{$source_type}'";
+			$data .= " ,'{$source_type},'";
 		} else{
-			$data .= " ,NULL";
+			$data .= " ,NULL,";
 		}
+		if(!$expires){
+			$expires = 'NULL';
+		}
+		$data.= "'pending','{$fb_id}','{$tags}',{$expires}";
+
 		$res = $this->data_handler->insert('messages',$data);
 		$res['id'] = $id;
 		return $res;

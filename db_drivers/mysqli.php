@@ -23,16 +23,36 @@
    			return rtrim($str,',');
    		}
 
-   		private function get_wher_clause($data)
+   		private function get_where_clause($data)
    		{
+   			$str = "WHERE ";
+   			foreach ($data as $key => $value) {
+   				$p = ltrim($key,'!');
+   				if(gettype($value) === "NULL"){
+	   				if($p === $key){
+		   				$str .= "  ".$p." is NULL AND";
+		   			} else {
+		   				$str .= "  ".$p." is not NULL AND";
+		   			}
+		   			continue;
+   				}
+   				if(gettype($value) === "string"){
+   					$value = "'{$value}'";
+   				}
 
+   				if($p === $key){
+	   				$str .= "  ".$p." = ".$value." AND";
+	   			} else {
+	   				$str .= "  ".$p." != ".$value." AND";
+	   			}
+   			}
+   			return rtrim($str, 'AND');
    		}
+
 		public function query($query)
 		{
 			$row_count = 0;
 			$res = array();
-
-			$data = $data?$this->extract_column($data):' * ';
 
 			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
 
@@ -124,7 +144,14 @@
     			throw new Exception("Database Error :: Unknown table", 1);
 			}
 			$data = $data?$this->extract_column($data):' * ';
-			// $where = ($where)?get_wher_clause($data):'';
+
+			if($where && gettype($where) === 'array' && count($where) != 0){
+				$where = $this->get_where_clause($where);
+			} else {
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Database Error :: Invalid where clause", 1);
+			}
+
 
 			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
 
@@ -144,10 +171,8 @@
 			}
 
 			if($offset !== NULL){
-				$query_message .= " LIMIT {$offset}, {$limit}";
+				$query_message .= " LIMIT {$offset}, {$limit} ";
 			}
-
-			$query_message .= ';';
 
 
 
@@ -194,8 +219,8 @@
 			}
 			$link->autocommit(FALSE);
 
-			$query_message = "INSERT into {$table} values({$data});";
-			
+			$query_message = "INSERT into {$table} values({$data});";			
+
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$errNo = $link->errno;
@@ -204,6 +229,7 @@
  				return array('errcode'=>$errNo ,'error'=>$err,'affected_rows'=>$affected);
 			}
 			$res['affected_rows'] = $link->affected_rows;
+			$res['query_message'] = $query_message;
 			
 			$link->commit();
 			$link->close() or die('no links to close');
@@ -223,6 +249,7 @@
 
 		public function update_where($table=NULL,$data=NULL,$where=NULL)
 		{
+
 			$query_message = '';
 			$row_count = 0;
 			$res = array();
@@ -235,6 +262,11 @@
 				header("HTTP/1.0 500 Internal Server Error");
     			throw new Exception("Database Error :: No data to insert", 1);	
 			}
+			if(!is_array($data)){
+				header("HTTP/1.0 500 Internal Server Error");
+    			throw new Exception("Invalid Data Type", 1);	
+			}
+
 
 			// $link = mysqli_connect(DBConfig::DB_HOST, DBConfig::DB_USERNAME, DBConfig::DB_PASSWORD, DBConfig::DB_NAME) or die('Database Connection Error');
 			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');

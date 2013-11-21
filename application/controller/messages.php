@@ -4,8 +4,8 @@ class Messages extends Kiel_Controller{
 	public function feed_get()
 	{
 		$this->load_model('feed_model');
-		$offset    = $this->get_args['offset'];
-		$limit     = $this->get_args['limit'];
+		$offset    = isset($this->get_args['offset'])?$this->get_args['offset']:0;
+		$limit     = isset($this->get_args['limit'])?$this->get_args['limit']:10;
 		$parent_id = isset($this->get_args['parent_id'])?$this->get_args['parent_id']:NULL; 
 		
 		if(isset($this->get_args['parent_id'])){
@@ -30,11 +30,10 @@ class Messages extends Kiel_Controller{
 
 	public function feed_item_get()
 	{
-		if($this->get_args['message_id'] && isset($this->get_args['message_id']) && $this->get_args['message_id'] !== NULL){
+		$this->required_fields(array('message_id'),$this->get_args);
 			$this->load_model('feed_model');
 			$res = $this->feed_model->single_item($this->get_args['message_id']);
 			$this->response(array('status'=>'Success','data'=>$res),200);
-		}
 	}
 
 	public function feed_post()
@@ -48,11 +47,16 @@ class Messages extends Kiel_Controller{
 		$addr = $this->post_args['address'];
 		$name = $this->post_args['name'];
 		$message = $this->post_args['message'];
-		$app_id = $this->post_args['app_id'];		
+		/*******optional parameters*************/
+		$app_id = isset($this->post_args['app_id'])?$this->post_args['app_id']:"";		
+		$fb = isset($this->post_args['fb_id'])?$this->post_args['fb_id']:'';		
+		$tags = isset($this->post_args['tags'])?$this->post_args['tags']:'';		
+		$expire = isset($this->post_args['expires'])?$this->post_args['expires']:NULL;		
 
-		$parent_id = $this->post_args['parent_id'];
-		$this->push_post($user_no,$addr,$name,$message,$app_id,$parent_id);
-		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id);	
+		$parent_id = isset($this->post_args['parent_id'])?$this->post_args['parent_id']:NULL;
+		// $this->push_post($user_no,$addr,$name,$message,$app_id,$parent_id);
+		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id,$fb,$tags,$expire);	
+
 		if($res)		
 		{
 			$message = urldecode($message);
@@ -94,25 +98,60 @@ class Messages extends Kiel_Controller{
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		error_log($smsMsg);
-		$msg_arr = explode('/',$smsMsg);
-		if(count($msg_arr) === 3){
-			$addr = $msg_arr[0];
-			$name = $msg_arr[1];
-			$message = $msg_arr[2];
+		$msg_arr = explode('/',urldecode($smsMsg));
 
-			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null);
-		} else if(count($msg_arr) === 2){
-			$addr = $msg_arr[0];
-			$message = $msg_arr[1];
+		/*****FOR GOHELP******/
 
-			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null);
-		} else {
-			if(trim($smsMsg) !== ""){
-				$message = $smsMsg;
-				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null);
+		if(isset($msg_arr[0])){
+			$key_word = explode(' ',trim($msg_arr[0]));
+			if(trim(strtolower($key_word[0])) === 'gohelp'){
+				$source_type = null;
+				$source = 'GOHELP';
+				if(count($msg_arr) === 3 ){
+					$addr = isset($key_word[1])?$key_word[1]:"";
+					$name = $msg_arr[1];
+					$message = $msg_arr[2];
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type,null,'','',null);
+				} else if(count($msg_arr) === 2){
+					$addr = isset($key_word[1])?$key_word[1]:"";
+					$message = $msg_arr[1];
+					
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,$source,$source_type,null,'','',null);
+				} else{
+					if(trim($smsMsg) !== ""){
+						$message = $smsMsg;
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,$source,null,null,'','',null);
+					}
+				}
+
+			}
+
+
+
+
+			/*****FOR RELIEFBOARD******/
+
+			else {
+				if(count($msg_arr) === 3){
+					$addr = $msg_arr[0];
+					$name = $msg_arr[1];
+					$message = $msg_arr[2];
+
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null,null,'','',null);
+				} else if(count($msg_arr) === 2){
+					$addr = $msg_arr[0];
+					$message = $msg_arr[1];
+
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null,null,'','',null);
+				} else {
+					if(trim($smsMsg) !== ""){
+						$message = $smsMsg;
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null,null,'','',null);
+					}
+				}
 			}
 		}
+
 		if($res)		
 		{	
 			$message = urldecode($message);
@@ -128,23 +167,23 @@ class Messages extends Kiel_Controller{
 
 		$data 	 = $this->get_args;
 		$user_no = $data['from'];
-		$smsMsg  = $data['text'];
-		$msg_arr = explode('/',$data['text']);
+		$smsMsg  = urldecode($data['text']);
+		$msg_arr = explode('/',$smsMsg);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
 			$name = $msg_arr[1];
 			$message = $msg_arr[2];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.smart',null);
+			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.smart',null,null,'','',null);
 		} else if(count($msg_arr) === 2){
 			$addr = $msg_arr[0];
 			$message = $msg_arr[1];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.smart',null);
+			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.smart',null,null,'','',null);
 		} else {
 			if(trim($smsMsg) !== ""){
 				$message = $smsMsg;
-				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.smart',null);
+				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.smart',null,null,'','',null);
 			}
 		}
 
@@ -192,16 +231,16 @@ class Messages extends Kiel_Controller{
 					$name = $msg_arr[1];
 					$message = $msg_arr[4];	
 					$user_no = $msg_arr[2];	
-					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type,null,'','',null);
 				} else if(count($msg_arr) === 4){
 					$message = $msg_arr[1].'/'.$msg_arr[2].'/'.$msg_arr[3];
-					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type,null,'','',null);
 				} else if(count($msg_arr) === 3){
 					$message = $msg_arr[1].'/'.$msg_arr[2];
-					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type,null,'','',null);
 				} else if(count($msg_arr) === 2){
 					$message = $msg_arr[1];
-					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type,null,'','',null);
 				} else{
 					$res = false;
 				}
@@ -217,16 +256,16 @@ class Messages extends Kiel_Controller{
 					$name = $msg_arr[1];
 					$message = $msg_arr[2];
 
-					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.globe',null);
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.globe',null,'','',null);
 				} else if(count($msg_arr) === 2){
 					$addr = $msg_arr[0];
 					$message = $msg_arr[1];
 
-					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.globe',null);
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.globe',null,'','',null);
 				} else {
 					if(trim($smsMsg) !== ""){
 						$message = $smsMsg;
-						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.globe',null);
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.globe',null,'','',null);
 					}
 				}
 			}
