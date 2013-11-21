@@ -56,7 +56,7 @@ class Messages extends Kiel_Controller{
 		$parent_id = isset($this->post_args['parent_id'])?$this->post_args['parent_id']:NULL;
 		// $this->push_post($user_no,$addr,$name,$message,$app_id,$parent_id);
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id,$fb,$tags,$expire);	
-		
+
 		if($res)		
 		{
 			$message = urldecode($message);
@@ -167,7 +167,7 @@ class Messages extends Kiel_Controller{
 
 		$data 	 = $this->get_args;
 		$user_no = $data['from'];
-		$smsMsg  = $data['text'];
+		$smsMsg  = urldecode($data['text']);
 		$msg_arr = explode('/',$data['text']);
 		if(count($msg_arr) === 3){
 			$addr = $msg_arr[0];
