@@ -221,7 +221,8 @@
 
 			$query_message = "INSERT into {$table} values({$data});";
 			
-
+			error_log($query_message);
+			error_log("+++++++++++++++++++++++=");
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$errNo = $link->errno;

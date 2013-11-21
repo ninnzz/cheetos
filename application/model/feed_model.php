@@ -90,6 +90,10 @@ class Feed_model extends Kiel_Model{
 
 		$data.= "'pending','{$fb_id}','{$tags}',{$expires}";
 
+		error_log($data);
+		error_log('---------------------------------');
+
+
 		$res = $this->data_handler->insert('messages',$data);
 		$res['id'] = $id;
 		return $res;
