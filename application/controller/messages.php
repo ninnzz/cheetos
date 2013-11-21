@@ -53,7 +53,7 @@ class Messages extends Kiel_Controller{
 		$tags = isset($this->post_args['tags'])?$this->post_args['tags']:'';		
 		$expire = isset($this->post_args['expires'])?$this->post_args['expires']:NULL;		
 
-		$parent_id = $this->post_args['parent_id'];
+		$parent_id = isset($this->post_args['parent_id'])?$this->post_args['parent_id']:NULL;
 		// $this->push_post($user_no,$addr,$name,$message,$app_id,$parent_id);
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id,$fb,$tags,$expire);	
 		
