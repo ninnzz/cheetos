@@ -221,6 +221,7 @@
 
 			$query_message = "INSERT into {$table} values({$data});";
 			
+
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$errNo = $link->errno;
@@ -229,6 +230,7 @@
  				return array('errcode'=>$errNo ,'error'=>$err,'affected_rows'=>$affected);
 			}
 			$res['affected_rows'] = $link->affected_rows;
+			$res['query_message'] = $query_message;
 			
 			$link->commit();
 			$link->close() or die('no links to close');

@@ -101,7 +101,7 @@ class Messages extends Kiel_Controller{
 			$key_word = explode(' ',trim($msg_arr[0]));
 			if(trim(strtolower($key_word[0])) === 'gohelp'){
 				$source_type = null;
-				$source = 'as87d19kjd.gohelp.web';
+				$source = 'GOHELP';
 				if(count($msg_arr) === 3 ){
 					$addr = isset($key_word[1])?$key_word[1]:"";
 					$name = $msg_arr[1];
