@@ -41,8 +41,6 @@
     <link href="css/select2.css" rel="stylesheet" />
     <link href="css/select2-bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
-
-
   </head>
 
   <body>
@@ -129,7 +127,6 @@
               <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
             </div>
 
-          <div id="authenticated" class="modal-body" style="display: none;">-->
             <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
             <br />
             <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
@@ -146,7 +143,6 @@
               <button id="viawebSend" type="button" class="btn btn-primary">ASK FOR HELP</button>
             </div>
           </div>
-        </div>
       </div>
 
         <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
@@ -273,7 +269,7 @@
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
       
-      <div class="time-container">
+      <div class="time-container<%= d.id %> time-container">
         <div class="time-asset"></div>
         <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
         <div class="status-data"><span class="status-pending">PENDING</span></div>
@@ -281,7 +277,7 @@
 
       <div class="post<%= d.id %> post" data-id="<%= d.id %>">
           <div class="pull-right">
-            <a target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">REPORT</a>
+            <a class="share" target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">REPORT</a>
           </div>
 
           <p class="msg-data">  

@@ -373,6 +373,9 @@ $( function () {
 		$.post('http://www.reliefboard.com/messages/message_flag', data);
 		$(".post"+postID).fadeOut(1000,function() {
 			$(".post"+postID).remove();	
+		});
+		$(".time-container"+postID).fadeOut(1000,function() {
+			$(".time-container"+postID).remove();	
 		});	
 	});
 
