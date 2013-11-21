@@ -30,6 +30,7 @@
 
       ga('create', 'UA-45702678-1', 'reliefboard.com');
       ga('send', 'pageview');
+
     </script>
 
     <!-- FONTS -->
@@ -80,6 +81,9 @@
         </div>
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-left">
+            <li> <a href="about.php">About</a></li>
+          </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
             <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
@@ -110,6 +114,8 @@
             
           </ul>
         </nav>
+
+
       
       </div>
 
@@ -180,10 +186,11 @@
             3. Your message will automatically be posted on ReliefBoard.com
           </div>
           <div>
+            <h3>Want to help?</h3>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="Find missing people" id="find_missing_people">Find missing people</a><br/>
-              <a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
-              <a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="Help rescue" id="help_rescue">Help rescue</a><br/>
+              <a href="http://www.reliefboard.com/rboard/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
+              <a href="http://www.reliefboard.com/rboard/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
+              <a href="http://www.reliefboard.com/rboard/rescue.php"  title="Help rescue" id="help_rescue">Help rescue</a><br/>
             </p>
           </div>
           <div>

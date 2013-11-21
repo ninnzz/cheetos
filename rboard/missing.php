@@ -30,6 +30,7 @@
 
       ga('create', 'UA-45702678-1', 'reliefboard.com');
       ga('send', 'pageview');
+
     </script>
 
     <!-- FONTS -->
@@ -82,9 +83,8 @@
         </div>
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav navbar-right">
-            <li> <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a></li>
-            <li><a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a></li>
+          <ul class="nav navbar-nav navbar-left">
+            <li> <a href="about.php">About</a></li>
           </ul>
         </nav>
       
