@@ -49,7 +49,7 @@ class Feed_model extends Kiel_Model{
 		return $this->data_handler->query($query);
 	}
 
-	public function add_messages($user_no,$addr,$name,$message,$source,$source_type,$parent_id)
+	public function add_messages($user_no,$addr,$name,$message,$source,$source_type,$parent_id,$fb_id,$tags,$expires)
 	{
 		$data = '';
 
@@ -83,10 +83,13 @@ class Feed_model extends Kiel_Model{
 		$data .= " {$tm}, {$tm}, 'pending' , '{$source}'  ";
 
 		if($source_type != NULL){
-			$data .= " ,'{$source_type}'";
+			$data .= " ,'{$source_type},'";
 		} else{
-			$data .= " ,NULL";
+			$data .= " ,NULL,";
 		}
+
+		$data.= "'pending','{$fb_id}','{$tags}',{$expires}";
+
 		$res = $this->data_handler->insert('messages',$data);
 		$res['id'] = $id;
 		return $res;
