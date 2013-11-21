@@ -57,6 +57,9 @@ class Messages extends Kiel_Controller{
 		// $this->push_post($user_no,$addr,$name,$message,$app_id,$parent_id);
 		$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$app_id,NULL,$parent_id,$fb,$tags,$expire);	
 		
+		error_log($res);
+		error_log('---------------------------------');
+
 		if($res)		
 		{
 			$message = urldecode($message);
