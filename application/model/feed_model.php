@@ -87,7 +87,9 @@ class Feed_model extends Kiel_Model{
 		} else{
 			$data .= " ,NULL,";
 		}
-
+		if(!$expires){
+			$expires = 'NULL';
+		}
 		$data.= "'pending','{$fb_id}','{$tags}',{$expires}";
 
 		error_log($data);
