@@ -306,7 +306,7 @@ body {
 	margin-left:20px;
 }
 
-.comment:hover, .share:hover {
+.help:hover, .share:hover {
 	color: white;
 	text-decoration: none;
 }
