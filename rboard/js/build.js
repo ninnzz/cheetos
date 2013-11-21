@@ -135,10 +135,20 @@ $( function () {
 				}
 
 			});
-
+			
 		}
 
 	}, 5000);
+
+
+	setInterval( function() {
+
+		if(!search_mode) {
+
+			count_pages();
+		}
+
+	}, 20000);
 
 	// START THE APPLICATION
 	feed();
@@ -363,6 +373,9 @@ $( function () {
 		$.post('http://www.reliefboard.com/messages/message_flag', data);
 		$(".post"+postID).fadeOut(1000,function() {
 			$(".post"+postID).remove();	
+		});
+		$(".time-container"+postID).fadeOut(1000,function() {
+			$(".time-container"+postID).remove();	
 		});	
 	});
 
@@ -379,6 +392,30 @@ $( function () {
 			}
 		}
 	});
+
+	//function to get counts of additional pages temporary
+	function count_pages(){
+		$.ajax( {
+          type: "GET",
+          url: "http://www.reliefboard.com/search?query=volunteer&offset=0&limit=1000&name=1&loc=1&message=1"
+        } ).done( function ( result ) {
+        	$("#call_for_volunteers").html("Call for volunteers (" + result.data.result.length + ")");
+        });
+		
+		$.ajax( {
+          type: "GET",
+          url: "http://www.reliefboard.com/search?query=missing&offset=0&limit=1000&name=1&loc=1&message=1"
+        } ).done( function ( result ) {
+        	$("#find_missing_people").html("Find missing people (" + result.data.result.length + ")");
+        });
+
+        $.ajax( {
+          type: "GET",
+          url: "http://www.reliefboard.com/search?query=rescue&offset=0&limit=1000&name=1&loc=1&message=1"
+        } ).done( function ( result ) {
+        	$("#help_rescue").html("Help Rescue (" + result.data.result.length + ")");
+        });
+	}
 
 	/* TAGS */
 

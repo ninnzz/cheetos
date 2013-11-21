@@ -11,6 +11,15 @@ body {
 	margin-bottom: 100px;
 }
 
+#posting-container {
+	background: white;
+	border-left: 5px solid #e2e2e2;
+	border-right: 5px solid #e2e2e2;
+	border-bottom: 5px solid #ebeaea;
+	padding: 10px 20px;
+	margin: 10px 0px 20px 0px;
+}
+
 /* ------------------------------------------------------------------------ */
 /* NAV */
 
@@ -211,18 +220,15 @@ body {
 	background: white;
 	border-left: 5px solid #e2e2e2;
 	border-right: 5px solid #e2e2e2;
-	border-bottom: 1px solid #ebeaea;
-	padding: 20px;
-}
-
-.from-app {
-	padding: 15px 20px 0 20px;
+	border-bottom: 5px solid #ebeaea;
+	padding: 10px 20px;
+	margin:-20px 0px 20px 0px;
 }
 
 .app-name {
 	vertical-align: -3px;
-	font-size: 14px;
-	font-weight: 700;
+	font-size: 12px;
+	font-weight: 200;
 	color: #777;
 }
 
@@ -231,23 +237,44 @@ body {
 }
 
 .time-asset {
-	background-image: url("../img/time-container.png");
+	background-image: url("../img/time-container-blue.png");
 	float: left;
-	margin-left: -24px;
 	height: 35px;
 	width: 8px;
 }
 
 .time-data {
-	background-color: #b65656;
+	background-color: #5593CD;
 	color: white;
 	font-size: 16px;
 	font-weight: 800;
 	float: left;
 	height: 30px;
 	min-width: 20px;
-	margin-left: -16px;
 	padding: 4px 13px 4px 4px;
+}
+
+.status-data {
+	float: left;
+	margin-top:2px;
+	font-size: 19px;
+	font-weight: 800;
+	color: white;
+}
+
+.status-pending {
+	padding: 4px 4px 4px 4px;
+	background-color: #f1564a;
+}
+
+.status-expired {
+	padding: 4px 4px 4px 4px;
+	background-color: #797979;
+}
+
+.status-resolved {
+	padding: 4px 4px 4px 4px;
+	background-color: #3695ed;
 }
 
 .msg-data {
@@ -263,22 +290,23 @@ body {
 
 .share-container .social-item {
 	float: left;
-	width: 100px;
+	width: 90px;
 }
 
-.comment, .share {
+.help{
 	border: none;
 	border-radius: 5px;
-	background-color: #3695ed;
+	background-color: #6aac43;
 	color: white;
 	font-weight: 800;
-	font-size: 16px;
+	font-size: 22px;
 	padding: 2px 10px;
 	text-transform: uppercase;
 	text-decoration: none;
+	margin-left:20px;
 }
 
-.comment:hover, .share:hover {
+.help:hover, .share:hover {
 	color: white;
 	text-decoration: none;
 }
@@ -297,17 +325,6 @@ body {
     display: table;
     margin: 0 auto;
 } 
-
-/* ------------------------------------------------------------------------ */
-/* TAGS */
-
-.tag-container {
-	padding: 0 20px;
-}
-
-/*.select2-container-multi .select2-choices .select2-search-field input {
-	padding: 5px 15px;
-}*/
 
 /* ------------------------------------------------------------------------ */
 /* FIXED SOCIAL ICONS */
