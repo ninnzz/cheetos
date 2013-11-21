@@ -101,21 +101,21 @@ class Messages extends Kiel_Controller{
 			$key_word = explode(' ',trim($msg_arr[0]));
 			if(trim(strtolower($key_word[0])) === 'gohelp'){
 				$source_type = null;
-				$source = 'GOHELP';
+				$source = 'as87d19kjd.gohelp.web';
 				if(count($msg_arr) === 3 ){
 					$addr = isset($key_word[1])?$key_word[1]:"";
 					$name = $msg_arr[1];
 					$message = $msg_arr[2];
-					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type,null);
 				} else if(count($msg_arr) === 2){
 					$addr = isset($key_word[1])?$key_word[1]:"";
 					$message = $msg_arr[1];
 					
-					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,$source,$source_type,null);
 				} else{
 					if(trim($smsMsg) !== ""){
 						$message = $smsMsg;
-						$res = $this->feed_model->add_messages($user_no,null,null,$message,$source,null);
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,$source,null,null);
 					}
 				}
 
@@ -132,16 +132,16 @@ class Messages extends Kiel_Controller{
 					$name = $msg_arr[1];
 					$message = $msg_arr[2];
 
-					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null);
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null,null);
 				} else if(count($msg_arr) === 2){
 					$addr = $msg_arr[0];
 					$message = $msg_arr[1];
 
-					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null);
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null,null);
 				} else {
 					if(trim($smsMsg) !== ""){
 						$message = $smsMsg;
-						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null);
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null,null);
 					}
 				}
 			}
@@ -169,16 +169,16 @@ class Messages extends Kiel_Controller{
 			$name = $msg_arr[1];
 			$message = $msg_arr[2];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.smart',null);
+			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.smart',null,null);
 		} else if(count($msg_arr) === 2){
 			$addr = $msg_arr[0];
 			$message = $msg_arr[1];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.smart',null);
+			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.smart',null,null);
 		} else {
 			if(trim($smsMsg) !== ""){
 				$message = $smsMsg;
-				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.smart',null);
+				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.smart',null,null);
 			}
 		}
 
@@ -226,16 +226,16 @@ class Messages extends Kiel_Controller{
 					$name = $msg_arr[1];
 					$message = $msg_arr[4];	
 					$user_no = $msg_arr[2];	
-					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type,null);
 				} else if(count($msg_arr) === 4){
 					$message = $msg_arr[1].'/'.$msg_arr[2].'/'.$msg_arr[3];
-					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type,null);
 				} else if(count($msg_arr) === 3){
 					$message = $msg_arr[1].'/'.$msg_arr[2];
-					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type,null);
 				} else if(count($msg_arr) === 2){
 					$message = $msg_arr[1];
-					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type);
+					$res = $this->feed_model->add_messages(null,null,null,$message,$source,$source_type,null);
 				} else{
 					$res = false;
 				}
