@@ -323,7 +323,7 @@
           <hr/> 
           <div class="share-container">
             <a class="help" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
-            &nbsp;&nbsp;YOU and 3 people are helping
+            <!--&nbsp;&nbsp;YOU and 3 people are helping-->
             <div class="pull-right">
               <div class="social-item">
                 <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
