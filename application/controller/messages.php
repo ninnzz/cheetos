@@ -95,6 +95,9 @@ class Messages extends Kiel_Controller{
 
 		$msg_arr = explode('/',$smsMsg);
 
+		error_log($data['message']);
+		error_log("----------------------------------------------");
+
 		/*****FOR GOHELP******/
 
 		if(isset($msg_arr[0])){
