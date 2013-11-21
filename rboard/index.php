@@ -132,7 +132,7 @@
             <div id="loginToFacebook" class="modal-body">
               <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
             </div>
-
+            <br/>
             <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
             <br />
             <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
@@ -195,6 +195,17 @@
           </div>
           <div>
             <br/>
+             <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
+              <div align="center">
+                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" style="margin-right: 40px"></a> 
+                <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="70px" ></a>
+                <br /><br />
+                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
+                <br/><br/>
+                 <a href="http://gohelpph.com/" target="_blank" title="#gohelpph"><img src="img/gohelp.png" height=" 50px" style=" width: 185px"></a> 
+                 <a href="http://readyph.com/" target="_blank" title="#readyph"><img src="img/readyph.png" height="50px" style="width:180px "></a> 
+              </div>
+              <br />
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
               <div align="center">
                 <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
@@ -205,14 +216,7 @@
                 <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
               </div>
               <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
-              <div align="center">
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" style="margin-right: 40px"></a> 
-                <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="70px" ></a>
-                <br /><br />
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
-              </div>
-              <br />
+           
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>

@@ -200,6 +200,7 @@ $( function () {
 				// The response object is returned with a status field that lets the app know the current
 				// login status of the person. In this case, we're handling the situation where they 
 				// have logged in to the app.
+				console.log('eee');
 				$("#loginToFacebook").hide();
 				$("#authenticated").show();
 				FB.api('/me', function(response) {
@@ -385,6 +386,58 @@ $( function () {
 			}
 		}
 	});
+
+
+	window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '214855112027480', // App ID
+	      channelUrl : 'reliefboard.ocm', // Channel File
+	      status     : true, // check login status
+	      cookie     : true, // enable cookies to allow the server to access the session
+	      xfbml      : true  // parse XFBML
+	    });
+
+	    FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				// the user is logged in and has authenticated your
+				// app, and response.authResponse supplies
+				// the user's ID, a valid access token, a signed
+				// request, and the time the access token 
+				// and signed request each expire
+				var uid = response.authResponse.userID;
+				var accessToken = response.authResponse.accessToken;
+
+				FB.api('/me', function(response) {
+					$("#authenticated-name").text(response.name);
+				});
+
+				$("#loginToFacebook").hide();
+				$("#authenticated").show();
+
+			} else if (response.status === 'not_authorized') {
+			// the user is logged in to Facebook, 
+			// but has not authenticated your app
+			} else {
+			// the user isn't logged in to Facebook.
+			}
+		});
+
+		FB.Event.subscribe('auth.authResponseChange', function(response) {
+			// Here we specify what we do with the response anytime this event occurs. 
+			if (response.status === 'connected') {
+				// The response object is returned with a status field that lets the app know the current
+				// login status of the person. In this case, we're handling the situation where they 
+				// have logged in to the app.
+				$("#loginToFacebook").hide();
+				$("#authenticated").show();
+				FB.api('/me', function(response) {
+					$("#authenticated-name").text(response.name);
+				});
+			}
+		});
+	  };
+
+	
 
 
 

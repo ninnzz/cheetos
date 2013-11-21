@@ -139,32 +139,35 @@
           </h3>
         </div>
 
-        <div id="sidebar" class="col-md-12 text-center">
-          <div>
+
+
+        <div class="col-md-12 text-center">
             <br/>
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
-              <div align="center">
-                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
-                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
-                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
-               </br>
-                <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
-                <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
-              </div>
-              <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
+             <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
               <div align="center">
                 <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" style="margin-right: 40px"></a> 
                 <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="70px" ></a>
                 <br /><br />
                 <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
+                <br/><br/>
+                 <a href="http://gohelpph.com/" target="_blank" title="#gohelpph"><img src="img/gohelp.png" height=" 50px" style=" width: 185px"></a> 
+                 <a href="http://readyph.com/" target="_blank" title="#readyph"><img src="img/readyph.png" height="50px" style="width:180px "></a> 
               </div>
               <br />
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
+              <div align="center">
+                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
+                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
+                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
+                <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
+                <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
+                <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
+              </div>
+              <br />
+           
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>
-        </div>
 
     </div>
 
