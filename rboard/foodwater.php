@@ -42,6 +42,8 @@
     <link href="css/select2.css" rel="stylesheet" />
     <link href="css/select2-bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
+
+
   </head>
 
   <body>
@@ -84,38 +86,8 @@
           <ul class="nav navbar-nav navbar-left">
             <li> <a href="about.php">About</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-            <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
-            <div id="search-filter">
-              <b>Filter Search</b>
-              
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked="checked" id="filter-name" class="filter"> Name
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked="checked" id="filter-location" class="filter"> Location
-                </label>
-              </div>
-
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" checked="checked" id="filter-message" class="filter"> Message
-                </label>
-              </div>
-
-            </div>
-            </li>
-
-            
-          </ul>
         </nav>
-
-
+      
       
       </div>
 
@@ -126,108 +98,25 @@
     <!-- START BODY -->
 
     <div id="main-container" class="container">
-      <div class="col-lg-7 col-md-7" style="background-color:#EBEAEA;margin-top:30px;margin-bottom:20px;">
-        <div id="posting-container">
-          
-            <div id="loginToFacebook" class="modal-body">
-              <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
-            </div>
-            <br/>
-            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
-            <br />
-            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
-            <br />
-            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
-            <br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
-            <br/>
-            <input id="form-tag" class="form-control" type="text" placeholder="Tag" />
-  <!--             <br />
-              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
-            <br />
-            <div align="center">
-              <button id="viawebSend" type="button" class="btn btn-primary">ASK FOR HELP</button>
-            </div>
-          </div>
-      </div>
 
-        <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
+      <div class="row">
+        <div id="search-copy-container" class="col-md-12" style=" margin: 10px 0;">
           <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
-          <h3>Search Results:</h3>
+          
+        </div>
+        <div id="copy-container"  class="col-md-12" style=" margin: 10px 0;">
+          <div id="copy"  class="col-md-12 text-center" >
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">Food and water</h2>
+          </div>
+          
+        
         </div>
 
-        <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
-          <div id="copy">
-            <b style="color: #294360; font-weight: 800; font-size: 22px;">
-              A service for Filipinos affected by  Typhoon Yolanda / Haiyan
-            </b>
-          </div>
-          <div class="copy3">
-            <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
-              We launched this service to help the Philippine Yolanda Typhoon victims.
-            </p> -->
-            <p style="color: #3c4958; font-weight: 800; font-size: 18px;">
-            How to post to Reliefboard
-            </p>
-            1. Send a <b>FREE SMS</b> to: 
-            <br /> 
-            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
-            <b style="font-size: 20px;">68009 (SMART) </b>
-            <br />
-            (from within the Philippines)
-            <br /><br />
-            2. Follow this format:
-            <br />
-            <b style="font-size: 18px;">Location/Name/Message</b>
-            <br /><br />
-            Example:<br />
-            <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
-            <br /><br />
-            3. Your message will automatically be posted on ReliefBoard.com
-          </div>
-          <div>
-            <h3>Want to help?</h3>
-            <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="http://www.reliefboard.com/rboard/relief.php"  title="Find missing people" id="find_missing_people">Relief Goods</a><br/>
-              <a href="http://www.reliefboard.com/rboard/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
-              <a href="http://www.reliefboard.com/rboard/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
-              <a href="http://www.reliefboard.com/rboard/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a><br/>
-            </p>
-          </div>
-          <div>
-            <br/>
-             <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
-              <div align="center">
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" style="margin-right: 40px"></a> 
-                <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="70px" ></a>
-                <br /><br />
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
-                <br/><br/>
-                 <a href="http://gohelpph.com/" target="_blank" title="#gohelpph"><img src="img/gohelp.png" height=" 50px" style=" width: 185px"></a> 
-                 <a href="http://readyph.com/" target="_blank" title="#readyph"><img src="img/readyph.png" height="50px" style="width:180px "></a> 
-              </div>
-              <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
-              <div align="center">
-                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
-                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
-                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
-                <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
-                <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
-              </div>
-              <br />
-           
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
-            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
-          </div>
-        </div>
 
-        <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
+        <div class="col-lg-10" id="msg-single">
           <div id="notif-container">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 
-          <div id="msg"></div>
           <div id="results"></div>
         </div>
 
@@ -256,6 +145,35 @@
     </div>
  -->
 
+    <div class="modal fade" id="viawebModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div id="loginToFacebook" class="modal-body">
+            <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
+            <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
+          </div>
+
+          <div id="authenticated" class="modal-body" style="display: none;">
+            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
+            <br /><br />
+            <b>Details: </b>
+            <br /><br />
+            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?" />
+            <br />
+            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
+            <br />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number (Optional)" />
+<!--             <br />
+              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
+            <br /><br />
+            <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="text/templ" id="twTemplate">
       <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
     </script>
@@ -280,19 +198,14 @@
 
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
-      
-      <div class="time-container<%= d.id %> time-container">
-        <div class="time-asset"></div>
-        <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
-        <div class="status-data"><span class="status-pending">PENDING</span></div>
-      </div>
-
       <div class="post<%= d.id %> post" data-id="<%= d.id %>">
-          <div class="pull-right">
-            <a class="share" target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">REPORT</a>
+          
+          <div class="time-container">
+            <div class="time-asset"></div>
+            <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
           </div>
 
-          <p class="msg-data">  
+          <div class="from-app">
             <% if(d.source != null ) { %>
               <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
                 
@@ -311,13 +224,19 @@
                 <% } %>
 
                   <span class="app-name"><%= d.app_name %></span>
+
               <% } %>
             <% } %>
-            
-            <br/><br/>
+          </div>
+
+
+
+          <p class="msg-data">
             
             <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            <br/><br/>  
+            
+             <br /> <br />
+
             <% if( d.sender != null ) { %>
               <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
             <% } %>
@@ -325,14 +244,17 @@
             <% if( d.place_tag != null ) { %>
               | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
             <% }%>
-        
+
           </p>
 
-          <hr/> 
+          <!--<div class="tag-container">
+            <br /><br />
+            <input id="tag_<%= d.id %>" type="hidden" class="form-control" />
+            <br /> <br />
+          </div>-->
+          
           <div class="share-container">
-            <a class="help" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
-            <!--&nbsp;&nbsp;YOU and 3 people are helping-->
-            <div class="pull-right">
+            <div class="pull-left">
               <div class="social-item">
                 <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
               </div>  
@@ -345,7 +267,12 @@
                 </a>
               </div>
             </div>
+            <div class="pull-right">
+              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
+              <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
+            </div>
           </div>          
+
         </div>
         <% } %>
     </script>
@@ -357,8 +284,6 @@
     <script src="js/underscore.min.js"></script>
     <script src="js/select2.min.js"></script>
     <script src="js/time.js"></script>
-    <script src="js/build.js"></script>
-
 
     <!--USER REPORT-->
     <script type="text/javascript">
@@ -371,7 +296,58 @@
     })();
     </script>
 
+
+    <script>
+      var offset = 0;
+
+      function post_template (d) {
+        var html = _.template( $("#post").html() , {d:d} );
+        return html;
+      }
+
+      function search(){
+        $.ajax( {
+          type: "GET",
+          url: "http://www.reliefboard.com/search?query=food%20water&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+        } ).done( function ( result ) {
+
+          var html = "";
+          var title = $("title").text();
+          title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
+
+          _.each( result.data.result, function(d) {
+
+              html = html + post_template(d);
+
+          });
+          $( "#results" ).append( html );
+          $( "#results" ).css('display', 'block');
+          $( ".time" ).prettyDate();
+          
+          FB.XFBML.parse();
+          $.getScript('http://platform.twitter.com/widgets.js');
+        });
+      } 
+
+      $(document).on("click","#back-to-feed",function(e) {
+        e.preventDefault();
+        window.location = "http://www.reliefboard.com/rboard/";
+      });
+
+      $(window).scroll(function () {
+        if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
+            offset = offset + 5;         
+            search();
+        }
+      });
+
+
+      search();
+    </script>
+
     <!-- END BODY -->
+
+
 
   </body>
 

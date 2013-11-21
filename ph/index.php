@@ -17,7 +17,7 @@
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic-205.jpg" />
+    <meta property="og:image" content="http://www.reliefboard.com/ph/img/profile-pic-205.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
     <meta property="og:description" "Need help? Looking for someone? Want to share information? We help you get the word out." />
 
@@ -188,10 +188,10 @@
           <div>
             <h3>Want to help?</h3>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="http://www.reliefboard.com/rboard/relief.php"  title="Find missing people" id="find_missing_people">Relief Goods</a><br/>
-              <a href="http://www.reliefboard.com/rboard/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
-              <a href="http://www.reliefboard.com/rboard/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
-              <a href="http://www.reliefboard.com/rboard/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a><br/>
+              <a href="http://www.reliefboard.com/ph/relief.php"  title="Find missing people" id="find_missing_people">Relief Goods</a><br/>
+              <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
+              <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
+              <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a><br/>
             </p>
           </div>
           <div>
@@ -214,12 +214,12 @@
                 <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
                 <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
                 <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
-                <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
+                <!-- <a href="http://www.reliefboard.com/ph/apidoc.php">API DOCUMENTATION</a> -->
               </div>
               <br />
            
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
-            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/ph/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>
         </div>
 
@@ -330,17 +330,17 @@
 
           <hr/> 
           <div class="share-container">
-            <a class="help" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
             <!--&nbsp;&nbsp;YOU and 3 people are helping-->
             <div class="pull-right">
               <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
               </div>  
               <div class="social-item">
-                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-type="button_count"></div>
+                <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>
               <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                   Tweet
                 </a>
               </div>
