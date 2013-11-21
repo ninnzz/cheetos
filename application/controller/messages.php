@@ -93,10 +93,7 @@ class Messages extends Kiel_Controller{
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		$msg_arr = explode('/',$smsMsg);
-
-		error_log($data['message']);
-		error_log("----------------------------------------------");
+		$msg_arr = explode('/',urldecode($smsMsg));
 
 		/*****FOR GOHELP******/
 
