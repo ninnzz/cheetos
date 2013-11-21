@@ -197,6 +197,11 @@
         $.getScript('http://platform.twitter.com/widgets.js');
         FB.XFBML.parse();
       });
+
+      $(document).on("click","#back-to-feed",function(e) {
+        e.preventDefault();
+        window.location = "http://www.reliefboard.com/";
+      });
       
     </script>
 
