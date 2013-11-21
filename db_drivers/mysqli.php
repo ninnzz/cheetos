@@ -23,6 +23,19 @@
    			return rtrim($str,',');
    		}
 
+   		private function get_update_clause($data){
+   			$str = '';
+   			foreach ($data as $key => $value) {
+   				
+   				if(gettype($value) === "string"){
+   					$value = "'{$value}'";
+   				}
+				$str .= "  ".$key." = ".$value." ,";
+	   			
+   			}
+   			return rtrim($str, ',');
+   		}
+
    		private function get_where_clause($data)
    		{
    			$str = "WHERE ";
@@ -252,23 +265,22 @@
 
 			$query_message = '';
 			$row_count = 0;
-			$res = array();
-
+		
 			if(!$table){
 				header("HTTP/1.0 500 Internal Server Error");
     			throw new Exception("Database Error :: Unknown table", 1);
 			}
-			if(!$data){
+			if(!$data || !is_array($data) || count($data) == 0){
 				header("HTTP/1.0 500 Internal Server Error");
-    			throw new Exception("Database Error :: No data to insert", 1);	
+    			throw new Exception("Database Error :: Invalid Dataset", 1);	
 			}
-			if(!is_array($data)){
+			if($where && gettype($where) === 'array' && count($where) != 0){
+				$where = $this->get_where_clause($where);
+			} else {
 				header("HTTP/1.0 500 Internal Server Error");
-    			throw new Exception("Invalid Data Type", 1);	
+    			throw new Exception("Database Error :: Invalid where clause", 1);
 			}
 
-
-			// $link = mysqli_connect(DBConfig::DB_HOST, DBConfig::DB_USERNAME, DBConfig::DB_PASSWORD, DBConfig::DB_NAME) or die('Database Connection Error');
 			$link = mysqli_connect($this->host,$this->username ,$this->password,$this->db_name) or die('Database Connection Error');
 			if($link->connect_errno > 0){
     			$err = $link->connect_error;
@@ -278,8 +290,12 @@
 			}
 			$link->autocommit(FALSE);
 
-			$query_message = "INSERT into {$table} values({$data});";
+			$data = $this->get_update_clause($data);
 			
+			$query_message = "UPDATE {$table} SET {$data} {$where};";
+			
+			print_r($query_message);
+			die();
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$errNo = $link->errno;
@@ -288,6 +304,7 @@
  				return array('errcode'=>$errNo ,'error'=>$err,'affected_rows'=>$affected);
 			}
 			$res['affected_rows'] = $link->affected_rows;
+			$res['query'] = $query_message;
 			
 			$link->commit();
 			$link->close() or die('no links to close');
