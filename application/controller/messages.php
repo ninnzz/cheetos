@@ -4,8 +4,8 @@ class Messages extends Kiel_Controller{
 	public function feed_get()
 	{
 		$this->load_model('feed_model');
-		$offset    = $this->get_args['offset'];
-		$limit     = $this->get_args['limit'];
+		$offset    = isset($this->get_args['offset'])?$this->get_args['offset']:0;
+		$limit     = isset($this->get_args['limit'])?$this->get_args['limit']:10;
 		$parent_id = isset($this->get_args['parent_id'])?$this->get_args['parent_id']:NULL; 
 		
 		if(isset($this->get_args['parent_id'])){
@@ -30,11 +30,10 @@ class Messages extends Kiel_Controller{
 
 	public function feed_item_get()
 	{
-		if($this->get_args['message_id'] && isset($this->get_args['message_id']) && $this->get_args['message_id'] !== NULL){
+		$this->required_fields(array('message_id'),$this->get_args);
 			$this->load_model('feed_model');
 			$res = $this->feed_model->single_item($this->get_args['message_id']);
 			$this->response(array('status'=>'Success','data'=>$res),200);
-		}
 	}
 
 	public function feed_post()
@@ -94,25 +93,60 @@ class Messages extends Kiel_Controller{
 		$user_no = $data['number'];
 		$id = $data['message_id'];
 
-		error_log($smsMsg);
 		$msg_arr = explode('/',$smsMsg);
-		if(count($msg_arr) === 3){
-			$addr = $msg_arr[0];
-			$name = $msg_arr[1];
-			$message = $msg_arr[2];
 
-			$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null);
-		} else if(count($msg_arr) === 2){
-			$addr = $msg_arr[0];
-			$message = $msg_arr[1];
+		/*****FOR GOHELP******/
 
-			$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null);
-		} else {
-			if(trim($smsMsg) !== ""){
-				$message = $smsMsg;
-				$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null);
+		if(isset($msg_arr[0])){
+			$key_word = explode(' ',trim($msg_arr[0]));
+			if(trim(strtolower($key_word[0])) === 'gohelp'){
+				$source_type = null;
+				$source = 'GOHELP';
+				if(count($msg_arr) === 3 ){
+					$addr = isset($key_word[1])?$key_word[1]:"";
+					$name = $msg_arr[1];
+					$message = $msg_arr[2];
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,$source,$source_type);
+				} else if(count($msg_arr) === 2){
+					$addr = isset($key_word[1])?$key_word[1]:"";
+					$message = $msg_arr[1];
+					
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,$source,$source_type);
+				} else{
+					if(trim($smsMsg) !== ""){
+						$message = $smsMsg;
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,$source,null);
+					}
+				}
+
+			}
+
+
+
+
+			/*****FOR RELIEFBOARD******/
+
+			else {
+				if(count($msg_arr) === 3){
+					$addr = $msg_arr[0];
+					$name = $msg_arr[1];
+					$message = $msg_arr[2];
+
+					$res = $this->feed_model->add_messages($user_no,$addr,$name,$message,'sms.semaphore',null);
+				} else if(count($msg_arr) === 2){
+					$addr = $msg_arr[0];
+					$message = $msg_arr[1];
+
+					$res = $this->feed_model->add_messages($user_no,$addr,null,$message,'sms.semaphore',null);
+				} else {
+					if(trim($smsMsg) !== ""){
+						$message = $smsMsg;
+						$res = $this->feed_model->add_messages($user_no,null,null,$message,'sms.semaphore',null);
+					}
+				}
 			}
 		}
+
 		if($res)		
 		{	
 			$message = urldecode($message);
