@@ -303,6 +303,8 @@
 
     <script>
       var offset = 0;
+      var is_search_mode = false;
+
       $("#search").css('display', 'block');
 
       function post_template (d) {
@@ -310,10 +312,12 @@
         return html;
       }
 
-      function search(){
+      function search(query){
+
+        var query = (typeof query === "undefined") ? "missing" : query;
         $.ajax( {
           type: "GET",
-          url: "http://www.reliefboard.com/search?query=missing&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+          url: "http://www.reliefboard.com/search?query="+query+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
         } ).done( function ( result ) {
 
           var html = "";
@@ -325,7 +329,13 @@
               html = html + post_template(d);
 
           });
-          $( "#results" ).append( html );
+          if(offset == 0){
+            $( "#results" ).html( html );
+          }
+          else{
+            $( "#results" ).append( html );
+          }
+          
           $( "#results" ).css('display', 'block');
           $( ".time" ).prettyDate();
           
@@ -339,10 +349,36 @@
         window.location = "http://www.reliefboard.com/rboard/";
       });
 
+      $(document).on("keypress","#search",function(e) {
+        
+        if(e.which == 13){
+          var value = $(this).val();
+          is_search_mode = true;
+          offset = 0;
+          search(value);
+        }
+
+      });
+
+      $(document).on("keyup","#search",function(e) {
+        
+        if(!$(this).val()){
+          is_search_mode = false;
+          offset = 0;
+          search();
+        }
+        
+      });
+
       $(window).scroll(function () {
         if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
-            offset = offset + 5;         
-            search();
+            offset = offset + 5;
+            if(is_search_mode){
+              search($("#search").val());
+            } else{
+              search();
+            }        
+            
         }
       });
 
