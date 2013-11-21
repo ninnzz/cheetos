@@ -100,75 +100,20 @@
     <div id="main-container" class="container">
 
       <div class="row">
-        <div id="search-copy-container" class="col-lg-7 col-md-7" style=" margin: 10px 0;">
+        <div id="search-copy-container" class="col-md-12" style=" margin: 10px 0;">
           <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
           
         </div>
-        <div id="copy-container" class="col-lg-7 col-md-7">
-          <div id="copy">
+        <div id="copy-container"  class="col-md-12" style=" margin: 10px 0;">
+          <div id="copy"  class="col-md-12 text-center" >
             <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">Help rescue</h2>
           </div>
           
         
         </div>
 
-        
 
-        <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
-          <div id="copy">
-            <b style="color: #294360; font-weight: 800; font-size: 22px;">
-              A service for Filipinos affected by  Typhoon Yolanda / Haiyan
-            </b>
-          </div>
-          <div class="copy3">
-            <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
-              We launched this service to help the Philippine Yolanda Typhoon victims.
-            </p> -->
-            <p style="color: #3c4958; font-weight: 800; font-size: 18px;">
-            How to post to Reliefboard
-            </p>
-            1. Send a <b>FREE SMS</b> to: 
-            <br /> 
-            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
-            <b style="font-size: 20px;">68009 (SMART) </b>
-            <br />
-            (from within the Philippines)
-            <br /><br />
-            2. Follow this format:
-            <br />
-            <b style="font-size: 18px;">LOCATION/NAME/MESSAGE</b>
-            <br /><br />
-            Example:<br />
-            <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
-            <br /><br />
-            3. Your message will automatically be posted on ReliefBoard.com
-          </div>
-          <div>
-            <br/>
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
-              <div align="center">
-                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
-                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
-                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
-                <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
-                <!-- <a href="http://www.reliefboard.com/rboard/apidoc.php">API DOCUMENTATION</a> -->
-              </div>
-              <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
-              <div align="center">
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" style="margin-right: 40px"></a> 
-                <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="70px" ></a>
-                <br /><br />
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
-              </div>
-              <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Develop</p>
-            <p style="color: #294360; font-weight: 800; font-size: 22px;"><a href="http://www.reliefboard.com/rboard/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
-          </div>
-        </div>
-
-        <div class="col-lg-7 col-md-7" style="float: left; margin-top: -20px;">
+        <div class="col-lg-10" id="msg-single">
           <div id="notif-container">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 

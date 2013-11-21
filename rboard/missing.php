@@ -117,7 +117,7 @@
         </div>
         
 
-        <div class="col-lg-7" id="msg-single" >
+        <div class="col-lg-10" id="msg-single" >
           <div id="notif-container">
             <a href="#" class="notif" title="Click to Show">There are <span id="count"></span> new post(s). Click to Show.</a>
           </div> 
