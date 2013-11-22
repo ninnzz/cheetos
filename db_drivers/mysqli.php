@@ -294,8 +294,7 @@
 			
 			$query_message = "UPDATE {$table} SET {$data} {$where};";
 			
-			print_r($query_message);
-			die();
+
 			if(!$result = $link->query($query_message)){
 				$err = $link->error;
 				$errNo = $link->errno;

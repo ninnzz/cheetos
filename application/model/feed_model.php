@@ -93,6 +93,11 @@ class Feed_model extends Kiel_Model{
 		$data.= "'pending','{$fb_id}','{$tags}',{$expires}";
 
 		$res = $this->data_handler->insert('messages',$data);
+		if($res){
+			if(!$parent_id){
+				//add here ung counter ng help
+			}
+		}
 		$res['id'] = $id;
 		return $res;
 	}
