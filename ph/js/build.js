@@ -302,7 +302,7 @@ $( function () {
 
 	$(document).on("click",".share",function(e) {
 		e.preventDefault();
-		c = confirm("Do you want to report this post as ABUSIVE?");
+		c = confirm("Are you sure you want to mark it as SPAM or ABUSIVE?");
 		if(!c)
 			return false;
 
