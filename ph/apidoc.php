@@ -14,7 +14,7 @@
 				color: #333;
 			}
 			body{
-				background-image: url(http://reliefboard.com/rboard/img/bg.png);
+				background-image: url(http://reliefboard.com/ph/img/bg.png);
 			}
 			header{
 				margin-top: -20px;
@@ -56,7 +56,7 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="http://reliefboard.com/rboard/img/logo.png" title="ReliefBoar" alt="ReliefBoard"/></h1>
+			<h1><img src="http://reliefboard.com/ph/img/logo.png" title="ReliefBoar" alt="ReliefBoard"/></h1>
 		</header>
 		<div id="container">
 			<h3>Retrieve all messages/feeds</h3>
