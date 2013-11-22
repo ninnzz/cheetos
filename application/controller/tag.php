@@ -14,8 +14,12 @@ class Tag extends Kiel_Controller
 		$res = $this->tag_model->get_tag($this->get_args['post_id']);
 
 		if($res['result_count'] != 0){	
-			$t = explode(',', urldecode($res['result'][0]['tags']));
-			$res = (object)array('tag_count'=>count($t),'tags'=>$t);
+			if(trim($t) !== ""){
+				$t = explode(',', urldecode($res['result'][0]['tags']));
+				$res = (object)array('tag_count'=>count($t),'tags'=>$t);
+			} else {
+				$res = (object)array('tag_count'=>0,'tags'=>NULL);
+			}
 		} else {
 			$res = (object)array('result_count'=>0,'message'=>"Cannot find post");
 		}
