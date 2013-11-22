@@ -51,6 +51,7 @@
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
     <link href="css/post.css" rel="stylesheet" />
+    <link href="js/select2/select2.css" rel="stylesheet"/>
 
   </head>
 
@@ -76,7 +77,7 @@
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
               FB.api('/me', function(response) {
-                $("#label_comment_message").html('Respond as ' + response.first_name + " " + response.last_name);
+                $("#label_comment_message").html('Post as ' + response.first_name + " " + response.last_name);
               });
             } else if (response.status === 'not_authorized') {
                $("#label_comment_message").html('Please authorize Reliefboard');
@@ -164,6 +165,10 @@
                 <?php } ?>
 
               </p>
+
+         <!--      <div>
+                <input type="hidden" id="tagSelect" value="brown,red,green" style="width:300px;" /><br />  
+              </div> -->
               
               <div class="share-container">
                   <br />
@@ -198,7 +203,7 @@
                       <label for="comment_message" id="label_comment_message">Login to respond</label>
                       <textarea class="form-control" rows="3" id="comment_message" ></textarea>
                     </div>
-                    <div type="button" class="btn btn-danger" id="comment_via_web">Respond</div>
+                    <div type="button" class="btn btn-danger" id="comment_via_web">Post</div>
                     <div  class="pull-right" id="posting_loader" >Posting....</div>
                   </div>
                 </div> 
@@ -231,7 +236,7 @@
 
           </div>
 
-          <div class="from-app">
+          <div class="from-app" style="padding: 15px 0px 0px 0px;">
             <% if(d.source != null ) { %>
               <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
                 
@@ -255,6 +260,8 @@
             <% } %>
           </div>
 
+          <span class="times" data-time="<?php echo $data['date_created']; ?>"></span>
+
         </div>
         <% } %>
     </script>
@@ -263,6 +270,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
     <script src="js/time.js"></script>
+    <script src="js/select2/select2.js"></script>
 
     <script type="text/javascript">
       var message_id = $(".comments-container").attr('data-id');
@@ -321,6 +329,7 @@
             });
            
             $(".comments-container .msg-data ").append(html);
+            $(".times").prettyDate();
            
         });// end of ajax
 
@@ -406,6 +415,8 @@
         $("#comment_message").attr('disabled', 'true');
         commenting = true;
       }
+       $('#tagSelect').select2({ tags: ["red", "green", "blue"] });
+      
     </script>
 
 

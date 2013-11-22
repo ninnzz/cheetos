@@ -153,8 +153,8 @@ $( function () {
 		var title = $("title").text();
 		title = title.replace(/\([1-9][0-9]{0,2}\)/g, '');
 		$("title").text(title);
-		FB.XFBML.parse();
 		$.getScript('http://platform.twitter.com/widgets.js');
+		FB.XFBML.parse();
 	});
 
 
