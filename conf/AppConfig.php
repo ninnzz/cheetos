@@ -72,14 +72,14 @@
 	 */
 	$config['allowed_method_types'] = array('POST','GET','PUT','DELETE');
 
-	$config['index_path_redirect'] = "rboard";
+	$config['index_path_redirect'] = "ph";
 
 	/*
 	 * Sets the application folder path if web application is in the same folder as API
 	 * 
 	 *
 	 */
-	$config['application_path'] = "/rboard";
+	$config['application_path'] = "/ph";
 
 	$config['load_db'] = TRUE;
 ?>
