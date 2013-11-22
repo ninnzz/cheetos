@@ -203,7 +203,11 @@
               <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
               <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
               <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a><br/>
+              <a href="places.php?keyword=tacloban"  title="Find missing people" id="find_missing_people">Tacloban</a><br/>
+              <a href="places.php?keyword=cebu"  title="Find missing people" id="find_missing_people">Cebu</a><br/>
             </p>
+
+
           </div>
           <div>
             <br/>

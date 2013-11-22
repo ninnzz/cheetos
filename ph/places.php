@@ -212,16 +212,39 @@
       }
     </script>
 
+    <script type="text/javascript">
+      function convertToLinks(text) {
+        var replaceText, replacePattern1;
+         
+        //URLs starting with http://, https://
+        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
+         
+        //URLs starting with "www."
+        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
+         
+        //returns the text result
+         
+        return replacedText;
+      }
+    </script>
+
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
+      
+      <div class="time-container<%= d.id %> time-container">
+        <div class="time-asset"></div>
+        <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
+        <!--<div class="status-data"><span class="status-pending">PENDING</span></div>-->
+      </div>
+
       <div class="post<%= d.id %> post" data-id="<%= d.id %>">
-          
-          <div class="time-container">
-            <div class="time-asset"></div>
-            <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
+          <div class="pull-right">
+            <a class="share" target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">Mark as Spam</a>
           </div>
 
-          <div class="from-app">
+          <p class="msg-data">  
             <% if(d.source != null ) { %>
               <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
                 
@@ -240,19 +263,13 @@
                 <% } %>
 
                   <span class="app-name"><%= d.app_name %></span>
-
               <% } %>
             <% } %>
-          </div>
-
-
-
-          <p class="msg-data">
+            
+            <br/><br/>
             
             <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            
-             <br /> <br />
-
+            <br/><br/>  
             <% if( d.sender != null ) { %>
               <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
             <% } %>
@@ -260,17 +277,14 @@
             <% if( d.place_tag != null ) { %>
               | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
             <% }%>
-
+        
           </p>
 
-          <!--<div class="tag-container">
-            <br /><br />
-            <input id="tag_<%= d.id %>" type="hidden" class="form-control" />
-            <br /> <br />
-          </div>-->
-          
+          <hr/> 
           <div class="share-container">
-            <div class="pull-left">
+            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            <!--&nbsp;&nbsp;YOU and 3 people are helping-->
+            <div class="pull-right">
               <div class="social-item">
                 <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
               </div>  
@@ -283,12 +297,7 @@
                 </a>
               </div>
             </div>
-            <div class="pull-right">
-              <a class="comment" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
-              <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
-            </div>
           </div>          
-
         </div>
         <% } %>
     </script>
@@ -343,8 +352,8 @@
           $( "#results" ).css('display', 'block');
           $( ".time" ).prettyDate();
           
-          FB.XFBML.parse();
           $.getScript('http://platform.twitter.com/widgets.js');
+          FB.XFBML.parse();
         });
       } 
 
