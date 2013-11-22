@@ -324,7 +324,7 @@ class Messages extends Kiel_Controller{
 		if( trim($loc) != "" )
 			$loc = $loc . ' - ' ;
 
-		$url = "http://www.reliefboard.com/rboard/post.php?id=". $id;
+		$url = "http://www.reliefboard.com/ph/post.php?id=". $id;
 
 		// ACCESS TOKEN BITLY = ad38c591217caccf37cbed3b4e98b36470c4cf53
 		

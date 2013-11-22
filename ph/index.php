@@ -30,7 +30,6 @@
 
       ga('create', 'UA-45702678-1', 'reliefboard.com');
       ga('send', 'pageview');
-
     </script>
 
     <!-- FONTS -->
@@ -38,9 +37,11 @@
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
     <!-- CSS CODE -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/select2.css" rel="stylesheet" />
-    <link href="css/select2-bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <!--     
+      <link href="css/select2.css" rel="stylesheet" />
+      <link href="css/select2-bootstrap.css" rel="stylesheet" /> 
+    -->
     <link href="css/build.css" rel="stylesheet" />
   </head>
 
@@ -126,29 +127,39 @@
     <!-- START BODY -->
 
     <div id="main-container" class="container">
+
       <div class="col-lg-7 col-md-7" style="background-color:#EBEAEA;margin-top:30px;margin-bottom:20px;">
+        
         <div id="posting-container">
           
-            <div id="loginToFacebook" class="modal-body">
-              <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
+            <div id="loginToFacebook">
+              <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
+              <div class="fb-login-button" data-scope="email" data-width="200"></div>
             </div>
+
             <br/>
-            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
-            <br />
-            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
-            <br />
-            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
-            <br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
-            <br/>
-            <input id="form-tag" class="form-control" type="text" placeholder="Tag" />
-  <!--             <br />
-              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
-            <br />
-            <div align="center">
-              <button id="viawebSend" type="button" class="btn btn-primary">ASK FOR HELP</button>
+
+            <div id="form-container">
+
+              <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
+              <br /><br />
+              <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
+              <br />
+              <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
+              <br />
+              <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+              <br/>
+              <input id="form-tag" class="form-control" type="text" placeholder="Tag" />
+              <br />
+              <div align="center">
+                <button id="viawebSend" type="button" class="btn btn-primary">ASK FOR HELP</button>
+              </div>
+              <br />
+
             </div>
-          </div>
+
+        </div>
+
       </div>
 
         <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
@@ -239,26 +250,6 @@
       </div>
 
     </div>
-
-    <!-- Modal -->
-<!--     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div id="fb"class="fb-like" data-href="" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-            <div id="tw-container"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
-          </div>
-        </div>
-      </div>
-    </div>
- -->
-
-    <script type="text/templ" id="twTemplate">
-      <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
-    </script>
 
     <script type="text/javascript">
       function convertToLinks(text) {
@@ -355,20 +346,20 @@
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
-    <script src="js/select2.min.js"></script>
+    <!--<script src="js/select2.min.js"></script>-->
     <script src="js/time.js"></script>
     <script src="js/build.js"></script>
 
 
     <!--USER REPORT-->
     <script type="text/javascript">
-    var _urq = _urq || [];
-    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
-    (function() {
-    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-    })();
+      var _urq = _urq || [];
+      _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
+      (function() {
+      var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
+      ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
+      })();
     </script>
 
     <!-- END BODY -->
