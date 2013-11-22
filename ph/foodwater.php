@@ -17,7 +17,7 @@
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.reliefboard.com/rboard/img/profile-pic-205.jpg" />
+    <meta property="og:image" content="http://www.reliefboard.com/ph/img/profile-pic-205.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
     <meta property="og:description" "Need help? Looking for someone? Want to share information? We help you get the word out." />
 
@@ -30,6 +30,7 @@
 
       ga('create', 'UA-45702678-1', 'reliefboard.com');
       ga('send', 'pageview');
+
     </script>
 
     <!-- FONTS -->
@@ -82,11 +83,11 @@
         </div>
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav navbar-right">
-            <li> <a class="social-icon twitter-icon" href="https://twitter.com/reliefboardph" target="new" title="Follow us on Twitter"><span></span></a></li>
-            <li><a class="social-icon facebook-icon" href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook"><span></span></a></li>
+          <ul class="nav navbar-nav navbar-left">
+            <li> <a href="about.php">About</a></li>
           </ul>
         </nav>
+      
       
       </div>
 
@@ -103,18 +104,14 @@
           <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
           
         </div>
-        <div class="col-md-12" style=" margin: 10px 0;">
-          <div id="copy" class="col-md-12 text-center">
-            <b style="font-weight: 800; font-size: 22px; color: #294360;">Are you a volunteer who would like to help the victims of the typhoon hayan on the philippines?</b>
-
-              
-            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">Call for volunteers</h2>
+        <div id="copy-container"  class="col-md-12" style=" margin: 10px 0;">
+          <div id="copy"  class="col-md-12 text-center" >
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">Food and water</h2>
           </div>
           
         
         </div>
 
-      
 
         <div class="col-lg-10" id="msg-single">
           <div id="notif-container">
@@ -259,19 +256,19 @@
           <div class="share-container">
             <div class="pull-left">
               <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
               </div>  
               <div class="social-item">
-                <div class="fb-share-button" data-href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-type="button_count"></div>
+                <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>
               <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                   Tweet
                 </a>
               </div>
             </div>
             <div class="pull-right">
-              <a class="comment" href="http://www.reliefboard.com/rboard/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
+              <a class="comment" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Responses</a> 
               <a class="share" target="_blank" data-id="<%= d.id %>" href="#">Report</a>
             </div>
           </div>          
@@ -311,7 +308,7 @@
       function search(){
         $.ajax( {
           type: "GET",
-          url: "http://www.reliefboard.com/search?query=volunteer&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+          url: "http://www.reliefboard.com/search?query=food%20water&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
         } ).done( function ( result ) {
 
           var html = "";
@@ -334,7 +331,7 @@
 
       $(document).on("click","#back-to-feed",function(e) {
         e.preventDefault();
-        window.location = "http://www.reliefboard.com/rboard/";
+        window.location = "http://www.reliefboard.com/ph/";
       });
 
       $(window).scroll(function () {
