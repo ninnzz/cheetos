@@ -203,7 +203,11 @@
               <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
               <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
               <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a><br/>
+              <a href="places.php?keyword=tacloban"  title="Find missing people" id="find_missing_people">Tacloban</a><br/>
+              <a href="places.php?keyword=cebu"  title="Find missing people" id="find_missing_people">Cebu</a><br/>
             </p>
+
+
           </div>
           <div>
             <br/>
@@ -331,7 +335,7 @@
                 <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>
               <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                <a id="tw-<%= d.id %>" href="https://twitter.com/share" data-url="" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                   Tweet
                 </a>
               </div>

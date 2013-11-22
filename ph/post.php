@@ -7,6 +7,31 @@
     $error = true;
   else
     $data = $data['data']['result']['0'];
+
+  function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1') 
+  {
+    //create the URL
+    $bitly = 'http://api.bit.ly/shorten?version='.$version.'&longUrl='.urlencode($url).'&login='.$login.'&apiKey='.$appkey.'&format='.$format;
+    //get the url
+    //could also use cURL here
+    $response = file_get_contents($bitly);
+    
+    //parse depending on desired format
+    if(strtolower($format) == 'json')
+    {
+      $json = @json_decode($response,true);
+      return $json['results'][$url]['shortUrl'];
+    }
+    else //xml
+    {
+      $xml = simplexml_load_string($response);
+      return 'http://bit.ly/'.$xml->results->nodeKeyVal->hash;
+    }
+  }
+
+  $url = "http://www.reliefboard.com/ph/post.php?id=". $id;
+  $bitly = make_bitly_url($url,'kjventura','R_afc197795cfaf9242fc1063b2c77c48d','json');
+
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
@@ -51,6 +76,7 @@
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
     <link href="css/post.css" rel="stylesheet" />
+    <link href="js/select2/select2.css" rel="stylesheet"/>
 
   </head>
 
@@ -76,7 +102,7 @@
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
               FB.api('/me', function(response) {
-                $("#label_comment_message").html('Respond as ' + response.first_name + " " + response.last_name);
+                $("#label_comment_message").html('Post as ' + response.first_name + " " + response.last_name);
               });
             } else if (response.status === 'not_authorized') {
                $("#label_comment_message").html('Please authorize Reliefboard');
@@ -164,6 +190,10 @@
                 <?php } ?>
 
               </p>
+
+         <!--      <div>
+                <input type="hidden" id="tagSelect" value="brown,red,green" style="width:300px;" /><br />  
+              </div> -->
               
               <div class="share-container">
                   <br />
@@ -174,7 +204,7 @@
                     <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<?php echo $id; ?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
                   </div>
                   <div class="social-item">
-                    <a id="tw" href="https://twitter.com/share"  data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                    <a id="tw" href="https://twitter.com/share" data-url="<?php echo $bitly; ?>" data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                       Tweet
                     </a>
                 </div>
@@ -198,7 +228,7 @@
                       <label for="comment_message" id="label_comment_message">Login to respond</label>
                       <textarea class="form-control" rows="3" id="comment_message" ></textarea>
                     </div>
-                    <div type="button" class="btn btn-danger" id="comment_via_web">Respond</div>
+                    <div type="button" class="btn btn-danger" id="comment_via_web">Post</div>
                     <div  class="pull-right" id="posting_loader" >Posting....</div>
                   </div>
                 </div> 
@@ -231,7 +261,7 @@
 
           </div>
 
-          <div class="from-app">
+          <div class="from-app" style="padding: 15px 0px 0px 0px;">
             <% if(d.source != null ) { %>
               <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
                 
@@ -255,6 +285,8 @@
             <% } %>
           </div>
 
+          <span class="times" data-time="<?php echo $data['date_created']; ?>"></span>
+
         </div>
         <% } %>
     </script>
@@ -263,6 +295,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
     <script src="js/time.js"></script>
+    <script src="js/select2/select2.js"></script>
 
     <script type="text/javascript">
       var message_id = $(".comments-container").attr('data-id');
@@ -321,17 +354,38 @@
             });
            
             $(".comments-container .msg-data ").append(html);
+            $(".times").prettyDate();
            
         });// end of ajax
 
       });
+
+      function post_comment(){
+        loading_show();
+        FB.api('/me', function(response) {
+            var name = response.first_name + " "+ response.last_name;
+            var message = $("#comment_message").val();
+            $.ajax( {
+              type: "POST",
+              data: {app_id : app_id, message: message, name: name, parent_id: message_id},
+              url: "http://www.reliefboard.com/messages/feed",
+            } ).done( function ( result ) {
+              console.log(result);
+              var post_success = {'message': message, sender: name , source: app_id};
+              var html_to_insert = post_template(post_success);
+              $( html_to_insert).insertAfter( ".comment-highlight" );
+              $("#comment_message").val('')
+              loading_hide();
+            });
+          });
+      }
 
 
       //will transfer this 
       $(document).on("click","#comment_via_web", function(e) {
         
         if(commenting == false){
-          var message = $("#comment_message").val();
+
           e.preventDefault();
 
           FB.getLoginStatus(function(response) {
@@ -366,26 +420,6 @@
             }
           });
 
-
-          function post_comment(){
-              loading_show();
-              FB.api('/me', function(response) {
-                  var name = response.first_name + " "+ response.last_name;
-                  $.ajax( {
-                    type: "POST",
-                    data: {app_id : app_id, message: message, name: name, parent_id: message_id},
-                    url: "http://www.reliefboard.com/messages/feed",
-                  } ).done( function ( result ) {
-                    console.log(result);
-                    var post_success = {'message': message, sender: name , source: app_id};
-                    var html_to_insert = post_template(post_success);
-                    $( html_to_insert).insertAfter( ".comment-highlight" );
-                    $("#comment_message").val('')
-                    loading_hide();
-                  });
-                });
-            }
-
         }
         
        // $("#viawebModal").modal("show");
@@ -406,6 +440,8 @@
         $("#comment_message").attr('disabled', 'true');
         commenting = true;
       }
+       $('#tagSelect').select2({ tags: ["red", "green", "blue"] });
+      
     </script>
 
 
