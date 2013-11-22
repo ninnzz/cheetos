@@ -103,7 +103,7 @@
     <!-- END - FIXED NAV -->
 
     <!-- START BODY -->
-    <?php if($error){?>
+    <?php if( isset($error) && $error ) {?>
        <div  class="container">
 
         <div class="row">

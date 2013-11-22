@@ -16,10 +16,49 @@ $( function () {
 		width: "500px"
 	};
 
+	function get_short_url(long_url, login, api_key, func)
+	{
+	    $.getJSON(
+	        "http://api.bitly.com/v3/shorten?callback=?", 
+	        { 
+	            "format": "json",
+	            "apiKey": api_key,
+	            "login": login,
+	            "longUrl": long_url
+	        },
+	        function(response)
+	        {
+	            func(response.data.url);
+	        }
+	    );
+	}
+
 	//APPLY FORMATING TO SINGLE RESULT
 
 	function post_template (d) {
+
 		var html = _.template( $("#post").html() , {d:d} );
+        var version = "2.0.1";
+        var id = d.id;
+        var url = "http://www.reliefboard.com/ph/post.php?id=" + id;
+        var login = "kjventura";
+        var appkey = "R_afc197795cfaf9242fc1063b2c77c48d";
+        var format = "json";
+        var ajax_url = 'http://api.bit.ly/shorten?version='+ version + '&longUrl='+ encodeURIComponent(url) + '&login=' + login + '&apiKey=' + appkey + '&format=' + format;
+
+        $.get(ajax_url, function( response ) {
+        	
+        });
+
+        var login = "kjventura";
+		var api_key = "R_afc197795cfaf9242fc1063b2c77c48d";
+		var long_url = "http://www.reliefboard.com/ph/post.php?id=" + d.id;
+
+		get_short_url(long_url, login, api_key, function(short_url) {
+			$("#tw-" + d.id).attr("data-url",short_url);
+		})
+        
+
 		return html;
 	}
 
