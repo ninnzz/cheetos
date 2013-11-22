@@ -134,7 +134,7 @@
           
             <div id="loginToFacebook">
               <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
-              <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
+              <div class="fb-login-button" data-scope="email" data-width="200"></div>
             </div>
 
             <br/>
@@ -157,7 +157,7 @@
               <br />
 
             </div>
-            
+
         </div>
 
       </div>
