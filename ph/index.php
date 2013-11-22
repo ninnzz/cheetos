@@ -275,12 +275,12 @@
       <div class="time-container<%= d.id %> time-container">
         <div class="time-asset"></div>
         <div class="time-data"><span class="time" data-time="<%= d.date_created %>"></span></div>
-        <div class="status-data"><span class="status-pending">PENDING</span></div>
+        <!--<div class="status-data"><span class="status-pending">PENDING</span></div>-->
       </div>
 
       <div class="post<%= d.id %> post" data-id="<%= d.id %>">
           <div class="pull-right">
-            <a class="share" target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">REPORT</a>
+            <a class="share" target="_blank" data-id="<%= d.id %>" href="#" style="color:#b65656;">Mark as Spam</a>
           </div>
 
           <p class="msg-data">  
