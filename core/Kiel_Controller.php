@@ -86,9 +86,11 @@
 					$this->xfClean($_POST);
 				break;
 				case 'PUT':
+					parse_str(file_get_contents("php://input"),$_PUT);
 					$this->xfClean($_PUT);
 				break;
 				case 'DELETE':
+					parse_str(file_get_contents("php://input"),$_DELETE);
 					$this->xfClean($_DELETE);
 				break;
 				default:
