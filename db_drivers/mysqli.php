@@ -143,7 +143,7 @@
 			$result->free();
 			$link->commit();
 			$link->close() or die('no links to close');
-			return(array('result' => $res, 'result_count'=>$cnt, 'query'=>$query_message));
+			return(array('result' => $res, 'result_count'=>$cnt));
 		}
 
 		public function get_where($table=NULL,$data=NULL,$where=NULL,$offset=0,$limit=10,$sort=NULL,$order=NULL,$added='')
@@ -204,7 +204,7 @@
 			$result->free();
 			$link->commit();
 			$link->close() or die('no links to close');
-			return(array('result' => $res, 'result_count'=>$cnt, 'query'=>$query_message));
+			return(array('result' => $res, 'result_count'=>$cnt));
 		}
 
 		public function insert($table=NULL,$data=NULL)
@@ -242,7 +242,7 @@
  				return array('errcode'=>$errNo ,'error'=>$err,'affected_rows'=>$affected);
 			}
 			$res['affected_rows'] = $link->affected_rows;
-			$res['query_message'] = $query_message;
+			//$res['query_message'] = $query_message;
 			
 			$link->commit();
 			$link->close() or die('no links to close');
@@ -303,7 +303,7 @@
  				return array('errcode'=>$errNo ,'error'=>$err,'affected_rows'=>$affected);
 			}
 			$res['affected_rows'] = $link->affected_rows;
-			$res['query'] = $query_message;
+			//$res['query'] = $query_message;
 			
 			$link->commit();
 			$link->close() or die('no links to close');
