@@ -51,7 +51,7 @@ class Search extends Kiel_Controller
         $array = json_decode($json,TRUE);
 
 //        if(count($array) > 0 && trim($array[0]) != "" ){
-			$this->response(array('status'=>'Success','data'=>$array,'query' => $url),200);
+			$this->response(array('status'=>'Success','data'=>$array),200);
 //		} else {
 			// $this->response(array('status'=>'Success','data'=>'','query' => $url),200);
 		// }
