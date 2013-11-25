@@ -3,7 +3,7 @@
 
   <head prefix="og: http://ogp.me/ns/website#" >
 
-    <title>ReliefBoard</title>
+    <title>ReliefBoard - get help, give help during calamities</title>
 
     <!-- META -->
     
@@ -295,10 +295,10 @@
                 <span class="app-name"><span class=""></span> Web</span>
 
               <% } else if(d.source.indexOf("sms") !== -1) { %>
-
+                
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS</span>
-
+                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+     
               <% } else if(d.app_name)  { %>
                 
                 <% if(d.logo != "") { %>
@@ -325,12 +325,10 @@
 
           <hr/> 
           <div class="share-container">
-            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Help, assist, or comment</a> 
             <!--&nbsp;&nbsp;YOU and 3 people are helping-->
             <div class="pull-right">
-              <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-              </div>  
+                
               <div class="social-item">
                 <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>

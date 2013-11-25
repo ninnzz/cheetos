@@ -74,7 +74,7 @@ $( function () {
 		} ).done( function ( result ) {
 
 			var html = "";
-
+			
 			_.each( result.data.result, function(d) {
 			id_list.push(d.id);
 			html = html + post_template(d);
