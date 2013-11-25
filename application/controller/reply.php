@@ -12,7 +12,7 @@ class Reply extends Kiel_Controller
 		$key = '6qxBuD5aUyrwvscpkFt9';
 		$number = $data['number'];
 		$message = urlencode($data['message']).' [This is an auto generated message, DO NOT REPLY! You can reply by sending your reply to 260011.]';
-		$from = 'ReliefBoard';
+		$from = 'KumustaKNB';
 		$url = 'http://api.semaphore.co/api/sms';
 
 		$fields_string = "api={$key}&number={$number}&message={$message}&from={$from}";
