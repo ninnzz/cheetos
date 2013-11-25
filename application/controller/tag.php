@@ -13,6 +13,8 @@ class Tag extends Kiel_Controller
 
 		$res = $this->tag_model->get_tag($this->get_args['post_id']);
 
+		$this->response(array('status'=>'Success','data'=>$res),200);
+
 		if($res['result_count'] != 0){	
 			if(trim($t) !== ""){
 				$t = explode(',', urldecode($res['result'][0]['tags']));
@@ -25,7 +27,6 @@ class Tag extends Kiel_Controller
 		}
 
 
-		$this->response(array('status'=>'Success','data'=>$res),200);
 		
 	}
 
