@@ -18,8 +18,9 @@ class Search extends Kiel_Controller
 			$str .= " sender like '%{$data['query']}%' OR";
 		}
 		if($data['message'] === "1"){
-			$str .= " message like '%{$data['query']}%'";
+			$str .= " message like '%{$data['query']}%' OR";
 		}
+		$str .= "  tags like '%{$data['query']}%' "
 
 		$str = rtrim($str, 'OR');
 
