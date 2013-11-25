@@ -191,18 +191,18 @@
 
               </p>
 
-         <!--      <div>
-                <input type="hidden" id="tagSelect" value="brown,red,green" style="width:300px;" /><br />  
-              </div> -->
+              <div style="text-align:right">
+                <input placeholder="Add Tags" type="hidden" id="tagSelect"  style="width:300px;" /><br /> 
+                <div id="add_tag" style="display:none">Add Tag</div>  
+              </div>
+              <br/>
               
               <div class="share-container">
                   <br />
                   <div class="social-item">
                     <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<?php echo $id; ?>" data-type="button_count"></div>
                   </div>
-                  <div class="social-item">
-                    <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<?php echo $id; ?>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
-                  </div>
+                 
                   <div class="social-item">
                     <a id="tw" href="https://twitter.com/share" data-url="<?php echo $bitly; ?>" data-text="<?php echo urldecode(urldecode($data['message'])); ?> - <?php echo urldecode(urldecode($data['place_tag'])); ?> - <?php echo urldecode(urldecode($data['sender'])); ?> - #reliefboard VIA reliefboard.com" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                       Tweet
@@ -290,7 +290,53 @@
         </div>
         <% } %>
     </script>
+    <script type="text/template" id="tags">
+      <% if( d.tags != null && d.message != "" ) { %>
+      <div class="comment-post<%= d.id %> comment-post" data-id="<%= d.id %>">
+          
+          <div class="comment-data">
+                
+            <% if( d.sender != null ) { %>
+              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
+            <% } %>
 
+            <% if( d.place_tag != null ) { %>
+              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
+            <% }%>
+            
+            : <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
+
+          </div>
+
+          <div class="from-app" style="padding: 15px 0px 0px 0px;">
+            <% if(d.source != null ) { %>
+              <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
+                
+                <img src="img/profile-pic-16.png" width='20' />
+                <span class="app-name"><span class=""></span> Web</span>
+
+              <% } else if(d.source.indexOf("sms") !== -1) { %>
+
+                <img src="img/profile-pic-16.png" width='20' />
+                <span class="app-name"><span class=""></span> SMS</span>
+
+              <% } else if(d.app_name)  { %>
+                
+                <% if(d.logo != "") { %>
+                  <img src="<%= d.logo %>" width='20' />
+                <% } %>
+
+                  <span class="app-name"><%= d.app_name %></span>
+
+              <% } %>
+            <% } %>
+          </div>
+
+          <span class="times" data-time="<?php echo $data['date_created']; ?>"></span>
+
+        </div>
+        <% } %>
+    </script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/underscore.min.js"></script>
@@ -370,7 +416,7 @@
               data: {app_id : app_id, message: message, name: name, parent_id: message_id},
               url: "http://www.reliefboard.com/messages/feed",
             } ).done( function ( result ) {
-              console.log(result);
+           
               var post_success = {'message': message, sender: name , source: app_id};
               var html_to_insert = post_template(post_success);
               $( html_to_insert).insertAfter( ".comment-highlight" );
@@ -440,7 +486,46 @@
         $("#comment_message").attr('disabled', 'true');
         commenting = true;
       }
-       $('#tagSelect').select2({ tags: ["red", "green", "blue"] });
+
+      function get_tags(){
+        $.ajax( {
+          type: "GET",
+          url: "http://reliefboard.com/tag?post_id=" + message_id,
+        } ).done( function ( result ) {
+          if(result.data.tag_count <= 0){
+            $('#tagSelect').select2({ tags:result.data.tags});
+          }
+          else{
+            var tags =result.data.tags.join(",");
+            console.log(tags);
+            $("#tagSelect").val(tags);
+            $('#tagSelect').select2({ tags:result.data.tags});
+            //$("#tagSelect").select2();
+          }
+          
+          
+          //console.log(tags);
+          //$('#tagSelect').select2({ tags: ["red", "green", "blue"] });
+        });
+      }
+
+      $(document).on("change","#tagSelect", function(e) {
+        add_tags();
+      }); // end of #comment_via_web click
+
+      // post_id, tags(comma sparated), app_id
+      function add_tags(){
+        
+        $.ajax( {
+          type: "PUT",
+          data: {app_id: app_id, post_id: message_id, tags: $("#tagSelect").val()},
+          url: "http://reliefboard.com/tag",
+        } ).done( function ( result ) {
+          console.log(result);
+        });
+      }
+      get_tags();
+       
       
     </script>
 

@@ -37,6 +37,7 @@ $( function () {
 
 	function post_template (d) {
 
+
 		var html = _.template( $("#post").html() , {d:d} );
         var version = "2.0.1";
         var id = d.id;
@@ -74,17 +75,33 @@ $( function () {
 		} ).done( function ( result ) {
 
 			var html = "";
-
+			
 			_.each( result.data.result, function(d) {
-			id_list.push(d.id);
-			html = html + post_template(d);
-			});post_template
+				id_list.push(d.id);
+		        if(typeof d.tags !=undefined){
+		        	if((d.tags !="") && (d.tags !=null)){
+						d.tags = "#" + d.tags.replace(/,/g, ", #");
+					}
+					else{
+						d.tags = null;
+					}
+		        }
+
+				html = html + post_template(d);
+			});
+
+			
 
 			$( "#msg" ).append( html );
 			$( ".time" ).prettyDate();
 			/*$( 'input[id^="tag_"]').select2(select2_options);*/
+		    if (typeof(FB) != 'undefined'
+			     && FB != null ) {
+			    FB.XFBML.parse();
+			} else {
+			    
+			}
 
-			FB.XFBML.parse();
             $.getScript('http://platform.twitter.com/widgets.js')
 
 		});
@@ -197,7 +214,55 @@ $( function () {
 	});
 
 
+    $(document).on("click","#viaweb", function(e) {
 
+
+	    e.preventDefault();
+	    $("#viawebModal").modal("show");
+	    $("#loginToFacebook").show();
+
+	    FB.getLoginStatus(function(response) {
+
+	            if (response.status === 'connected') {
+	                    // the user is logged in and has authenticated your
+	                    // app, and response.authResponse supplies
+	                    // the user's ID, a valid access token, a signed
+	                    // request, and the time the access token 
+	                    // and signed request each expire
+	                    var uid = response.authResponse.userID;
+	                    var accessToken = response.authResponse.accessToken;
+
+	                    FB.api('/me', function(response) {
+	                            $("#authenticated-name").text(response.name);
+	                    });
+
+	                    $("#loginToFacebook").hide();
+	                    $("#authenticated").show();
+
+	            } else if (response.status === 'not_authorized') {
+	            	
+	            } else {
+
+	            // the user isn't logged in to Facebook.
+	            }
+	    });
+
+	    FB.Event.subscribe('auth.authResponseChange', function(response) {
+	            // Here we specify what we do with the response anytime this event occurs. 
+	            if (response.status === 'connected') {
+	                    // The response object is returned with a status field that lets the app know the current
+	                    // login status of the person. In this case, we're handling the situation where they 
+	                    // have logged in to the app.
+	                    console.log('eee');
+	                    $("#loginToFacebook").hide();
+	                    $("#authenticated").show();
+	                    FB.api('/me', function(response) {
+	                            $("#authenticated-name").text(response.name);
+	                    });
+	            }
+	    });
+
+	});
 
 	// POST TO WEB
 	$(document).on("click","#viawebSend", function(e) {
@@ -222,8 +287,6 @@ $( function () {
 			alert("Message is required");
 			return;
 		}
-
-		console.log(data);
 
 		$.post('http://www.reliefboard.com/messages/feed', data);
 
@@ -361,6 +424,13 @@ $( function () {
 		});	
 	});
 
+	$(document).on("click","#viasms",function(e) {
+
+		e.preventDefault();
+		$("#viaSMSModal").modal('show');
+	});
+	
+
 
 	// PAGINATION
 
@@ -381,55 +451,6 @@ $( function () {
 	
 	feed();
 	$("#search").fadeIn(1000);
-
-	$(window).load(function() {
-
-		FB.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-				// the user is logged in and has authenticated your
-				// app, and response.authResponse supplies
-				// the user's ID, a valid access token, a signed
-				// request, and the time the access token 
-				// and signed request each expire
-				var uid = response.authResponse.userID;
-				var accessToken = response.authResponse.accessToken;
-
-				FB.api('/me', function(response) {
-					$("#authenticated-name").text(response.name);
-					$("#loginToFacebook").hide();
-					$("#form-container").show();
-				});
-
-				$("#loginToFacebook").hide();
-				$("#form-container").show();
-
-
-			} else if (response.status === 'not_authorized') {
-			// the user is logged in to Facebook, 
-			// but has not authenticated your app
-				$("#loginToFacebook").show();
-			} else {
-			// the user isn't logged in to Facebook.
-				$("#loginToFacebook").show();
-			}
-
-		});
-
-		FB.Event.subscribe('auth.authResponseChange', function(response) {
-			// Here we specify what we do with the response anytime this event occurs. 
-			if (response.status === 'connected') {
-				// The response object is returned with a status field that lets the app know the current
-				// login status of the person. In this case, we're handling the situation where they 
-				// have logged in to the app.
-				FB.api('/me', function(response) {
-					$("#authenticated-name").text(response.name);
-					$("#loginToFacebook").hide();
-					$("#form-container").show();
-				});
-			}
-		});
-
-	});
 
 	/* TAGS */
 
