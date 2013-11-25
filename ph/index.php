@@ -143,24 +143,22 @@
         </div>
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
-          <div id="copy">
-            <b style="color: #294360; font-weight: 800; font-size: 22px;">
-              A service for Filipinos affected by  Typhoon Yolanda / Haiyan
-            </b>
-          </div>
+         
           
           <div id="links">
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Critical Needs</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="http://www.reliefboard.com/ph/relief.php"  title="Find missing people" id="find_missing_people">Relief Goods</a>
-              <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a>
+              <a href="http://www.reliefboard.com/ph/relief.php"  title="Relief Goods" id="relief_goods">Relief Goods</a>
+              <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Missing People</a>
               <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a>
               <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a>
             </p>
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Critical Areas</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="places.php?keyword=tacloban"  title="Find missing people" >Tacloban</a>
-              <a href="places.php?keyword=cebu"  title="Find missing people" >Cebu</a>
+              <a href="places.php?keyword=tacloban"  title="Tacloban, Leyte" >Tacloban, Leyte</a>
+              <a href="places.php?keyword=cebu"  title="Cebu" >Cebu</a>
+              <a href="places.php?keyword=palo"  title="Palo, Leyte" >Palo, Leyte</a>
+              <a href="places.php?keyword=bohol"  title="Bohol" >Bohol</a>
             </p>
 
 <!--             <p style="color: #294360; font-weight: 800; font-size: 22px;">Important Info</p>
@@ -176,12 +174,16 @@
               <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs" >Youphoric Labs</a>
             </p>
 
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Connect to ReliefBoard</p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px;">
+              <a href="http://www.reliefboard.com/ph/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a>
+            </p>
+
           </div>
           <div>
          
            
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
-            <p style="color: #294360; font-weight: 800; font-size: 18px; "><a href="http://www.reliefboard.com/ph/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
+            
           </div>
         </div>
 
@@ -220,7 +222,7 @@
             <br />
             <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
             <br />
-            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number - Optional" />
 <!--             <br />
               <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
             <br /><br />
