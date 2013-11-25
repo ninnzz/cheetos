@@ -127,8 +127,8 @@
 
       <div class="col-lg-7 col-md-7" id="news" style="">
         <span>Philippines:</span>
-        <a href="https://www.google.com/search?q=yolanda+haiyan+typhoon" target="_blank">Typhoon Yolanda/Haiyan</a>
-        <a href="https://www.google.com/search?q=bohol+earthquake" target="_blank">Bohol Earthquake</a>
+        <a href="https://www.google.com/search?q=yolanda+haiyan+typhoon&tbm=nws" target="_blank">Typhoon Yolanda/Haiyan</a>
+        <a href="https://www.google.com/search?q=bohol+earthquake&tbm=nws" target="_blank">Bohol Earthquake</a>
       </div>
       <div class="col-lg-7 col-md-7" style="background-color:#EBEAEA;margin-top:20px;margin-bottom:20px;">
         <div class="copy3" style="text-align: center;">
