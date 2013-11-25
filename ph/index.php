@@ -3,7 +3,7 @@
 
   <head prefix="og: http://ogp.me/ns/website#" >
 
-    <title>ReliefBoard</title>
+    <title>ReliefBoard - get help, give help during calamities</title>
 
     <!-- META -->
     
@@ -115,9 +115,6 @@
             
           </ul>
         </nav>
-
-
-      
       </div>
 
     </div>
@@ -128,38 +125,16 @@
 
     <div id="main-container" class="container">
 
-      <div class="col-lg-7 col-md-7" style="background-color:#EBEAEA;margin-top:30px;margin-bottom:20px;">
-        
-        <div id="posting-container">
-          
-            <div id="loginToFacebook">
-              <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
-              <div class="fb-login-button" data-scope="email" data-width="200"></div>
-            </div>
-
-            <br/>
-
-            <div id="form-container">
-
-              <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
-              <br /><br />
-              <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?"/>
-              <br />
-              <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
-              <br />
-              <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
-              <br/>
-              <input id="form-tag" class="form-control" type="text" placeholder="Tag" />
-              <br />
-              <div align="center">
-                <button id="viawebSend" type="button" class="btn btn-primary">ASK FOR HELP</button>
-              </div>
-              <br />
-
-            </div>
-
-        </div>
-
+      <div class="col-lg-7 col-md-7" id="news" style="">
+        <span>Philippines:</span>
+        <a href="https://www.google.com/search?q=yolanda+haiyan+typhoon" target="_blank">Typhoon Yolanda/Haiyan</a>
+        <a href="https://www.google.com/search?q=bohol+earthquake" target="_blank">Bohol Earthquake</a>
+      </div>
+      <div class="col-lg-7 col-md-7" style="background-color:#EBEAEA;margin-top:20px;margin-bottom:20px;">
+        <div class="copy3" style="text-align: center;">
+            <a id="viaweb" class="btn btn-danger " href="#">Ask for help</a>
+            <a id="viasms" class="btn btn-danger "  href="#">Ask for help via SMS/Mobile</a>
+          </div>
       </div>
 
         <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
@@ -173,68 +148,40 @@
               A service for Filipinos affected by  Typhoon Yolanda / Haiyan
             </b>
           </div>
-          <div class="copy3">
-            <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
-              We launched this service to help the Philippine Yolanda Typhoon victims.
-            </p> -->
-            <p style="color: #3c4958; font-weight: 800; font-size: 18px;">
-            How to post to Reliefboard
-            </p>
-            1. Send a <b>FREE SMS</b> to: 
-            <br /> 
-            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
-            <b style="font-size: 20px;">68009 (SMART) </b>
-            <br />
-            (from within the Philippines)
-            <br /><br />
-            2. Follow this format:
-            <br />
-            <b style="font-size: 18px;">Location/Name/Message</b>
-            <br /><br />
-            Example:<br />
-            <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
-            <br /><br />
-            3. Your message will automatically be posted on ReliefBoard.com
-          </div>
-          <div>
-            <h3>Want to help?</h3>
+          
+          <div id="links">
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Critical Needs</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="http://www.reliefboard.com/ph/relief.php"  title="Find missing people" id="find_missing_people">Relief Goods</a><br/>
-              <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a><br/>
-              <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a><br/>
-              <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a><br/>
-              <a href="places.php?keyword=tacloban"  title="Find missing people" id="find_missing_people">Tacloban</a><br/>
-              <a href="places.php?keyword=cebu"  title="Find missing people" id="find_missing_people">Cebu</a><br/>
+              <a href="http://www.reliefboard.com/ph/relief.php"  title="Find missing people" id="find_missing_people">Relief Goods</a>
+              <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Find missing people</a>
+              <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a>
+              <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a>
+            </p>
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Critical Areas</p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px;">
+              <a href="places.php?keyword=tacloban"  title="Find missing people" >Tacloban</a>
+              <a href="places.php?keyword=cebu"  title="Find missing people" >Cebu</a>
             </p>
 
+<!--             <p style="color: #294360; font-weight: 800; font-size: 22px;">Important Info</p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px;">
+              <a href="#"  title="Find missing people" >Other relief oriented Philippine websites</a>
+            </p> -->
+
+            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px;">
+              <a href="https://www.globe.com.ph"  target="_blank" title="Globe" >Globe Telecommunications</a>
+              <a href="https://www.smart.com.ph" target="_blank"  title="Smart" >Smart Communications</a>
+              <a href="http://semaphore.co/" target="_blank" title="Semaphore" >Semaphore</a>
+              <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs" >Youphoric Labs</a>
+            </p>
 
           </div>
           <div>
-            <br/>
-             <p style="color: #294360; font-weight: 800; font-size: 22px;">Partner Websites</p>
-              <div align="center">
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="img/bangonph_logo.png" height="50px" style="margin-right: 40px"></a> 
-                <a href="http://www.rappler.com/" target="_blank" title="Rappler"><img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/c28.28.357.357/s160x160/1013982_602733916414062_1520967810_n.png" height="70px" ></a>
-                <br /><br />
-                <a href="http://www.bangonph.com/" target="_blank" title="#bangonph"><img src="http://google.org/personfinder/global/google-person-finder.gif" height="30px" ></a>
-                <br/><br/>
-                 <a href="http://gohelpph.com/" target="_blank" title="#gohelpph"><img src="img/gohelp.png" height=" 50px" style=" width: 185px"></a> 
-                 <a href="http://readyph.com/" target="_blank" title="#readyph"><img src="img/readyph.png" height="50px" style="width:180px "></a> 
-              </div>
-              <br />
-            <p style="color: #294360; font-weight: 800; font-size: 22px;">Sponsors</p>
-              <div align="center">
-                <a href="https://www.globe.com.ph" target="_blank" title="Globe"><img src="http://www.negosyoabroad.com/uploads/globe-logo.jpg" height="80px"></a>
-                <a href="https://www.smart.com.ph" target="_blank" title="Smart"><img src="http://www.pinoytechblog.com/wp-content/uploads/2011/10/Smart-Logo.gif" height="80px"></a>
-                <!-- <a href="https://www.globelabs.com.ph" target="_blank" title="Globe Labs"><img src="img/globelabs_logo_new_blue.png" height="20px"></a> -->
-                <a href="http://semaphore.co/" target="_blank" title="Semaphore"><img src="img/semaphore.png" height="80px"></a>
-                <a href="http://youphoriclabs.com/" target="_blank" title="Youphoric Labs"><img src="img/youphoric_labs_logo.png" height="100px" ></a>
-                <!-- <a href="http://www.reliefboard.com/ph/apidoc.php">API DOCUMENTATION</a> -->
-              </div>
-              <br />
+         
            
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Developers</p>
-            <p style="color: #294360; font-weight: 800; font-size: 18px; text-align: center;"><a href="http://www.reliefboard.com/ph/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
+            <p style="color: #294360; font-weight: 800; font-size: 18px; "><a href="http://www.reliefboard.com/ph/apidoc.php" target="_blank" title="ReliefBoard API Documentation">ReliefBoard API Documentation</a></p>
           </div>
         </div>
 
@@ -253,6 +200,71 @@
 
       </div>
 
+    </div>
+
+    <div class="modal fade" id="viawebModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div id="loginToFacebook" class="modal-body">
+            <b>Login with Facebook to Start Posting to ReliefBoard</b> <br /> <br />
+            <div class="fb-login-button" data-scope="email" data-width="200" show-faces=true></div>
+          </div>
+
+          <div id="authenticated" class="modal-body" style="display: none;">
+            <b>Your Name: <span id="authenticated-name"></span> <span style="color: gray !important;">(Facebook)</span> </b>
+            <br /><br />
+            <b>Details: </b>
+            <br /><br />
+            <input id="form-location" class="form-control" type="text" placeholder="Location - Where is help needed?" />
+            <br />
+            <textarea id="form-message" placeholder="Message - Please be as specific as possible about the concerned people, places, and contact information" class="form-control"></textarea>
+            <br />
+            <input id="form-mobile-number" class="form-control" type="text" placeholder="Mobile number" />
+<!--             <br />
+              <input id="form-tags" type="hidden" class="form-control" placeholder=""> -->
+            <br /><br />
+            <button id="viawebSend" type="button" class="btn btn-primary">Post to ReliefBoard.com</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal"> Cancel </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="viaSMSModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"> How to post to Reliefboard</h4>
+           
+           
+          </div>
+          <div class="copy3">
+            <!-- <p style="color: #294360; font-weight: 800; font-size: 22px;">
+              We launched this service to help the Philippine Yolanda Typhoon victims.
+            </p> -->
+            
+            1. Send a <b>FREE SMS</b> to: 
+            <br /> 
+            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
+            <b style="font-size: 20px;">68009 (SMART) </b>
+            <br />
+            (from within the Philippines)
+            <br /><br />
+            2. Follow this format:
+            <br />
+            <b style="font-size: 18px;">Location/Name/Message</b>
+            <br /><br />
+            Example:<br />
+            <b style="font-size: 18px;">Palo, Leyte/Juan dela Cruz/We need doctors!</b>
+            <br /><br />
+            3. Your message will automatically be posted on ReliefBoard.com
+          </div>
+          
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript">
@@ -295,10 +307,10 @@
                 <span class="app-name"><span class=""></span> Web</span>
 
               <% } else if(d.source.indexOf("sms") !== -1) { %>
-
+                
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS</span>
-
+                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+     
               <% } else if(d.app_name)  { %>
                 
                 <% if(d.logo != "") { %>
@@ -312,25 +324,30 @@
             <br/><br/>
             
             <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            <br/><br/>  
-            <% if( d.sender != null ) { %>
-              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
-            <% } %>
+            <br/><br/>
+            <div class="bottom_info">  
+              <% if( d.sender != null ) { %>
+                <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
+              <% } %>
 
-            <% if( d.place_tag != null ) { %>
-              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
-            <% }%>
-        
+              <% if( d.place_tag != null ) { %>
+                | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
+              <% }%>
+            </div>
+              <% if( d.tags != null ) { %>
+                <b><a href="post.php?id=<%= d.id %>"  class="tags "> <%=d.tags %></a></b>
+              <% }else{%>
+                <b><a href="post.php?id=<%= d.id %>"  class="tags "> Add Tags</a></b>
+              <% }%>
+            
           </p>
-
+   
           <hr/> 
           <div class="share-container">
-            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Help, assist, or comment</a> 
             <!--&nbsp;&nbsp;YOU and 3 people are helping-->
             <div class="pull-right">
-              <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-              </div>  
+                
               <div class="social-item">
                 <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>
@@ -355,16 +372,7 @@
     <script src="js/build.js"></script>
 
 
-    <!--USER REPORT-->
-    <script type="text/javascript">
-      var _urq = _urq || [];
-      _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
-      (function() {
-      var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-      ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-      })();
-    </script>
+
 
     <!-- END BODY -->
 
