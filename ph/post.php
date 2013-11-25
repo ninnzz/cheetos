@@ -192,7 +192,7 @@
               </p>
 
               <div style="text-align:right">
-                <input type="hidden" id="tagSelect"  style="width:300px;" /><br /> 
+                <input placeholder="Add Tags" type="hidden" id="tagSelect"  style="width:300px;" /><br /> 
                 <div id="add_tag" style="display:none">Add Tag</div>  
               </div>
               <br/>
@@ -493,7 +493,7 @@
           url: "http://reliefboard.com/tag?post_id=" + message_id,
         } ).done( function ( result ) {
           if(result.data.tag_count <= 0){
-            $("#add_tag").css('display', 'block');
+            $('#tagSelect').select2({ tags:result.data.tags});
           }
           else{
             var tags =result.data.tags.join(",");
@@ -502,7 +502,7 @@
             $('#tagSelect').select2({ tags:result.data.tags});
             //$("#tagSelect").select2();
           }
-          console.log(result.data.tags);
+          
           
           //console.log(tags);
           //$('#tagSelect').select2({ tags: ["red", "green", "blue"] });
