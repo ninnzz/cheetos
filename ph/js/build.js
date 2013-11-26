@@ -117,6 +117,7 @@ $( function () {
 	}
 
 	function search(val) {
+
 		var filter = "";
 
 		if($("#filter-name").is(":checked"))
@@ -145,6 +146,8 @@ $( function () {
 					html = html + post_template(d);
 
 				});
+
+				
 				$( "#results" ).append( html );
 				$( ".time" ).prettyDate();
 			});
@@ -215,7 +218,6 @@ $( function () {
 
 
     $(document).on("click","#viaweb", function(e) {
-
 
 	    e.preventDefault();
 	    $("#viawebModal").modal("show");
@@ -299,6 +301,7 @@ $( function () {
 	});
 
 	$('#search').keypress(function(e) {
+
 		if(e.which == 13){
 			var val = $(this).val();
 
@@ -341,6 +344,7 @@ $( function () {
 				filter += "&message=0";
 
 			var url = "http://www.reliefboard.com/search?query=" + val + "&offset=0&limit=5" +filter;
+
 			$.ajax( {
 				type: "GET",
 				url: url
@@ -352,6 +356,8 @@ $( function () {
 					html = html + post_template(d);
 
 				});
+
+				$('#search_results_text').html("Search for:" + val);
 				$( "#results" ).html("");
 				$( "#results" ).append( html );
 				$( ".time" ).prettyDate();

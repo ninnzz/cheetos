@@ -139,7 +139,7 @@
 
         <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
           <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
-          <h3>Search Results:</h3>
+          <h3 id="search_results_text">Search Results:</h3>
         </div>
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
