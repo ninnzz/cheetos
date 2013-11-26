@@ -45,7 +45,7 @@ class Search extends Kiel_Controller
 		$this->load_model('tag_model');
 
 		$res = $this->tag_model->search_tag($data['name'],$offset,$limit);
-		$this->response(array('status'=>'Success','data'=>$array),200);
+		$this->response(array('status'=>'Success','data'=>$res),200);
 
 	}
 
