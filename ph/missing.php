@@ -200,7 +200,7 @@
       }
     </script>
 
-    <script type="text/template" id="post">
+        <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
       
       <div class="time-container<%= d.id %> time-container">
@@ -222,10 +222,10 @@
                 <span class="app-name"><span class=""></span> Web</span>
 
               <% } else if(d.source.indexOf("sms") !== -1) { %>
-
+                
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS</span>
-
+                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+     
               <% } else if(d.app_name)  { %>
                 
                 <% if(d.logo != "") { %>
@@ -239,30 +239,42 @@
             <br/><br/>
             
             <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            <br/><br/>  
-            <% if( d.sender != null ) { %>
-              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
-            <% } %>
+            <br/><br/>
+            <div class="bottom_info">  
+              <% if( d.sender != null ) { %>
+                <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
+              <% } %>
 
-            <% if( d.place_tag != null ) { %>
-              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
-            <% }%>
-        
+              <% if( d.place_tag != null ) { %>
+                | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
+              <% }%>
+            </div>
+              <% if( (d.tags != null) && (d.tags !="") ) { 
+                var tags = d.tags.split(",");
+                var tag_count = tags.length;%>
+                <b class="tags ">
+               <% for (i=0; i < tag_count; i++) { %>
+                  <a href="search.php?keyword=<%= tags[i] %>"  > #<%=tags[i] %></a>
+               <% } console.log(d.tags);%>
+                
+                </b>
+              <% }else{%>
+                <b><a href="post.php?id=<%= d.id %>"  class="tags "> Add Tags</a></b>
+              <% }%>
+            
           </p>
-
+   
           <hr/> 
           <div class="share-container">
-            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Help, assist, or comment</a> 
             <!--&nbsp;&nbsp;YOU and 3 people are helping-->
             <div class="pull-right">
-              <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-              </div>  
+                
               <div class="social-item">
                 <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>
               <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                <a id="tw-<%= d.id %>" href="https://twitter.com/share" data-url="" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                   Tweet
                 </a>
               </div>

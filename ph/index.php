@@ -139,7 +139,7 @@
 
         <div id="search-copy-container" class="col-lg-7 col-md-7" style="display: none; margin: 20px 0;">
           <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
-          <h3>Search Results:</h3>
+          <h3 id="search_results_text">Search Results:</h3>
         </div>
 
         <div id="sidebar" class="col-lg-5 col-md-5" style="float: right;">
@@ -148,17 +148,17 @@
           <div id="links">
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Critical Needs</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="http://www.reliefboard.com/ph/relief.php"  title="Relief Goods" id="relief_goods">Relief Goods</a>
-              <a href="http://www.reliefboard.com/ph/missing.php"  title="Find missing people" id="find_missing_people">Missing People</a>
-              <a href="http://www.reliefboard.com/ph/call_for_volunteers.php"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a>
-              <a href="http://www.reliefboard.com/ph/foodwater.php"  title="Find missing people" id="find_missing_people">Food and water</a>
+              <a href="search.php?keyword=relief%20goods"  title="Relief Goods" id="relief_goods">Relief Goods</a>
+              <a href="missing.php"  title="Find missing people" id="find_missing_people">Missing People</a>
+              <a href="search.php?keyword=volunteers"  title="Call for volunteers" id="call_for_volunteers">Call for volunteers</a>
+              <a href="foodwater.php"  title="Food and water" id="food_watter">Food and water</a>
             </p>
             <p style="color: #294360; font-weight: 800; font-size: 22px;">Critical Areas</p>
             <p style="color: #294360; font-weight: 800; font-size: 18px;">
-              <a href="places.php?keyword=tacloban"  title="Tacloban, Leyte" >Tacloban, Leyte</a>
-              <a href="places.php?keyword=cebu"  title="Cebu" >Cebu</a>
-              <a href="places.php?keyword=palo"  title="Palo, Leyte" >Palo, Leyte</a>
-              <a href="places.php?keyword=bohol"  title="Bohol" >Bohol</a>
+              <a href="search.php?keyword=tacloban"  title="Tacloban, Leyte" >Tacloban, Leyte</a>
+              <a href="search.php?keyword=cebu"  title="Cebu" >Cebu</a>
+              <a href="search.php?keyword=palo"  title="Palo, Leyte" >Palo, Leyte</a>
+              <a href="search.php?keyword=bohol"  title="Bohol" >Bohol</a>
             </p>
 
 <!--             <p style="color: #294360; font-weight: 800; font-size: 22px;">Important Info</p>
@@ -336,8 +336,15 @@
                 | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
               <% }%>
             </div>
-              <% if( d.tags != null ) { %>
-                <b><a href="post.php?id=<%= d.id %>"  class="tags "> <%=d.tags %></a></b>
+              <% if( (d.tags != null) && (d.tags !="") ) { 
+                var tags = d.tags.split(",");
+                var tag_count = tags.length;%>
+                <b class="tags ">
+               <% for (i=0; i < tag_count; i++) { %>
+                  <a href="search.php?keyword=<%= tags[i] %>"  > #<%=tags[i] %></a>
+               <% } console.log(d.tags);%>
+                
+                </b>
               <% }else{%>
                 <b><a href="post.php?id=<%= d.id %>"  class="tags "> Add Tags</a></b>
               <% }%>
