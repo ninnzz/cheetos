@@ -47,14 +47,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- META COPY FOR SEO -->
-    <meta name="description" content="<?php echo urldecode(urldecode($data['message'])); ?>">
+    <meta name="description" 
+          content="<?php echo urldecode(urldecode($data['message'])); ?>">
 
     <meta property="og:title" content="ReliefBoard" />
     <meta property="og:site_name" content="ReliefBoard" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.reliefboard.com/ph/img/profile-pic-205.jpg" />
+    <meta property="og:image" 
+          content="http://www.reliefboard.com/ph/img/profile-pic-205.jpg" />
     <meta property="og:url" content="http://www.reliefboard.com" />
-    <meta property="og:description" content="<?php echo urldecode(urldecode($data['message'])); ?>">
+    <meta property="og:description" 
+          content="<?php echo urldecode(urldecode($data['message'])); ?>">
 
     <!-- GOOGLE ANALYTICS -->
     <script>
@@ -101,12 +104,14 @@
       window.fbAsyncInit = function() {
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-              FB.api('/me', function(response) {
-                $("#label_comment_message").html('Post as ' + response.first_name + " " + response.last_name);
-              });
+              logged_in_style();
             } else if (response.status === 'not_authorized') {
+
                $("#label_comment_message").html('Please authorize Reliefboard');
             } else {
+              
+              $("#add_tag").css("display", "block");
+              $("#tags_only").css("display", "block");
               $("#label_comment_message").html('Login to respond');
             }
           });
@@ -167,11 +172,14 @@
     <?php else: ?>
 
       <div class="container">
-
+        <div id="search-copy-container" class="col-md-12" style=" margin: 10px 0;">
+          <button id="back-to-feed" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Back to Feeds</button>
+          
+        </div>
         <div id="msg-single" class="col-lg-7">
 
           <div class="post" data-id="<?php echo $data['id']; ?>">
-              
+            
               <div class="time-container">
                 <div class="time-asset"></div>
                 <div class="time-data"><span class="times" data-time="<?php echo $data['date_created']; ?>"></span></div>
@@ -192,8 +200,19 @@
               </p>
 
               <div style="text-align:right">
-                <input placeholder="Add Tags" type="hidden" id="tagSelect"  style="width:300px;" /><br /> 
-                <div id="add_tag" style="display:none">Add Tag</div>  
+                <input placeholder="Add Tags" type="hidden" id="tagSelect" class="tagSelect_dummy" style="width:300px; display: none" /><br /> 
+                <div id="tags_only" style="display:none">
+                <?php
+                if(($data['tags']!=null) && ($data['tags']!= "")){
+                  $tags = explode(",", $data['tags']);
+                  $tags_count = count($tags);
+                  for ($i=0; $i < $tags_count; $i++) { 
+                    echo "<a href='search.php?keyword=".$tags[$i]."'>#" . $tags[$i] . " </a>";
+                  }
+                }
+                ?>
+                </div>
+                <div id="add_tag" class="btn btn-warning btn-primary pull-right"  style="display:none;">Login to add tags</div>  
               </div>
               <br/>
               
@@ -228,7 +247,7 @@
                       <label for="comment_message" id="label_comment_message">Login to respond</label>
                       <textarea class="form-control" rows="3" id="comment_message" ></textarea>
                     </div>
-                    <div type="button" class="btn btn-danger" id="comment_via_web">Post</div>
+                    <div type="button" required="true" class="btn btn-danger" id="comment_via_web">Post</div>
                     <div  class="pull-right" id="posting_loader" >Posting....</div>
                   </div>
                 </div> 
@@ -265,7 +284,7 @@
             <% if(d.source != null ) { %>
               <% if(d.source.indexOf("reliefboard") !== -1 || d.source.indexOf("primary") !== -1) { %>
                 
-                <img src="img/profile-pic-16.png" width='20' />
+                <img src="img/profile-pic-16.png" width='20'/>
                 <span class="app-name"><span class=""></span> Web</span>
 
               <% } else if(d.source.indexOf("sms") !== -1) { %>
@@ -348,6 +367,8 @@
       var html = "";
       var app_id= "2b198w.reliefboard.web";
       var commenting = false;
+      var authorized_tagging = false;
+      
 
       //copied from build.js
       function post_template (d) {
@@ -443,15 +464,18 @@
               // and signed request each expire
               var uid = response.authResponse.userID;
               var accessToken = response.authResponse.accessToken;
+              logged_in_style();
               post_comment();
-              
-              
             } else if (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
             // but has not authenticated your app
             } else {
               FB.login(function(response) {
-                post_comment();
+                
+                if(response.status === 'connected'){
+                  logged_in_style();
+                  post_comment();
+                }
               },{scope: 'email'}); 
             }
           });
@@ -472,6 +496,27 @@
         
 
       }); // end of #comment_via_web click
+      
+      //will transfer this 
+      $(document).on("click","#add_tag", function(e) {
+          FB.login(function(response) {
+                
+          },{scope: 'email'}); 
+
+          FB.Event.subscribe('auth.authResponseChange', function(response) {
+          // Here we specify what we do with the response anytime this event occurs. 
+            if (response.status === 'connected') {
+              logged_in_style();
+            }
+          });
+
+
+      }); // end of #comment_via_web click
+
+      $(document).on("click","#back-to-feed",function(e) {
+        e.preventDefault();
+        window.location = "/";
+      });
 
 
       function loading_hide(){
@@ -497,13 +542,12 @@
           }
           else{
             var tags =result.data.tags.join(",");
-            console.log(tags);
+            
             $("#tagSelect").val(tags);
             $('#tagSelect').select2({ tags:result.data.tags});
+            
             //$("#tagSelect").select2();
           }
-          
-          
           //console.log(tags);
           //$('#tagSelect').select2({ tags: ["red", "green", "blue"] });
         });
@@ -513,22 +557,31 @@
         add_tags();
       }); // end of #comment_via_web click
 
-      // post_id, tags(comma sparated), app_id
       function add_tags(){
         
-        $.ajax( {
-          type: "PUT",
-          data: {app_id: app_id, post_id: message_id, tags: $("#tagSelect").val()},
-          url: "http://reliefboard.com/tag",
-        } ).done( function ( result ) {
-          console.log(result);
+          $.ajax( {
+            type: "PUT",
+            data: {app_id: app_id, post_id: message_id, tags: $("#tagSelect").val()},
+            url: "http://reliefboard.com/tag",
+          } ).done( function ( result ) {
+            
+          });
+      }
+      
+      function logged_in_style(){
+        $("#add_tag").css("display", "none");
+        $("#tags_only").css("display", "none");
+        $(".tagSelect_dummy").css("display", "inline-block");
+        FB.api('/me', function(response) {
+          $("#label_comment_message").html('Post as ' + response.first_name + " " + response.last_name);
         });
       }
       get_tags();
+
+      
        
       
     </script>
-
 
     <!-- END BODY -->
 

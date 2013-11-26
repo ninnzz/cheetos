@@ -78,15 +78,6 @@ $( function () {
 			
 			_.each( result.data.result, function(d) {
 				id_list.push(d.id);
-		        if(typeof d.tags !=undefined){
-		        	if((d.tags !="") && (d.tags !=null)){
-						d.tags = "#" + d.tags.replace(/,/g, ", #");
-					}
-					else{
-						d.tags = null;
-					}
-		        }
-
 				html = html + post_template(d);
 			});
 
@@ -142,12 +133,9 @@ $( function () {
 			} ).done( function ( result ) {
 				var html = "";
 				_.each( result.data.result, function(d) {
-
 					html = html + post_template(d);
-
 				});
 
-				
 				$( "#results" ).append( html );
 				$( ".time" ).prettyDate();
 			});

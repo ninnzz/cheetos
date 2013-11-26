@@ -1,3 +1,10 @@
+<?php
+  $keyword = $_GET['keyword'];
+  if(!isset($keyword))
+    $error = true;
+
+
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" >
 
@@ -96,8 +103,17 @@
     <!-- END - FIXED NAV -->
 
     <!-- START BODY -->
+    <?php if( isset($error) && $error ) {?>
+       <div  class="container">
 
-    <div id="main-container" class="container">
+        <div class="row">
+          <div class="col-md-12 text-center"><h1> Keyword not provided</h1></div>
+          
+        </div>
+
+      </div>
+    <?php }else{ ?>
+    <div id="main-container" class="container" data-keyword="<?php echo $keyword;?>">
 
       <div class="row">
         <div id="search-copy-container" class="col-md-12" style=" margin: 10px 0;">
@@ -105,8 +121,8 @@
           
         </div>
         <div id="copy-container"  class="col-md-12" style=" margin: 10px 0;">
-          <div id="copy"  class="col-md-12 text-center" >
-            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43;">Relief goods</h2>
+          <div id="copy"  class="col-md-12 text-center" id="title_search" >
+            <h2 style="font-weight: 800; font-size: 46px; margin-top: -1px; color: #1d2f43; text-transform:capitalize;"><?php echo $keyword;?></h2>
           </div>
           
         
@@ -128,7 +144,7 @@
       </div>
 
     </div>
-
+    <?php }?>
     <!-- Modal -->
 <!--     <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -196,6 +212,24 @@
       }
     </script>
 
+    <script type="text/javascript">
+      function convertToLinks(text) {
+        var replaceText, replacePattern1;
+         
+        //URLs starting with http://, https://
+        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
+         
+        //URLs starting with "www."
+        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
+         
+        //returns the text result
+         
+        return replacedText;
+      }
+    </script>
+
     <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
       
@@ -218,10 +252,10 @@
                 <span class="app-name"><span class=""></span> Web</span>
 
               <% } else if(d.source.indexOf("sms") !== -1) { %>
-
+                
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS</span>
-
+                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+     
               <% } else if(d.app_name)  { %>
                 
                 <% if(d.logo != "") { %>
@@ -235,30 +269,42 @@
             <br/><br/>
             
             <%= convertToLinks(unescape(unescape(decodeURIComponent(unescape(d.message))))) %>
-            <br/><br/>  
-            <% if( d.sender != null ) { %>
-              <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
-            <% } %>
+            <br/><br/>
+            <div class="bottom_info">  
+              <% if( d.sender != null ) { %>
+                <b><span class="glyphicon glyphicon-user"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.sender)))) %> 
+              <% } %>
 
-            <% if( d.place_tag != null ) { %>
-              | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
-            <% }%>
-        
+              <% if( d.place_tag != null ) { %>
+                | <span class="glyphicon glyphicon-map-marker"></span> <%= unescape(unescape(decodeURIComponent(unescape(d.place_tag)))) %></b>
+              <% }%>
+            </div>
+              <% if( (d.tags != null) && (d.tags !="") ) { 
+                var tags = d.tags.split(",");
+                var tag_count = tags.length;%>
+                <b class="tags ">
+               <% for (i=0; i < tag_count; i++) { %>
+                  <a href="search.php?keyword=<%= tags[i] %>"  > #<%=tags[i] %></a>
+               <% } console.log(d.tags);%>
+                
+                </b>
+              <% }else{%>
+                <b><a href="post.php?id=<%= d.id %>"  class="tags "> Add Tags</a></b>
+              <% }%>
+            
           </p>
-
+   
           <hr/> 
           <div class="share-container">
-            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">HELP</a> 
+            <a class="help" href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" title="View comments and share this message" target="_blank">Help, assist, or comment</a> 
             <!--&nbsp;&nbsp;YOU and 3 people are helping-->
             <div class="pull-right">
-              <div class="social-item">
-                <div id="fb"class="fb-like" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
-              </div>  
+                
               <div class="social-item">
                 <div class="fb-share-button" data-href="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-type="button_count"></div>
               </div>
               <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/ph/post.php?id=<%= d.id %>" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                <a id="tw-<%= d.id %>" href="https://twitter.com/share" data-url="" data-text="<%= unescape(unescape(decodeURIComponent(unescape(d.message)))) %>" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                   Tweet
                 </a>
               </div>
@@ -290,6 +336,9 @@
 
     <script>
       var offset = 0;
+      var keyword = $("#main-container").attr("data-keyword");
+
+
 
       function post_template (d) {
         var html = _.template( $("#post").html() , {d:d} );
@@ -299,7 +348,7 @@
       function search(){
         $.ajax( {
           type: "GET",
-          url: "http://www.reliefboard.com/search?query=relief%20goods&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+          url: "http://www.reliefboard.com/search?query=" + keyword+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
         } ).done( function ( result ) {
 
           var html = "";
@@ -315,8 +364,8 @@
           $( "#results" ).css('display', 'block');
           $( ".time" ).prettyDate();
           
-          FB.XFBML.parse();
           $.getScript('http://platform.twitter.com/widgets.js');
+          FB.XFBML.parse();
         });
       } 
 
