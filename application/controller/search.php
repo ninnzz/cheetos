@@ -18,8 +18,9 @@ class Search extends Kiel_Controller
 			$str .= " sender like '%{$data['query']}%' OR";
 		}
 		if($data['message'] === "1"){
-			$str .= " message like '%{$data['query']}%'";
+			$str .= " message like '%{$data['query']}%' OR";
 		}
+		$str .= "  tags like '%{$data['query']}%' ";
 
 		$str = rtrim($str, 'OR');
 
@@ -30,6 +31,20 @@ class Search extends Kiel_Controller
 			$res = $this->feed_model->get_messages();
 		}
 		
+		$this->response(array('status'=>'Success','data'=>$res),200);
+
+	}
+
+	public function tag_get()
+	{
+		$required = array('name');
+		$data = $this->get_args;
+		$this->required_fields($required,$data);
+		$offset = isset($data['offset'])?$data['offset']:0;
+		$limit = isset($data['limit'])?$data['limit']:10;
+		$this->load_model('tag_model');
+
+		$res = $this->tag_model->search_tag($data['name'],$offset,$limit);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 
 	}
