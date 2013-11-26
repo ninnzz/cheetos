@@ -15,7 +15,7 @@ class Tag_model extends Kiel_Model{
 	public function search_tag($tag,$offset=0,$limit=0)
 	{
 		$query = "SELECT * FROM messages where tags like '%{$tag}%' ORDER BY date_created desc LIMIT {$offset}, {$limit};";
-		return $this->data_handler->query($query);
+		return array('q'=>$this->data_handler->query($query),'res'=>$this->data_handler->query($query));
 	}
 }
 
