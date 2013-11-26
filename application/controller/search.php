@@ -35,6 +35,20 @@ class Search extends Kiel_Controller
 
 	}
 
+	public function tag()
+	{
+		$required = array('tag');
+		$data = $this->get_args;
+		$this->required_fields($required,$data);
+		$offset = isset($data['offset'])?$data['offset']:0;
+		$limit = isset($data['limit'])?$data['limit']:10;
+		$this->load_model('tag_model');
+
+		$res = $this->tag_model->search_tag($data['tag'],$offset,$limit);
+		$this->response(array('status'=>'Success','data'=>$array),200);
+
+	}
+
 	public function google_finder_get()
 	{
 		$q = $this->get_args['query'];
