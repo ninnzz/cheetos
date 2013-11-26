@@ -10,17 +10,19 @@ class Search extends Kiel_Controller
 		$data = $this->get_args;
 		$this->required_fields($required,$data);
 
+		$d_query = urldecode($data['query']);
+
 		$str = '';
 		if($data['loc'] === "1"){
-			$str .= " place_tag like '%{$data['query']}%' OR";
+			$str .= " place_tag like '%{$d_query}%' OR";
 		}
 		if($data['name'] === "1"){
-			$str .= " sender like '%{$data['query']}%' OR";
+			$str .= " sender like '%{$d_query}%' OR";
 		}
 		if($data['message'] === "1"){
-			$str .= " message like '%{$data['query']}%' OR";
+			$str .= " message like '%{$d_query}%' OR";
 		}
-		$str .= "  tags like '%{$data['query']}%' ";
+		$str .= "  tags like '%{$d_query}%' ";
 
 		$str = rtrim($str, 'OR');
 
@@ -44,7 +46,7 @@ class Search extends Kiel_Controller
 		$limit = isset($data['limit'])?$data['limit']:10;
 		$this->load_model('tag_model');
 
-		$res = $this->tag_model->search_tag($data['name'],$offset,$limit);
+		$res = $this->tag_model->search_tag(urldecode($data['name']),$offset,$limit);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 
 	}
