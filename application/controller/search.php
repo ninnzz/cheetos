@@ -35,16 +35,16 @@ class Search extends Kiel_Controller
 
 	}
 
-	public function tag()
+	public function tag_get()
 	{
-		$required = array('tag');
+		$required = array('name');
 		$data = $this->get_args;
 		$this->required_fields($required,$data);
 		$offset = isset($data['offset'])?$data['offset']:0;
 		$limit = isset($data['limit'])?$data['limit']:10;
 		$this->load_model('tag_model');
 
-		$res = $this->tag_model->search_tag($data['tag'],$offset,$limit);
+		$res = $this->tag_model->search_tag($data['name'],$offset,$limit);
 		$this->response(array('status'=>'Success','data'=>$array),200);
 
 	}
