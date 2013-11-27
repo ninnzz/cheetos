@@ -222,9 +222,7 @@
         
           document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
         }
-        else{
-          document.getElementById('conversation').innerHTML = "<div>Does not have any comment</div>"; 
-        }
+
       });
   }
 
