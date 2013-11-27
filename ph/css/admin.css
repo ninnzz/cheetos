@@ -11,6 +11,7 @@ body {
 .message{
 	border-bottom: 1px solid #eee;
 	padding-top: 20px;
+	cursor: pointer;
 }
 
 #message-list {
@@ -51,13 +52,15 @@ body {
 }
 
 #form-message {
-	width: 696px;
+	width: 91%;
 	height: 84px;
 	float: left;
 	resize: none;
 }
 
 #send {
+	padding: 0px;
+	width: 7%;
 	height:84px;
 }
 
@@ -65,6 +68,13 @@ body {
 	padding:20px 20px 0px 20px ;
 }
 
+
+.expanded-message-right{
+	text-align: right;
+}
+.expanded-message-left{
+	text-align: left;
+}
 /* ------------------------------------------------------------------------ */
 /* NAV */
 
