@@ -64,29 +64,10 @@
       <!--START CHAT BOX-->
       <div class="col-lg-8 col-md-8" id="chat-box">
         <div id="conversation">
-          <!-- REMOVE THIS : CONVERT TO TEMPLATE-->
-          <div id="expanded-message-left">
-            <h4><b>Kristela Mae-Joy Valentin</b></h4>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
-              been the industry's standard dummy text ever since the 1500s...
-            </p>
-            <h6 style="text-align:right">10:30pm</h6>
-            <hr/>
-          </div>
-          <div id="expanded-message-right">
-            <h4 style="text-align:right"><b>ADMIN</b></h4>
-            <p style="text-align:right">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
-              been the industry's standard dummy text ever since the 1500s...
-            </p>
-            <h6 style="text-align:left">11:30pm</h6>
-            <hr/>
-          </div>
-          <!-- REMOVE THIS : END OF TEMPLATE -->
+
         </div>
         <div id="message-input">
-          <textarea id="form-message" placeholder="Write your message..." class="form-control" required></textarea>
+          <textarea id="form-message"  placeholder="Write your message..." class="form-control" required></textarea>
           <button id="send" type="button" class="btn btn-primary">SEND</button>
         </div>
 
@@ -96,10 +77,26 @@
 
     </div>    
     <!-- END DIV BODY-->
+
+  <div class="modal fade" id="respond_error">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-body">
+          <p>Response is required</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/underscore.min.js"></script>
   <script>
+  
   function convertToLinks(text) {
     var replaceText, replacePattern1;
      
@@ -131,13 +128,14 @@
 
      var min = a.getMinutes();
      var sec = a.getSeconds();
-     var time = date+','+month+' '+year+' '+hour+':'+min+':'+sec + " "+ ampm;
+     var time = date+' '+month+' '+year+' '+hour+':'+min+':'+sec + " "+ ampm;
      return time;
   }
   </script>
   <script type="text/template" id="message_template">
     <% 
     _.each( messages, function(m) {
+      messages_array[m.id] = m;
     %>
      <div class="message" data-id="<%=m.id%>">
         <h4 class="pull-left"><b><%=convertToLinks(unescape(unescape(decodeURIComponent(unescape(m.sender)))))%></b></h4>
@@ -149,6 +147,7 @@
       
     </div>   
     <%
+    
     });
     %>
 
@@ -157,15 +156,25 @@
 
   <% 
   _.each( comments, function(c) {
+    
+    if(c.parent_id == null){
   %>
-   <div id="expanded-message-left">
-      <h4><b>Kristela Mae-Joy Valentin</b></h4>
-      <p>
-      
-      </p>
-      <h6 style="text-align:right">10:30pm</h6>
-      <hr/>
-    </div>  
+     <div class="expanded-message-left">
+     <%
+     }
+     else{
+     %>
+      <div class="expanded-message-right">
+     <% 
+     }
+     %>
+        <h4><b><%=convertToLinks(unescape(unescape(decodeURIComponent(unescape(c.sender)))))%></b></h4>
+        <p>
+          <%=convertToLinks(unescape(unescape(decodeURIComponent(unescape(c.message))))) %>
+        </p>
+        <h6 ><%=timeConverter(c.date_updated)%></h6>
+        <hr/>
+      </div>  
   <%
    
   });
@@ -174,9 +183,14 @@
 
   </script>   
   <script>
+  var app_id= "2b198w.reliefboard.web";
   var offset = 0;
   var offset_message_expanded = 0;
-  
+  var messages_array = [];
+  var first_message = "";
+  var current_message = "";
+  var is_search_mode = false;
+
   function load_messages(){
       $.ajax({
         type: "GET",
@@ -185,10 +199,15 @@
         var html = _.template( $("#message_template").html() , {messages:result.data.result} );
         if(offset == 0 ){
           document.getElementById('message-list-messages').innerHTML = html;
+          first_message = result.data.result[0];
+          current_message = first_message;
+          var html = _.template( $("#message_expanded_template").html() , {comments:[first_message]} );
+          document.getElementById("conversation").innerHTML = html;
         }
         else{
           document.getElementById('message-list-messages').innerHTML = document.getElementById('message-list-messages').innerHTML  + html;
         }
+
       });
   }
 
@@ -197,15 +216,13 @@
         type: "GET",
         url: "http://www.reliefboard.com/comments?parent_id=" + message_id  + "&limit=10&offset=" + offset_message_expanded
       }).done( function ( result ) {
-        if(result.data.length > 0){
+        console.log(result);
+        if(result.data.result.length > 0){
           var html = _.template( $("#message_expanded_template").html() , {comments:result.data.result} );
-          document.getElementById('conversation').innerHTML = html; 
-           
+        
+          document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
         }
-        else{
-          document.getElementById('conversation').innerHTML = "<div>Does not have any comment</div>"; 
-        }
-      
+
       });
   }
 
@@ -217,9 +234,58 @@
 
 
   $(document).on("click",".message", function(e) {
-    var id= $(this).attr('data-id');
+    var id= $(this).attr('data-id'); 
+
+    if(typeof messages_array[id] != undefined){
+      var html = _.template( $("#message_expanded_template").html() , {comments:[messages_array[id]]} );
+      current_message = messages_array[id];
+    }
+    document.getElementById("conversation").innerHTML = html;
     load_message_expanded(id);
   });
+
+  $(document).on("click","#send", function(e) {   
+    if(document.getElementById("form-message").value == ""){
+      $("#respond_error").modal('show');
+    }
+    else{
+      post_comment(current_message.id,document.getElementById("form-message").value );
+    }
+    
+  });
+
+  $(document).on("keypress","#search", function(e) {   
+
+    if(e.charCode ==13){
+      is_search_mode = true;
+      var keyword = document.getElementById("search").value;
+      search(keyword);
+    }
+  });
+
+  function post_comment(message_id, message){
+    $.ajax( {
+        type: "POST",
+        data: {app_id : app_id, message: message, name: "Admin", parent_id: message_id},
+        url: "http://www.reliefboard.com/messages/feed",
+      } ).done( function ( result ) {
+          $("#form-message").val('');
+          var append_message = {"message": message, "sender" : "Admin", "date_updated": (new Date).getTime(), "parent_id": "null"};
+          var html = _.template( $("#message_expanded_template").html() , {comments:[append_message]} );
+          document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
+      });
+  }
+
+
+  function search(keyword){
+    $.ajax( {
+      type: "GET",
+      url: "http://www.reliefboard.com/search?query=" + keyword+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+    } ).done( function ( result ) {
+      console.log(offset);
+    });
+  }
+
 
   load_messages();
 

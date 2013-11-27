@@ -4,7 +4,7 @@
   <head prefix="og: http://ogp.me/ns/website#" >
 
     <title>ReliefBoard - get help, give help during calamities</title>
-    
+
     
 
     <!-- META COPY FOR SEO -->
@@ -242,7 +242,8 @@
             
             1. Send a <b>FREE SMS</b> to: 
             <br /> 
-            <b style="font-size: 20px;">260011 (GLOBE/TM) or </b>
+            <!-- <b style="font-size: 20px;">260011 (GLOBE/TM) or </b> -->
+            <b style="font-size: 20px;">23737102 (GLOBE) or </b> 
             <b style="font-size: 20px;">68009 (SMART) </b>
             <br />
             (from within the Philippines)
