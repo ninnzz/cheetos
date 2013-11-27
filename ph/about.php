@@ -3,7 +3,7 @@
 
   <head prefix="og: http://ogp.me/ns/website#" >
 
-    <title>ReliefBoard</title>
+    <title>ReliefBoard - About</title>
 
     <!-- META -->
     
@@ -14,11 +14,8 @@
     <!-- META COPY FOR SEO -->
     <meta name="description" content="Need help? Looking for someone? Want to share information? We help you get the word out." />
 
-    <meta property="og:title" content="ReliefBoard" />
-    <meta property="og:site_name" content="ReliefBoard" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="http://www.reliefboard.com/ph/img/profile-pic-205.jpg" />
-    <meta property="og:url" content="http://www.reliefboard.com" />
+    <?php include_once("header.php");?>
+
     <meta property="og:description" "Need help? Looking for someone? Want to share information? We help you get the word out." />
 
     <!-- GOOGLE ANALYTICS -->
@@ -199,7 +196,13 @@
     <script>
       $( function () {
         $.getScript('http://platform.twitter.com/widgets.js');
-        FB.XFBML.parse();
+        if (typeof(FB) != 'undefined'
+           && FB != null ) {
+            FB.XFBML.parse();
+        } else {
+
+           
+        }
       });
 
       $(document).on("click","#back-to-feed",function(e) {

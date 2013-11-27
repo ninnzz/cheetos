@@ -51,25 +51,10 @@
         <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
         <hr/>
         <!-- REMOVE THIS : CONVERT TO TEMPLATE-->
-        <div id="message">
-          <h4 style="float:left"><b>Kristela Mae-Joy Valentin</b></h4>
-          <h6 style="float:right">10:30pm</h6>
-          <br/><br/>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
-            been the industry's standard dummy text ever since the 1500s...
-          </p>
-          <hr/>
+        <div id="message-list-messages">
         </div>
-        <div id="message">
-          <h4 style="float:left"><b>Joanna Lee</b></h4>
-          <h6 style="float:right">Nov. 26</h6>
-          <br/><br/>
-          <p>
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also...
-          </p>
-          <hr/>
+        <div id="load_more" class="row text-center text-danger" >
+          Load More
         </div>
         <!-- REMOVE THIS : END OF TEMPLATE -->
 
@@ -111,9 +96,136 @@
 
     </div>    
     <!-- END DIV BODY-->
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/underscore.min.js"></script>
+  <script>
+  function convertToLinks(text) {
+    var replaceText, replacePattern1;
+     
+    //URLs starting with http://, https://
+    replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+    replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
+     
+    //URLs starting with "www."
+    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
+     
+    //returns the text result
+     
+    return replacedText;
+  }
+  function timeConverter(UNIX_timestamp){
+     var a = new Date(UNIX_timestamp*1000);
+     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+     var year = a.getFullYear();
+     var month = months[a.getMonth()];
+     var date = a.getDate();
+     var hour = a.getHours();
+     if(hour > 12){
+      hour = hour-12;
+      var ampm = 'pm';
+     }else{
+      var ampm = 'am';
+     }
 
-    
+     var min = a.getMinutes();
+     var sec = a.getSeconds();
+     var time = date+','+month+' '+year+' '+hour+':'+min+':'+sec + " "+ ampm;
+     return time;
+  }
+  </script>
+  <script type="text/template" id="message_template">
+    <% 
+    _.each( messages, function(m) {
+    %>
+     <div class="message" data-id="<%=m.id%>">
+        <h4 class="pull-left"><b><%=convertToLinks(unescape(unescape(decodeURIComponent(unescape(m.sender)))))%></b></h4>
+        <h6 class="pull-right"><%=timeConverter(m.date_updated)%></h6>
+        <br/><br/>
+        <p>
+          <%=convertToLinks(unescape(unescape(decodeURIComponent(unescape(m.message))))) %>
+        </p>
+      
+    </div>   
+    <%
+    });
+    %>
+
+  </script>   
+  <script type="text/template" id="message_expanded_template">
+
+  <% 
+  _.each( comments, function(c) {
+  %>
+   <div id="expanded-message-left">
+      <h4><b>Kristela Mae-Joy Valentin</b></h4>
+      <p>
+      
+      </p>
+      <h6 style="text-align:right">10:30pm</h6>
+      <hr/>
+    </div>  
+  <%
+   
+  });
+  %>
+
+
+  </script>   
+  <script>
+  var offset = 0;
+  var offset_message_expanded = 0;
+  
+  function load_messages(){
+      $.ajax({
+        type: "GET",
+        url: "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5"
+      }).done( function ( result ) {
+        var html = _.template( $("#message_template").html() , {messages:result.data.result} );
+        if(offset == 0 ){
+          document.getElementById('message-list-messages').innerHTML = html;
+        }
+        else{
+          document.getElementById('message-list-messages').innerHTML = document.getElementById('message-list-messages').innerHTML  + html;
+        }
+      });
+  }
+
+  function load_message_expanded(message_id){
+      $.ajax({
+        type: "GET",
+        url: "http://www.reliefboard.com/comments?parent_id=" + message_id  + "&limit=10&offset=" + offset_message_expanded
+      }).done( function ( result ) {
+        if(result.data.length > 0){
+          var html = _.template( $("#message_expanded_template").html() , {comments:result.data.result} );
+          document.getElementById('conversation').innerHTML = html; 
+           
+        }
+        else{
+          document.getElementById('conversation').innerHTML = "<div>Does not have any comment</div>"; 
+        }
+      
+      });
+  }
+
+
+  $(document).on("click","#load_more", function(e) {
+    offset = offset + 5;
+    load_messages();
+  });
+
+
+  $(document).on("click",".message", function(e) {
+    var id= $(this).attr('data-id');
+    load_message_expanded(id);
+  });
+
+  load_messages();
+
+  </script>
   </body>
   <!-- END BODY -->
 
 </html>
+
