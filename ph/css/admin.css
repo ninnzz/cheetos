@@ -132,7 +132,7 @@ body {
   	margin-bottom: 0;
   }
 }
-/* ------------------------------------------------------------------------ */
+/* -------------------------------------------------------------------------*/
 
 #search {
 	background-image: url("../img/search-icon.png");
@@ -146,4 +146,31 @@ body {
 	outline: none !important;
 	width: 330px;
 	margin-top:10px;
+}
+
+/*-------------------------------------------------------------------------*/
+
+#login-container {
+	background-color: #294360;
+	margin-left:auto;
+	margin-right:auto;
+	width:30%;
+	height: 300px;
+	border-radius: 5%;
+	padding: 20px;
+}
+
+#logo-login {
+	background-image: url("../img/logo.png");
+	display: inline-block;
+	height: 42px;
+	width: 239px;
+	margin: 0% 15% 10% 15%;
+}
+
+#login {
+	margin-top: 10%;
+	width:350px;
+	font-size: 18px;
+	font-weight: 900;
 }
