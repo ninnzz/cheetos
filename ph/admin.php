@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
-
     <title>ReliefBoard - get help, give help during calamities</title>
 
     <!-- CSS CODE -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/admin.css" rel="stylesheet" />
+    <link href="js/select2/select2.css" rel="stylesheet"/>
  
   </head>
 
@@ -39,7 +38,6 @@
       </div>
 
     </div>
-
     <!-- END - FIXED NAV -->
 
     <!-- START BODY-->
@@ -71,6 +69,8 @@
           <button id="send" type="button" class="btn btn-primary">SEND</button>
         </div>
 
+        <input placeholder="Add Tags" type="hidden" id="tagSelect" class="tagSelect_dummy" style="width:98%"/> 
+
       </div>
       <!--END CHAT BOX-->
       
@@ -93,45 +93,12 @@
   </div><!-- /.modal -->
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="js/common.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/underscore.min.js"></script>
-  <script>
-  
-  function convertToLinks(text) {
-    var replaceText, replacePattern1;
-     
-    //URLs starting with http://, https://
-    replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
-    replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
-     
-    //URLs starting with "www."
-    replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-    replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
-     
-    //returns the text result
-     
-    return replacedText;
-  }
-  function timeConverter(UNIX_timestamp){
-     var a = new Date(UNIX_timestamp*1000);
-     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-     var year = a.getFullYear();
-     var month = months[a.getMonth()];
-     var date = a.getDate();
-     var hour = a.getHours();
-     if(hour > 12){
-      hour = hour-12;
-      var ampm = 'pm';
-     }else{
-      var ampm = 'am';
-     }
+  <script src="js/select2/select2.js"></script>
 
-     var min = a.getMinutes();
-     var sec = a.getSeconds();
-     var time = date+' '+month+' '+year+' '+hour+':'+min+':'+sec + " "+ ampm;
-     return time;
-  }
-  </script>
+  <!--Template for messages on the left side-->
   <script type="text/template" id="message_template">
     <% 
     _.each( messages, function(m) {
@@ -151,7 +118,9 @@
     });
     %>
 
-  </script>   
+  </script> <!--End of message_template-->
+
+  <!--Template for message expanded on the right side-->  
   <script type="text/template" id="message_expanded_template">
 
   <% 
@@ -179,9 +148,8 @@
    
   });
   %>
+  </script> <!--End of message_expanded_template-->
 
-
-  </script>   
   <script>
   var app_id= "2b198w.reliefboard.web";
   var offset = 0;
@@ -191,6 +159,7 @@
   var current_message = "";
   var is_search_mode = false;
 
+  //Load messages on the left side
   function load_messages(){
       $.ajax({
         type: "GET",
@@ -211,6 +180,7 @@
       });
   }
 
+  //Load the message comments
   function load_message_expanded(message_id){
       $.ajax({
         type: "GET",
@@ -219,50 +189,13 @@
         console.log(result);
         if(result.data.result.length > 0){
           var html = _.template( $("#message_expanded_template").html() , {comments:result.data.result} );
-        
           document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
         }
 
       });
   }
 
-
-  $(document).on("click","#load_more", function(e) {
-    offset = offset + 5;
-    load_messages();
-  });
-
-
-  $(document).on("click",".message", function(e) {
-    var id= $(this).attr('data-id'); 
-
-    if(typeof messages_array[id] != undefined){
-      var html = _.template( $("#message_expanded_template").html() , {comments:[messages_array[id]]} );
-      current_message = messages_array[id];
-    }
-    document.getElementById("conversation").innerHTML = html;
-    load_message_expanded(id);
-  });
-
-  $(document).on("click","#send", function(e) {   
-    if(document.getElementById("form-message").value == ""){
-      $("#respond_error").modal('show');
-    }
-    else{
-      post_comment(current_message.id,document.getElementById("form-message").value );
-    }
-    
-  });
-
-  $(document).on("keypress","#search", function(e) {   
-
-    if(e.charCode ==13){
-      is_search_mode = true;
-      var keyword = document.getElementById("search").value;
-      search(keyword);
-    }
-  });
-
+  //Send comment
   function post_comment(message_id, message){
     $.ajax( {
         type: "POST",
@@ -276,20 +209,88 @@
       });
   }
 
-
+  //Search for certain messages
   function search(keyword){
     $.ajax( {
       type: "GET",
       url: "http://www.reliefboard.com/search?query=" + keyword+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
     } ).done( function ( result ) {
       console.log(offset);
+      var html = _.template( $("#message_template").html() , {messages:result.data.result} );
+      if(offset == 0 ){
+        document.getElementById('message-list-messages').innerHTML = html;
+        first_message = result.data.result[0];
+        current_message = first_message;
+        var html = _.template( $("#message_expanded_template").html() , {comments:[first_message]} );
+        document.getElementById("conversation").innerHTML = html;
+      }
+      else{
+        document.getElementById('message-list-messages').innerHTML = document.getElementById('message-list-messages').innerHTML  + html;
+      }
     });
   }
 
+  //Load more clicked
+  $(document).on("click","#load_more", function(e) {
+    offset = offset + 5;
+    if(is_search_mode){
+      var keyword = document.getElementById("search").value;
+      search(keyword);
+    }else{
+      load_messages();
+    }
+    
+  });
 
-  load_messages();
+  // Message from the left side clicked to view comments
+  $(document).on("click",".message", function(e) {
+    var id= $(this).attr('data-id'); 
+    if(typeof messages_array[id] != undefined){
+      var html = _.template( $("#message_expanded_template").html() , {comments:[messages_array[id]]} );
+      current_message = messages_array[id];
+    }
+    document.getElementById("conversation").innerHTML = html;
+    load_message_expanded(id);
+  });
 
-  </script>
+  // Send button clicked, for sending reply
+  $(document).on("click","#send", function(e) {   
+    if(document.getElementById("form-message").value == ""){
+      $("#respond_error").modal('show');
+    }
+    else{
+      post_comment(current_message.id,document.getElementById("form-message").value );
+    }
+  });
+
+  // capture enter on search input
+  $(document).on("keypress","#search", function(e) {   
+
+    if(e.charCode ==13){
+      is_search_mode = true;
+      offset = 0;
+      var keyword = document.getElementById("search").value;
+      search(keyword);
+    }
+
+  });
+
+  // trigger if search input is empty
+  $(document).on("keyup","#search", function(e) {   
+    if(($("#search").val()== "") && (is_search_mode == true)){
+      offset = 0;
+      is_search_mode = false;
+      load_messages();
+    }
+  });
+
+  // load messages on load
+  $(document).ready(function(){
+    load_messages();
+    $("#tagSelect").select2({tags:["DSWD", "Red Cross", "PNP"]});
+  });
+  
+  </script> <!--End of script-->
   </body>
   <!-- END BODY -->
 
