@@ -200,7 +200,16 @@
               <% } else if(d.source.indexOf("sms") !== -1) { %>
                 
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+                <span class="app-name"><span class=""></span>
+                <%
+                  var number = ""
+                  if((d.sender_number.charAt(0) == 0) || (d.sender_number.charAt(0) == '0') ){
+                    number = {first: d.sender_number.substring(0,4), second : d.sender_number.substring(4,7)};
+                  }
+                  else{
+                    number = {first: "0"+ d.sender_number.substring(2,5), second : d.sender_number.substring(5,8)};
+                  }
+                %> SMS  <%=number.first %>-<%=number.second %>-xxxx</span>
      
               <% } else if(d.app_name)  { %>
                 
@@ -284,12 +293,36 @@
 
     <script>
       var offset = 0;
+      //APPLY FORMATING TO SINGLE RESULT
 
+      function post_template (d) {
+        var html = _.template( $("#post").html() , {d:d} );
+            var version = "2.0.1";
+            var id = d.id;
+            var url = "http://www.reliefboard.com/ph/post.php?id=" + id;
+            var login = "kjventura";
+            var appkey = "R_afc197795cfaf9242fc1063b2c77c48d";
+            var format = "json";
+            var ajax_url = 'http://api.bit.ly/shorten?version='+ version + '&longUrl='+ encodeURIComponent(url) + '&login=' + login + '&apiKey=' + appkey + '&format=' + format;
+
+            $.get(ajax_url, function( response ) {
+              
+            });
+
+            var login = "kjventura";
+        var api_key = "R_afc197795cfaf9242fc1063b2c77c48d";
+        var long_url = "http://www.reliefboard.com/ph/post.php?id=" + d.id;
+
+        get_short_url(long_url, login, api_key, function(short_url) {
+          $("#tw-" + d.id).attr("data-url",short_url);
+        })
+        return html;
+      }
 
       function search(){
         $.ajax( {
           type: "GET",
-          url: "http://www.reliefboard.com/search?query=food%20water&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+          url: "http://www.reliefboard.com/search?query=food&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
         } ).done( function ( result ) {
 
           var html = "";
@@ -304,9 +337,13 @@
           $( "#results" ).append( html );
           $( "#results" ).css('display', 'block');
           $( ".time" ).prettyDate();
-          
-          FB.XFBML.parse();
           $.getScript('http://platform.twitter.com/widgets.js');
+          if (typeof(FB) != 'undefined'
+             && FB != null ) {
+              FB.XFBML.parse();
+          } else {
+
+          } 
         });
       } 
 

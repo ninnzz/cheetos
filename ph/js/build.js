@@ -36,8 +36,6 @@ $( function () {
 	//APPLY FORMATING TO SINGLE RESULT
 
 	function post_template (d) {
-
-
 		var html = _.template( $("#post").html() , {d:d} );
         var version = "2.0.1";
         var id = d.id;
@@ -58,17 +56,13 @@ $( function () {
 		get_short_url(long_url, login, api_key, function(short_url) {
 			$("#tw-" + d.id).attr("data-url",short_url);
 		})
-        
-
 		return html;
 	}
 
 	// FEED CALL
-
 	function feed () {
 
 		/* FETCH FEED */
-
 		$.ajax( {
 			type: "GET",
 			url: "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5"
@@ -82,7 +76,6 @@ $( function () {
 			});
 
 			
-
 			$( "#msg" ).append( html );
 			$( ".time" ).prettyDate();
 			/*$( 'input[id^="tag_"]').select2(select2_options);*/
@@ -204,7 +197,7 @@ $( function () {
 		FB.XFBML.parse();
 	});
 
-
+	// view modal to show form and post via web
     $(document).on("click","#viaweb", function(e) {
 
 	    e.preventDefault();
@@ -233,7 +226,7 @@ $( function () {
 	            	
 	            } else {
 
-	            // the user isn't logged in to Facebook.
+	            
 	            }
 	    });
 
@@ -243,7 +236,6 @@ $( function () {
 	                    // The response object is returned with a status field that lets the app know the current
 	                    // login status of the person. In this case, we're handling the situation where they 
 	                    // have logged in to the app.
-	                    console.log('eee');
 	                    $("#loginToFacebook").hide();
 	                    $("#authenticated").show();
 	                    FB.api('/me', function(response) {
@@ -288,6 +280,7 @@ $( function () {
 
 	});
 
+	// sniff for searching users
 	$('#search').keypress(function(e) {
 
 		if(e.which == 13){
@@ -353,21 +346,12 @@ $( function () {
 		}	
 	});
 
-
+	//show options for search
 	$(document).on("focus","#search", function(e) {
 		$("#search-filter").show();
 		//search_mode = true;
 	});
-
-	$(document).on("blur","#search", function(e) {
-		//$("#search-filter").hide();
-		/*
-		if(!search_mode) {
-			$("#search-filter").hide();
-			search_mode = false;
-		}*/
-	});
-
+	//hide options for search
 	$(document).on("click","#main-container", function(e){
 		e.stopPropagation();
 		$("#search-filter").hide();
@@ -396,6 +380,7 @@ $( function () {
 		return;
 	});
 
+	//spam button to mark post as spam or abusive
 	$(document).on("click",".share",function(e) {
 		e.preventDefault();
 		c = confirm("Are you sure you want to mark it as SPAM or ABUSIVE?");
@@ -418,6 +403,7 @@ $( function () {
 		});	
 	});
 
+	//show instruction of sms posting
 	$(document).on("click","#viasms",function(e) {
 
 		e.preventDefault();

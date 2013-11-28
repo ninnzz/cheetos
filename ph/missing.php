@@ -174,29 +174,18 @@
       </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/common.js"></script>
+
     <script type="text/templ" id="twTemplate">
       <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
     </script>
 
-    <script type="text/javascript">
-      function convertToLinks(text) {
-        var replaceText, replacePattern1;
-         
-        //URLs starting with http://, https://
-        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
-        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
-         
-        //URLs starting with "www."
-        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
-         
-        //returns the text result
-         
-        return replacedText;
-      }
-    </script>
-
-        <script type="text/template" id="post">
+    <!--template for post-->
+    <script type="text/template" id="post">
       <% if( d.message != null && d.message != "" ) { %>
       
       <div class="time-container<%= d.id %> time-container">
@@ -220,7 +209,16 @@
               <% } else if(d.source.indexOf("sms") !== -1) { %>
                 
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+                <span class="app-name"><span class=""></span> 
+                <%
+                  var number = ""
+                  if((d.sender_number.charAt(0) == 0) || (d.sender_number.charAt(0) == '0') ){
+                    number = {first: d.sender_number.substring(0,4), second : d.sender_number.substring(4,7)};
+                  }
+                  else{
+                    number = {first: "0"+ d.sender_number.substring(2,5), second : d.sender_number.substring(5,8)};
+                  }
+                %> SMS  <%=number.first %>-<%=number.second %>-xxxx</span>
      
               <% } else if(d.app_name)  { %>
                 
@@ -281,36 +279,39 @@
     </script>
 
 
-
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/underscore.min.js"></script>
-    <script src="js/select2.min.js"></script>
-    <script src="js/time.js"></script>
-
-    <!--USER REPORT-->
-    <script type="text/javascript">
-    var _urq = _urq || [];
-    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
-    (function() {
-    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-    })();
-    </script>
-
-
     <script>
       var offset = 0;
       var is_search_mode = false;
 
       $("#search").css('display', 'block');
 
+      //APPLY FORMATING TO SINGLE RESULT
+
       function post_template (d) {
         var html = _.template( $("#post").html() , {d:d} );
+            var version = "2.0.1";
+            var id = d.id;
+            var url = "http://www.reliefboard.com/ph/post.php?id=" + id;
+            var login = "kjventura";
+            var appkey = "R_afc197795cfaf9242fc1063b2c77c48d";
+            var format = "json";
+            var ajax_url = 'http://api.bit.ly/shorten?version='+ version + '&longUrl='+ encodeURIComponent(url) + '&login=' + login + '&apiKey=' + appkey + '&format=' + format;
+
+            $.get(ajax_url, function( response ) {
+              
+            });
+
+            var login = "kjventura";
+        var api_key = "R_afc197795cfaf9242fc1063b2c77c48d";
+        var long_url = "http://www.reliefboard.com/ph/post.php?id=" + d.id;
+
+        get_short_url(long_url, login, api_key, function(short_url) {
+          $("#tw-" + d.id).attr("data-url",short_url);
+        })
         return html;
       }
 
+      //search for specific names of the missing people
       function search(query){
 
         var query = (typeof query === "undefined") ? "missing" : query;
@@ -343,11 +344,13 @@
         });
       } 
 
+      //go back to index.php
       $(document).on("click","#back-to-feed",function(e) {
         e.preventDefault();
-        window.location = "http://www.reliefboard.com/ph/";
+        window.location = "/";
       });
 
+      //wait for user to search
       $(document).on("keypress","#search",function(e) {
         
         if(e.which == 13){
@@ -359,6 +362,7 @@
 
       });
 
+      // check if input is empty, go back to original search
       $(document).on("keyup","#search",function(e) {
         
         if(!$(this).val()){
@@ -369,6 +373,7 @@
         
       });
 
+      //infinite scrolling
       $(window).scroll(function () {
         if ($(window).scrollTop() >= $(document).height() - $(window).height() - 10) {
             offset = offset + 5;
@@ -380,7 +385,6 @@
             
         }
       });
-
 
       search();
     </script>

@@ -1,10 +1,3 @@
-// this file contains common js functions for reliefboard
-
-function post_template (d) {
-        var html = _.template( $("#post").html() , {d:d} );
-        return html;
-}
-
 function convertToLinks(text) {
 	var replaceText, replacePattern1;
 	 
@@ -19,4 +12,41 @@ function convertToLinks(text) {
 	//returns the text result
 	 
 	return replacedText;
+}
+
+function timeConverter(UNIX_timestamp){
+   var a = new Date(UNIX_timestamp*1000);
+   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+   var year = a.getFullYear();
+   var month = months[a.getMonth()];
+   var date = a.getDate();
+   var hour = a.getHours();
+   if(hour > 12){
+    hour = hour-12;
+    var ampm = 'pm';
+   }else{
+    var ampm = 'am';
+   }
+
+   var min = a.getMinutes();
+   var sec = a.getSeconds();
+   var time = date+' '+month+' '+year+' '+hour+':'+min+':'+sec + " "+ ampm;
+   return time;
+}
+
+function get_short_url(long_url, login, api_key, func)
+{
+  $.getJSON(
+      "http://api.bitly.com/v3/shorten?callback=?", 
+      { 
+          "format": "json",
+          "apiKey": api_key,
+          "login": login,
+          "longUrl": long_url
+      },
+      function(response)
+      {
+          func(response.data.url);
+      }
+  );
 }
