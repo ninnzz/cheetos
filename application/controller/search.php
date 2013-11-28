@@ -7,12 +7,24 @@ class Search extends Kiel_Controller
 		$this->load_model('feed_model');
 
 		$required = array('loc','name','message','query');
+		$status_types = array('pending', 'flagged', 'approved');
 		$data = $this->get_args;
+		//check if nothing is passed and if a status is asked and it does not belong to the options
+		//it will choose pending by default
+		$data['status'] = isset($this->get_args['status'])?$this->get_args['status']:"pending";
+		if(!in_array ( $data['status'] , $status_types, true)){
+			$data['status'] = "pending";
+		}
+		
 		$this->required_fields($required,$data);
-
 		$d_query = urldecode($data['query']);
 
 		$str = '';
+
+		// made this and so that only all those status belonging to the passed parameter would be queried
+		// watch out for the additional ")" in $str = 'WHERE '.$str .")"
+
+		$str = "status = '". $data['status'] ."' AND (";
 		if($data['loc'] === "1"){
 			$str .= " place_tag like '%{$d_query}%' OR";
 		}
@@ -27,7 +39,7 @@ class Search extends Kiel_Controller
 		$str = rtrim($str, 'OR');
 
 		if($str != ''){
-			$str = 'WHERE '.$str;
+			$str = 'WHERE '.$str . ")";
 			$res = $this->feed_model->search_item($str, $data['offset'], $data['limit']);
 		} else {
 			$res = $this->feed_model->get_messages();
