@@ -45,8 +45,22 @@
       
       <!-- START MESSAGE LIST-->
       <div class="col-lg-4 col-md-4" id="message-list">
-        
+        <div id="search-filter">          
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked="checked" id="filter-name" class="filter"> Pending
+            </label>
+          </div>
+
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" checked="checked" id="filter-location" class="filter"> Solved
+            </label>
+          </div>
+
+        </div>
         <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
+        
         <hr/>
         <!-- REMOVE THIS : CONVERT TO TEMPLATE-->
         <div id="message-list-messages">
@@ -69,7 +83,7 @@
           <button id="send" type="button" class="btn btn-primary">SEND</button>
         </div>
 
-        <input placeholder="Add Tags" type="hidden" id="tagSelect" class="tagSelect_dummy" style="width:98%"/> 
+        <input placeholder="Add Numbers to Contact" type="hidden" id="tagSelect" class="tagSelect_dummy" style="width:98%"/> 
 
       </div>
       <!--END CHAT BOX-->
@@ -203,6 +217,7 @@
         url: "http://www.reliefboard.com/messages/feed",
       } ).done( function ( result ) {
           $("#form-message").val('');
+          $("#tagSelect").select2("val", "");
           var append_message = {"message": message, "sender" : "Admin", "date_updated": (new Date).getTime(), "parent_id": "null"};
           var html = _.template(  document.getElementById('message_expanded_template').innerHTML , {comments:[append_message]} );
           document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
@@ -223,6 +238,7 @@
         current_message = first_message;
         var html = _.template( document.getElementById('message_expanded_template').innerHTML , {comments:[first_message]} );
         document.getElementById("conversation").innerHTML = html;
+
       }
       else{
         $("#message-list-messages").append(html);      
@@ -249,6 +265,7 @@
       current_message = messages_array[id];
     }
     document.getElementById("conversation").innerHTML = html;
+    $("#tagSelect").select2("val", "");
     load_message_expanded(id);
   });
 

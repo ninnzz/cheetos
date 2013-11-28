@@ -148,6 +148,15 @@ body {
 	margin-top:10px;
 }
 
+.checkbox{
+	display: inline-block;
+}
+
+.checkbox+.checkbox{
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
 /*-------------------------------------------------------------------------*/
 /* LOGIN */
 #login-container {
