@@ -165,16 +165,16 @@
         type: "GET",
         url: "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5"
       }).done( function ( result ) {
-        var html = _.template( $("#message_template").html() , {messages:result.data.result} );
+        var html = _.template( document.getElementById('message_template').innerHTML , {messages:result.data.result} );
         if(offset == 0 ){
           document.getElementById('message-list-messages').innerHTML = html;
           first_message = result.data.result[0];
           current_message = first_message;
-          var html = _.template( $("#message_expanded_template").html() , {comments:[first_message]} );
+          var html = _.template(  document.getElementById('message_expanded_template').innerHTML , {comments:[first_message]} );
           document.getElementById("conversation").innerHTML = html;
         }
         else{
-          document.getElementById('message-list-messages').innerHTML = document.getElementById('message-list-messages').innerHTML  + html;
+          $("#message-list-messages").append(html);    
         }
 
       });
@@ -188,7 +188,7 @@
       }).done( function ( result ) {
         console.log(result);
         if(result.data.result.length > 0){
-          var html = _.template( $("#message_expanded_template").html() , {comments:result.data.result} );
+          var html = _.template(  document.getElementById('message_expanded_template').innerHTML , {comments:result.data.result} );
           document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
         }
 
@@ -204,7 +204,7 @@
       } ).done( function ( result ) {
           $("#form-message").val('');
           var append_message = {"message": message, "sender" : "Admin", "date_updated": (new Date).getTime(), "parent_id": "null"};
-          var html = _.template( $("#message_expanded_template").html() , {comments:[append_message]} );
+          var html = _.template(  document.getElementById('message_expanded_template').innerHTML , {comments:[append_message]} );
           document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
       });
   }
@@ -221,11 +221,11 @@
         document.getElementById('message-list-messages').innerHTML = html;
         first_message = result.data.result[0];
         current_message = first_message;
-        var html = _.template( $("#message_expanded_template").html() , {comments:[first_message]} );
+        var html = _.template( document.getElementById('message_expanded_template').innerHTML , {comments:[first_message]} );
         document.getElementById("conversation").innerHTML = html;
       }
       else{
-        document.getElementById('message-list-messages').innerHTML = document.getElementById('message-list-messages').innerHTML  + html;
+        $("#message-list-messages").append(html);      
       }
     });
   }
@@ -238,8 +238,7 @@
       search(keyword);
     }else{
       load_messages();
-    }
-    
+    } 
   });
 
   // Message from the left side clicked to view comments
@@ -277,7 +276,7 @@
 
   // trigger if search input is empty
   $(document).on("keyup","#search", function(e) {   
-    if(($("#search").val()== "") && (is_search_mode == true)){
+    if((document.getElementById('search').value== "") && (is_search_mode == true)){
       offset = 0;
       is_search_mode = false;
       load_messages();

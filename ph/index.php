@@ -304,7 +304,17 @@
               <% } else if(d.source.indexOf("sms") !== -1) { %>
                 
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+                <span class="app-name"><span class=""></span>
+                <%
+                  var number = ""
+                  if((d.sender_number.charAt(0) == 0) || (d.sender_number.charAt(0) == '0') ){
+                    number = {first: d.sender_number.substring(0,4), second : d.sender_number.substring(4,7)};
+                  }
+                  else{
+                    number = {first: "0"+ d.sender_number.substring(2,5), second : d.sender_number.substring(5,8)};
+                  }
+                %> SMS  <%=number.first %>-<%=number.second %>-xxxx</span>
+                 
      
               <% } else if(d.app_name)  { %>
                 

@@ -1,10 +1,3 @@
-// this file contains common js functions for reliefboard
-
-function post_template (d) {
-        var html = _.template( $("#post").html() , {d:d} );
-        return html;
-}
-
 function convertToLinks(text) {
 	var replaceText, replacePattern1;
 	 
@@ -39,4 +32,21 @@ function timeConverter(UNIX_timestamp){
    var sec = a.getSeconds();
    var time = date+' '+month+' '+year+' '+hour+':'+min+':'+sec + " "+ ampm;
    return time;
+}
+
+function get_short_url(long_url, login, api_key, func)
+{
+  $.getJSON(
+      "http://api.bitly.com/v3/shorten?callback=?", 
+      { 
+          "format": "json",
+          "apiKey": api_key,
+          "login": login,
+          "longUrl": long_url
+      },
+      function(response)
+      {
+          func(response.data.url);
+      }
+  );
 }

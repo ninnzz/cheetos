@@ -1,3 +1,28 @@
+<?php 
+  function make_bitly_url($url,$login,$appkey,$format = 'xml',$version = '2.0.1') 
+  {
+    //create the URL
+    $bitly = 'http://api.bit.ly/shorten?version='.$version.'&longUrl='.urlencode($url).'&login='.$login.'&apiKey='.$appkey.'&format='.$format;
+    //get the url
+    //could also use cURL here
+    $response = file_get_contents($bitly);
+    
+    //parse depending on desired format
+    if(strtolower($format) == 'json')
+    {
+      $json = @json_decode($response,true);
+      return $json['results'][$url]['shortUrl'];
+    }
+    else //xml
+    {
+      $xml = simplexml_load_string($response);
+      return 'http://bit.ly/'.$xml->results->nodeKeyVal->hash;
+    }
+  }
+
+  $url = "http://www.reliefboard.com/ph";
+  $bitly = make_bitly_url($url,'kjventura','R_afc197795cfaf9242fc1063b2c77c48d','json');
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" >
 
@@ -36,8 +61,6 @@
 
     <!-- CSS CODE -->
     <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/select2.css" rel="stylesheet" />
-    <link href="css/select2-bootstrap.css" rel="stylesheet" />
     <link href="css/build.css" rel="stylesheet" />
 
 
@@ -118,7 +141,7 @@
                 <div class="fb-share-button" data-href="http://www.reliefboard.com/ph" data-type="button"></div>
               </div>
               <div class="social-item">
-                <a id="tw" href="https://twitter.com/share" data-url="http://www.reliefboard.com/ph" data-text="ReliefBoard is a messaging service that helps you reach the world in times of calamities." class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
+                <a id="tw" href="https://twitter.com/share" data-url="<?php echo $bitly; ?>" data-text="ReliefBoard is a messaging service that helps you reach the world in times of calamities." class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">
                   Tweet
                 </a>
               </div>
@@ -135,8 +158,6 @@
             <a href="https://www.facebook.com/reliefboard" target="new" title="Like us on Facebook">Visit our facebook page</a>
           </h3>
         </div>
-
-
 
         <div class="col-md-12 text-center">
             <br/>
@@ -169,29 +190,11 @@
     </div>
 
 
-
     <script type="text/templ" id="twTemplate">
       <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
     </script>
 
-
-
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/underscore.min.js"></script>
-    <script src="js/select2.min.js"></script>
-
-    <!--USER REPORT-->
-    <script type="text/javascript">
-    var _urq = _urq || [];
-    _urq.push(['initSite', '1f196460-25b0-43a0-b053-b084411a9d69']);
-    (function() {
-    var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-    ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-    })();
-    </script>
-
 
     <script>
       $( function () {
@@ -201,13 +204,12 @@
             FB.XFBML.parse();
         } else {
 
-           
         }
       });
 
       $(document).on("click","#back-to-feed",function(e) {
         e.preventDefault();
-        window.location = "http://www.reliefboard.com/";
+        window.location = "/";
       });
       
     </script>

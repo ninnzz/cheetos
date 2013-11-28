@@ -25,6 +25,9 @@
     <!-- END LOGIN CONTAINER -->
 
   </body>
+  <script>
+
+  </script>
   <!-- END BODY -->
 
 </html>

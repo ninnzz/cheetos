@@ -185,44 +185,9 @@
       </div>
     </div>
 
+    <script src="js/common.js"></script>
     <script type="text/templ" id="twTemplate">
       <a id="tw" href="https://twitter.com/share"  data-text="" class="twitter-share-button" data-lang="en" data-related="reliefboardph:The official account of ReliefBoard">Tweet</a>
-    </script>
-
-    <script type="text/javascript">
-      function convertToLinks(text) {
-        var replaceText, replacePattern1;
-         
-        //URLs starting with http://, https://
-        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
-        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
-         
-        //URLs starting with "www."
-        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
-         
-        //returns the text result
-         
-        return replacedText;
-      }
-    </script>
-
-    <script type="text/javascript">
-      function convertToLinks(text) {
-        var replaceText, replacePattern1;
-         
-        //URLs starting with http://, https://
-        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
-        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
-         
-        //URLs starting with "www."
-        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
-         
-        //returns the text result
-         
-        return replacedText;
-      }
     </script>
 
     <script type="text/template" id="post">
@@ -249,7 +214,16 @@
               <% } else if(d.source.indexOf("sms") !== -1) { %>
                 
                 <img src="img/profile-pic-16.png" width='20' />
-                <span class="app-name"><span class=""></span> SMS  0<%=d.sender_number.substring(2,5) %>-<%=d.sender_number.substring(5,8) %>-xxxx</span>
+                <span class="app-name"><span class=""></span>
+                <%
+                  var number = ""
+                  if((d.sender_number.charAt(0) == 0) || (d.sender_number.charAt(0) == '0') ){
+                    number = {first: d.sender_number.substring(0,4), second : d.sender_number.substring(4,7)};
+                  }
+                  else{
+                    number = {first: "0"+ d.sender_number.substring(2,5), second : d.sender_number.substring(5,8)};
+                  }
+                %> SMS  <%=number.first %>-<%=number.second %>-xxxx</span>
      
               <% } else if(d.app_name)  { %>
                 
@@ -334,12 +308,33 @@
       var keyword = $("#main-container").attr("data-keyword");
 
 
+      //APPLY FORMATING TO SINGLE RESULT
 
       function post_template (d) {
         var html = _.template( $("#post").html() , {d:d} );
+            var version = "2.0.1";
+            var id = d.id;
+            var url = "http://www.reliefboard.com/ph/post.php?id=" + id;
+            var login = "kjventura";
+            var appkey = "R_afc197795cfaf9242fc1063b2c77c48d";
+            var format = "json";
+            var ajax_url = 'http://api.bit.ly/shorten?version='+ version + '&longUrl='+ encodeURIComponent(url) + '&login=' + login + '&apiKey=' + appkey + '&format=' + format;
+
+            $.get(ajax_url, function( response ) {
+              
+            });
+
+            var login = "kjventura";
+        var api_key = "R_afc197795cfaf9242fc1063b2c77c48d";
+        var long_url = "http://www.reliefboard.com/ph/post.php?id=" + d.id;
+
+        get_short_url(long_url, login, api_key, function(short_url) {
+          $("#tw-" + d.id).attr("data-url",short_url);
+        })
         return html;
       }
 
+      //search for keyword
       function search(){
         $.ajax( {
           type: "GET",
