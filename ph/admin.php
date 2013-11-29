@@ -22,8 +22,7 @@ if (isset($_SESSION['username'])) {
   <!-- START BODY -->
   <body>
 
-    <!-- START - FIXED NAV -->
-    <div id="nav-container" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div id="nav-container" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       
       <div class="container">
         
@@ -39,11 +38,15 @@ if (isset($_SESSION['username'])) {
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
-             <li style="font-size:20px;padding:10px">ADMIN</li>
-             <li style="padding-top:15px"><span class="glyphicon glyphicon-chevron-down"></span></li>
+            <li> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              ADMIN <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="logout">Logout</li>
+            </ul>
+            </li>
           </ul>
         </nav>
-
       </div>
 
     </div>
@@ -365,6 +368,20 @@ if (isset($_SESSION['username'])) {
     } 
   });
 
+  $(document).on("click","#logout", function(e) {   
+    $.ajax({
+          url: "http://reliefboard.com/ph/login_controller/login_destroy.php",
+          type: "POST",
+          success: function(response){
+            console.log(response);
+            obj_response = JSON.parse(response);
+            if (obj_response.status == 'ok'){
+              window.location = "http://reliefboard.com/ph/login.php"
+            }
+          }
+       });
+  });
+
   // load messages on load
   $(document).ready(function(){
     load_messages();
@@ -372,6 +389,8 @@ if (isset($_SESSION['username'])) {
     $("#status_dropdown").select2();
     $("#status_dropdown_all").select2();
   });
+
+
   
   </script> <!--End of script-->
   </body>

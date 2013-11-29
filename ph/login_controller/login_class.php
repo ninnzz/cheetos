@@ -24,7 +24,7 @@ class login {
 				"password" => $password
 			);
 
-			$result = $this->curl_post("http://localhost.reliefboard.com/ph/login_controller/test_login_endpoint.php", 
+			$result = $this->curl_post("http://reliefboard.com/ph/login_controller/test_login_endpoint.php", 
 			$data);
 
 			if($result['status'] == "ok"){
