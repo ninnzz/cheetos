@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,14 +41,15 @@
       };
 
       $.ajax({
-          url: "http://localhost.reliefboard.com/ph/login_controller/login_create.php",
+          url: "http://reliefboard.com/ph/login_controller/login_create.php",
           type: "POST",
           data: data,
           success: function(response){
+            console.log(response);
             obj_response = JSON.parse(response);
             console.log(obj_response);
             if (obj_response.status == 'ok'){
-              window.location = "admin.php"
+              window.location = "http://reliefboard.com/ph/admin.php"
             }
           }
        });
