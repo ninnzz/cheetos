@@ -1,4 +1,12 @@
-<?php header('Access-Control-Allow-Origin: *'); ?> 
+<?php
+
+// Inialize session
+session_start();
+
+// Check, if user is already login, then jump to secured page
+if (isset($_SESSION['username'])) {
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -371,3 +379,6 @@
 
 </html>
 
+<?php } else{
+  header("Location: http://www.reliefboard.com/ph/login.php");
+}?>
