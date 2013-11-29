@@ -1,5 +1,5 @@
 <?php 
-
+header('Access-Control-Allow-Origin: *'); 
 include 'session.php';
 $session = new session();
 
