@@ -7,7 +7,16 @@ class Messages extends Kiel_Controller{
 		$offset    = isset($this->get_args['offset'])?$this->get_args['offset']:0;
 		$limit     = isset($this->get_args['limit'])?$this->get_args['limit']:10;
 		$parent_id = isset($this->get_args['parent_id'])?$this->get_args['parent_id']:NULL; 
+		$status    = isset($this->get_args['status'])?$this->get_args['status']:NULL;
 		
+		//check if status is passed and if yes, check if status belongs to the predefined choices
+		$status_types = array('pending', 'flagged', 'approved');
+		if($status != NULL){
+			if(!in_array($status , $status_types)){
+				$status= NULL;		
+			}
+		}
+
 		if(isset($this->get_args['parent_id'])){
 			$parent_id = $this->get_args['parent_id']; 
 		} else{
@@ -24,7 +33,8 @@ class Messages extends Kiel_Controller{
 			$offset = 0;
 			$limit  = 10;
 		}
-		$res  = $this->feed_model->get_messages($parent_id ,$offset ,$limit,$source);
+
+		$res  = $this->feed_model->get_messages($parent_id ,$offset ,$limit,$source, $status);
 		$this->response(array('status'=>'Success','data'=>$res),200);
 	}
 
