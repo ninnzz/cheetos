@@ -1,7 +1,6 @@
 <?php 
+session_start();
 header('Access-Control-Allow-Origin: *'); 
-include 'session.php';
-$session = new session();
 
 class login { 
 
