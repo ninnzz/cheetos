@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__)."/tagrec/utils/utils.php";
+require_once dirname(__DIR__)."/tag_rec/utils/utils.php";
 class Tagrec_model extends Kiel_Model{
 	public function recommendTags($msg,$count,$tolerance){	
 		$msg = urldecode($msg);
