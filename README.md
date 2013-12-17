@@ -1,3 +1,5 @@
+
+```
 endpoint    : http://www.reliefboard.com/messages/feed/
 description : retrieve all messages/feeds 
 method 	    : GET
@@ -126,7 +128,23 @@ result 	    :  {
 				"ellapsed_time": 0.0027821063995361,
 			 	"compress_output": true
 			    }
+endpoint    : http://www.reliefboard.com/tagrec
+description : recommends tags for a certain message
+method 	    : GET
+params      : (required) msg: the urlencoded message string
+			  (optional) count: number of tags to be returned (defaults to two) sometimes will not recommend any tag depending on the message
+			  (optional) tolerance: floating point values from 0.0 to 1 with 0 as the strictest in spelling (defaults to 0.2)
+result 	    :  {
+				"status":"Success",
+				"data":{
+					"tags":"Relief Goods,Water,evacuation"
+				},
+				"method":"GET",
+				"memory_usage":"0.27MB",
+				"ellapsed_time":0.073107957839966,
+				"compress_output":true
+			   }
 
-
+```
 Just create a <filename>.php in db_drivers
 

@@ -388,6 +388,40 @@
 					</td>
 				</tr>
 			</table>
+			<h3>Get recommended tags for a message or post</h3>
+			<table>
+				<tr>
+					<td>Endpoint</td>
+					<td>http://www.reliefboard.com/tagrec</td>
+				</tr>
+				<tr>
+					<td>Method</td>
+					<td>GET</td>
+				</tr>
+				<tr>
+					<td>Params</td>
+					<td>(required) msg(string): the urlencoded message string<br/>
+			  (optional) count(int): number of tags to be returned (defaults to two) sometimes will not recommend any tag depending on the message<br/>
+			  (optional) tolerance(float): floating point values from 0.0 to 1 with 0 as the strictest in spelling (defaults to 0.2)<br/></td>
+				</tr>
+				<tr>
+					<td>Result</td>
+					<td>
+						<pre>
+{
+	"status":"Success",
+	"data":{
+		"tags":"Relief Goods,Water,evacuation"
+	},
+	"method":"GET",
+	"memory_usage":"0.27MB",
+	"ellapsed_time":0.073107957839966,
+	"compress_output":true
+}
+						</pre>
+					</td>
+				</tr>
+			</table>
 			<br /><br /><br /><br /><br />
 		</div>
 	</body>
