@@ -1,3 +1,12 @@
+<?php
+
+// Inialize session
+session_start();
+
+// Check, if user is already login, then jump to secured page
+if (isset($_SESSION['username'])) {
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +22,7 @@
   <!-- START BODY -->
   <body>
 
-    <!-- START - FIXED NAV -->
-    <div id="nav-container" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div id="nav-container" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       
       <div class="container">
         
@@ -30,11 +38,15 @@
 
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav navbar-right">
-             <li style="font-size:20px;padding:10px">ADMIN</li>
-             <li style="padding-top:15px"><span class="glyphicon glyphicon-chevron-down"></span></li>
+            <li> <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              ADMIN <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="logout">Logout</li>
+            </ul>
+            </li>
           </ul>
         </nav>
-
       </div>
 
     </div>
@@ -46,17 +58,11 @@
       <!-- START MESSAGE LIST-->
       <div class="col-lg-4 col-md-4" id="message-list">
         <div id="search-filter">          
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" checked="checked" id="filter-name" class="filter"> Pending
-            </label>
-          </div>
-
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" checked="checked" id="filter-location" class="filter"> Solved
-            </label>
-          </div>
+          <select id="status_dropdown_all">
+              <option value="pending">Pending</option>
+              <option value="flagged">Flagged</option>
+              <option value="approved">Approved</option>
+          </select>
 
         </div>
         <input type="text" id="search" placeholder="Search" class="form-control" autocomplete="off">
@@ -75,6 +81,14 @@
       
       <!--START CHAT BOX-->
       <div class="col-lg-8 col-md-8" id="chat-box">
+        <div class="row text-right">
+          <select id="status_dropdown">
+              <option value="pending">Pending</option>
+              <option value="flagged">Flagged</option>
+              <option value="approved">Approved</option>
+          </select>
+          <div  class="btn btn-default" id="change_status"> Change Status</div>
+        </div>
         <div id="conversation">
 
         </div>
@@ -105,6 +119,8 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+  
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="js/common.js"></script>
@@ -173,24 +189,32 @@
   var current_message = "";
   var is_search_mode = false;
 
+
   //Load messages on the left side
-  function load_messages(){
+  function load_messages(status){
+      status = status || null;
+      if(status != null){ 
+        var url = "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5&status=" + status;
+      }else{
+        var url = "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5";
+      }     
+      
       $.ajax({
         type: "GET",
-        url: "http://www.reliefboard.com/messages/feed?offset=" + offset +"&limit=5"
+        url:  url
       }).done( function ( result ) {
         var html = _.template( document.getElementById('message_template').innerHTML , {messages:result.data.result} );
         if(offset == 0 ){
           document.getElementById('message-list-messages').innerHTML = html;
           first_message = result.data.result[0];
           current_message = first_message;
+          $("#status_dropdown").select2("val", first_message.status);
           var html = _.template(  document.getElementById('message_expanded_template').innerHTML , {comments:[first_message]} );
           document.getElementById("conversation").innerHTML = html;
         }
         else{
           $("#message-list-messages").append(html);    
         }
-
       });
   }
 
@@ -200,7 +224,7 @@
         type: "GET",
         url: "http://www.reliefboard.com/comments?parent_id=" + message_id  + "&limit=10&offset=" + offset_message_expanded
       }).done( function ( result ) {
-        console.log(result);
+       
         if(result.data.result.length > 0){
           var html = _.template(  document.getElementById('message_expanded_template').innerHTML , {comments:result.data.result} );
           document.getElementById('conversation').innerHTML = document.getElementById('conversation').innerHTML + html;    
@@ -225,12 +249,20 @@
   }
 
   //Search for certain messages
-  function search(keyword){
+  function search(keyword, status){
+    
+    status = status || null;
+    if(status != null){ 
+      var url = "http://www.reliefboard.com/search?query=" + keyword+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1&status=" + status;
+    }else{
+      var url = "http://www.reliefboard.com/search?query=" + keyword+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1";
+    }     
+
     $.ajax( {
       type: "GET",
-      url: "http://www.reliefboard.com/search?query=" + keyword+"&offset=" + offset+"&limit=5&name=1&loc=1&message=1"
+      url: url  
     } ).done( function ( result ) {
-      console.log(offset);
+      
       var html = _.template( $("#message_template").html() , {messages:result.data.result} );
       if(offset == 0 ){
         document.getElementById('message-list-messages').innerHTML = html;
@@ -251,7 +283,9 @@
     offset = offset + 5;
     if(is_search_mode){
       var keyword = document.getElementById("search").value;
-      search(keyword);
+      var status = $("#status_dropdown_all").select2('val');
+
+      search(keyword, status);
     }else{
       load_messages();
     } 
@@ -261,7 +295,8 @@
   $(document).on("click",".message", function(e) {
     var id= $(this).attr('data-id'); 
     if(typeof messages_array[id] != undefined){
-      var html = _.template( $("#message_expanded_template").html() , {comments:[messages_array[id]]} );
+      var html = _.template(document.getElementById('message_expanded_template').innerHTML , {comments:[messages_array[id]]} );
+      $("#status_dropdown").select2("val", messages_array[id].status);
       current_message = messages_array[id];
     }
     document.getElementById("conversation").innerHTML = html;
@@ -286,7 +321,9 @@
       is_search_mode = true;
       offset = 0;
       var keyword = document.getElementById("search").value;
-      search(keyword);
+      var status = $("#status_dropdown_all").select2('val');
+       
+      search(keyword, status);
     }
 
   });
@@ -300,11 +337,60 @@
     }
   });
 
+  // change status of a message
+  $(document).on("click","#change_status", function(e) {   
+    data = {
+      id : current_message.id,
+      status : $("#status_dropdown").select2('val')
+    };
+    
+    $.ajax({
+      type: "POST",
+      data : data,
+      url: "http://www.reliefboard.com/messages/message_flag/"
+    }).done( function ( result ) {
+      console.log(result);
+    });
+  });
+
+  // change messages on dropdown
+  $(document).on("change","#status_dropdown_all", function(e) {   
+    var status = $("#status_dropdown_all").select2('val');
+    offset = 0;
+    messages_array = [];
+    if(is_search_mode){
+      var keyword = document.getElementById("search").value;
+      var status = $("#status_dropdown_all").select2('val');
+
+      search(keyword, status);
+    }else{
+      load_messages(status);
+    } 
+  });
+
+  $(document).on("click","#logout", function(e) {   
+    $.ajax({
+          url: "http://reliefboard.com/ph/login_controller/login_destroy.php",
+          type: "POST",
+          success: function(response){
+            console.log(response);
+            obj_response = JSON.parse(response);
+            if (obj_response.status == 'ok'){
+              window.location = "http://reliefboard.com/ph/login.php"
+            }
+          }
+       });
+  });
+
   // load messages on load
   $(document).ready(function(){
     load_messages();
     $("#tagSelect").select2({tags:["DSWD", "Red Cross", "PNP"]});
+    $("#status_dropdown").select2();
+    $("#status_dropdown_all").select2();
   });
+
+
   
   </script> <!--End of script-->
   </body>
@@ -312,3 +398,6 @@
 
 </html>
 
+<?php } else{
+  header("Location: http://www.reliefboard.com/ph/login.php");
+}?>

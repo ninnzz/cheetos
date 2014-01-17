@@ -27,6 +27,7 @@ body {
 	border-top: 2px solid rgba(189,189,189,0.1);
 	margin-top: 10px;
 	padding: 0 !important;
+	background: #e9e9e9;
 }
 #load_more{
 	padding: 10px 20px;
@@ -132,6 +133,22 @@ body {
   	margin-bottom: 0;
   }
 }
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus  {
+	background-color: #294360;
+}
+.dropdown-menu{
+	background-color: #294360;
+	border: 1px solid transparent;
+}
+.dropdown-menu li{
+	display: block;
+	color: rgb(241, 234, 234);
+	text-align: right;
+	padding: 4px 14px;
+	font-size: 18px;
+	cursor: pointer;
+}
 /* -------------------------------------------------------------------------*/
 /* SEARCH */
 #search {
@@ -150,6 +167,7 @@ body {
 
 .checkbox{
 	display: inline-block;
+
 }
 
 .checkbox+.checkbox{
