@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chanel Stats</title>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+
+
+	<script type='text/javascript'>
+
+		function f()
+		{
+			try{
+				v=document.getElementById('vid_c').value;
+				if(v && v!==''){
+					req = $.ajax({
+						url: v,
+						type: 'GET',
+  						cache: false
+					})
+					req.done(function(e) {
+    					console.log(e);
+    					
+  					});
+  					req.fail(function(e,s) {
+  						alert("404");
+  					});
+
+				} else {
+					throw "put something";
+				}
+
+			} catch(err) {
+				alert(err);
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id='search'>
+		<h5>Enter a youtube video from a channel</h5>
+		<input type='text' id='vid_c' />
+		<button onclick="f()">Search</button>
+	</div>
+
+	<div id='result'>
+
+	</div>
+</body>
+</html>
