@@ -31,6 +31,3 @@
 	} catch(Exception $e) {
 		exit(json_encode(array('error'=>$e->getMessage())));
 	}
-
-
-
